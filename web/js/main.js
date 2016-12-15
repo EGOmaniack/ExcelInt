@@ -7,12 +7,16 @@ $(document).ready( function() {
 
 var p = document.getElementById("print");
 
-printP("Поле ввода");
+printP("<strong>Укажите Файл excel</strong>");
 
-function printP (text){
 
-	p.innerText = text;
-}
 
 
 });
+
+
+//сделать запись на экране
+function printP (text){
+
+    p.innerText = text;
+}
