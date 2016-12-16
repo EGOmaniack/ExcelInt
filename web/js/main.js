@@ -20,3 +20,4 @@ function printP (text){
 
     p.innerText = text;
 }
+

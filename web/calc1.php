@@ -15,29 +15,32 @@ $objExcel = $objreader->load($filename);
 $objExcel ->setActiveSheetIndex(0);
 $objWorkSheet = $objExcel->getActiveSheet(); //Вся таблица 1ого листа
 $higestRow = $objWorkSheet->getHighestRow(); // Слишком много перезапишем
-$higestRow =600;
+
 echo 'Начинаю обработку файла'.'<br/>';
-$agrNum[] = array();//not used
-$Data[] = array();//not used
+$agrNum[] = array();  // Кол-во агрегатов
+$Data[] = array(); // Все агрегаты
 
-$pust = 0; // количество пустых строк для цикла // not used
+//$pust = 0; // количество пустых строк для цикла // not used
 
-$gost = array('Шестигранник', 'Круг', 'Лист','Уголок','Швеллер');
-$work = array('пропан', 'кислород', 'электроды','Эмаль');
+$gost = array('Шестигранник', 'Круг', 'Лист','Уголок','Швеллер','Цепь','Труба');
+$work = array('пропан','электроды','Эмаль','Проволока','Кислород');
 
 
-for($i = 0; $i < $higestRow ; $i++ ) {
+for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
     $ncheck = $objWorkSheet->getCellByColumnAndRow(0,$i)->getValue();
     if($ncheck == 'n'){
+        $q++;
         $agregat['name'] = $objWorkSheet->getCellByColumnAndRow(1,$i)->getValue();
         $agregat['matlist'] = create_block($i+1, $higestRow, $objWorkSheet, $gost,$work );
         unset($ncheck);
-        $Data[]=$agregat;
+        $Data[$q]=$agregat;
+        $agrNum[$q] = $objWorkSheet->getCellByColumnAndRow(2,$i)->getValue();
+
     }
 }
 
 function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
-    for ($j=$startRow; $j < $maxrow; $j++) {
+    for ($j=$startRow , $pust = 0; $j < $maxrow; $j++) {
         $val = $sheet->getCellByColumnAndRow(1,$j)->getValue();
         if(strlen($val) >0) {
             $pref = explode(' ',$val );
@@ -49,9 +52,8 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
                 $element[6] = $sheet->getCellByColumnAndRow(5,$j)->getValue();
                 $element[9] = $sheet->getCellByColumnAndRow(8,$j)->getValue();
                 $element[10] = $sheet->getCellByColumnAndRow(9,$j)->getValue();
-                $element[11] = $sheet->getCellByColumnAndRow(10,$j)->getValue();
+                //$element[11] = $sheet->getCellByColumnAndRow(10,$j)->getValue(); //Считывается формула текстом
 
-                if($j <12){var_dump($element);}
                 $matlist[] = $element;
                 unset($element);
                 $j++;
@@ -73,47 +75,71 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
         if($sheet->getCellByColumnAndRow(0,$j)->getValue() == 'n' ){
             return $matlist;
         }
-    }
-}
+        // переписывфем макс число строк и прерываем цикл
+        if(strlen($sheet->getCellByColumnAndRow(1,$j)->getValue()) == 0 ){
+            if($pust == 5){
+                 $higestRow = $j;
+                 echo 'Число строк равно '.($higestRow-6).'<br/>';
+                 break;
+                 }else{$pust++;}
+                 // echo $pust;
+                 }else{$pust = 0;}
+             }
+        }
 
-//var_dump($Data);
+var_dump($Data[3]);
+echo '<br><br>';
+var_dump($Data[6]);
+echo 'Файл принят и обработан'.'<br><br>';
 
 $clone = $Data;
 
 $compare;
 
 $comparear;
+$numsovp = 0;
 foreach ($Data as $key => $value) {
     for($e = 0; $e < count($value['matlist']); $e++){
 
         foreach ($clone as $k => $v) {
             for($l = 0; $l < count($v['matlist']); $l++){
-                if($clone[$k]['matlist'][$l] == $value['matlist'][$e] && $clone[$k]['name'] != $value['name']){
-                   // echo 'clone'.$clone[$k]['name'].'<br>';
-                   // echo 'original'.$value['name'].'<br>';
-                    //var_dump($clone[$k]['matlist'][$l]);
-// $compare[] = $clone[$key]['matlist'][$e];
+                if($clone[$k]['matlist'][$l][0] == $value['matlist'][$e][0] &&
+                    $clone[$k]['matlist'][$l][1] == $value['matlist'][$e][1] &&
+                    ($clone[$k]['name'] != $value['name'])){
+                        $numsovp++;
+//                    echo 'original: '.$value['name'].'<br>';
+//                    echo 'clone: '.$clone[$k]['name'].'<br>';
+//                    echo $clone[$k]['matlist'][$l][0].'/'.$clone[$k]['matlist'][$l][1].'<br><br>';
+
                 }
             }
         }
 
     }
 }
-
-
+echo 'Совпадений найдено - '.$numsovp.' шт.';
 
 
 
 
  //Рисуем таблицу
  $table ='<table>';
- for($i=0;$i<count($Data);$i++){
- // $table .='<tr><td>'.$i.'</td><td>'.'$i + 1' .'</td></tr>';
+ for($i=0 ;$i < count($Data) ;$i++){
  $table .='<tr><td>'.$Data[$i]['name'].'</td><td>'.$agrNum[$i].'</td></tr>';
  }
  $table .='</table>';
 
- //echo $table;
+ echo $table;
+
+ echo '<br><br>';
+
+//$table2 ='<table>';
+//for($i=0 ;$i < count($Data) ;$i++){
+//    $table2 .='<tr><td>'.$Data[$i]['name'].'</td><td>'.$agrNum[$i].'</td></tr>';
+//}
+//$table2 .='</table>';
+//
+//echo $table2;
 
 
 //$string = preg_replace('/\s+/', '', $string); //удаление пробелов
@@ -127,7 +153,8 @@ foreach ($Data as $key => $value) {
 
 <!DOCTYPE html> 
 <html> 
-<head> 
+<head>
+    <link rel="stylesheet" href="css/main.css?1"/>
 </head> 
 
 <body> 
