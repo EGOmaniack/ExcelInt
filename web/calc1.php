@@ -22,8 +22,8 @@ $Data[] = array(); // Все агрегаты
 
 //$pust = 0; // количество пустых строк для цикла // not used
 
-$gost = array('Шестигранник', 'Круг', 'Лист','Уголок','Швеллер','Цепь','Труба');
-$work = array('пропан','электроды','Эмаль','Проволока','Кислород');
+$gost = array('шестигранник', 'круг', 'лист','уголок','швеллер','цепь','труба','пластина','проволока');
+$work = array('пропан','электроды','эмаль','проволока','кислород','шток');
 
 
 for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
@@ -46,7 +46,7 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
             $pref = explode(' ',$val );
 
 
-            if( in_array($pref[0],$spr2)){ // element 0,1,2 марка; 3-11 остальные ячейки
+            if( in_array(strtolower_utf8($pref[0]),$spr2)){ // element 0,1,2 марка; 3-11 остальные ячейки
                 $element[0] = $sheet->getCellByColumnAndRow(1,$j)->getValue();
                 $element[1] = $sheet->getCellByColumnAndRow(1,$j+1)->getValue();
                 $element[6] = $sheet->getCellByColumnAndRow(5,$j)->getValue();
@@ -58,12 +58,13 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
                 unset($element);
                 $j++;
             }
-            elseif(in_array($pref[0],$spr)){
+            elseif(in_array(strtolower_utf8($pref[0]),$spr)){
                 $element[0] = $sheet->getCellByColumnAndRow(1,$j)->getValue();
                 $element[6] = $sheet->getCellByColumnAndRow(5,$j)->getValue();
                 $element[9] = $sheet->getCellByColumnAndRow(8,$j)->getValue();
                 $element[10] = $sheet->getCellByColumnAndRow(9,$j)->getValue();
                 $element[11] = $sheet->getCellByColumnAndRow(10,$j)->getValue();
+
                 $matlist[] = $element;
                 unset($element);
             }
@@ -80,17 +81,17 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
             if($pust == 5){
                  $higestRow = $j;
                  echo 'Число строк равно '.($higestRow-6).'<br/>';
-                 break;
+                return $matlist;
                  }else{$pust++;}
                  // echo $pust;
                  }else{$pust = 0;}
              }
         }
 
-var_dump($Data[3]);
-echo '<br><br>';
-var_dump($Data[6]);
-echo 'Файл принят и обработан'.'<br><br>';
+//var_dump($Data[3]);
+//echo '<br><br>';
+//var_dump($Data[6]);
+//echo 'Файл принят и обработан'.'<br><br>';
 
 $clone = $Data;
 
@@ -103,8 +104,8 @@ foreach ($Data as $key => $value) {
 
         foreach ($clone as $k => $v) {
             for($l = 0; $l < count($v['matlist']); $l++){
-                if($clone[$k]['matlist'][$l][0] == $value['matlist'][$e][0] &&
-                    $clone[$k]['matlist'][$l][1] == $value['matlist'][$e][1] &&
+                if(strtolower_utf8($clone[$k]['matlist'][$l][0]) == strtolower_utf8($value['matlist'][$e][0]) &&
+                    strtolower_utf8($clone[$k]['matlist'][$l][1]) == strtolower_utf8($value['matlist'][$e][1]) &&
                     ($clone[$k]['name'] != $value['name'])){
                         $numsovp++;
 //                    echo 'original: '.$value['name'].'<br>';
@@ -120,19 +121,38 @@ foreach ($Data as $key => $value) {
 echo 'Совпадений найдено - '.$numsovp.' шт.';
 
 
+function strtolower_utf8($string){
+    $convert_to = array(
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
+        "v", "w", "x", "y", "z", "à", "á", "â", "ã", "ä", "å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï",
+        "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "ø", "ù", "ú", "û", "ü", "ý", "а", "б", "в", "г", "д", "е", "ё", "ж",
+        "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы",
+        "ь", "э", "ю", "я"
+    );
+    $convert_from = array(
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
+        "V", "W", "X", "Y", "Z", "À", "Á", "Â", "Ã", "Ä", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï",
+        "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж",
+        "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ъ",
+        "Ь", "Э", "Ю", "Я"
+    );
 
+    return str_replace($convert_from, $convert_to, $string);
+}
 
- //Рисуем таблицу
+//Рисуем таблицу
  $table ='<table>';
  for($i=0 ;$i < count($Data) ;$i++){
- $table .='<tr><td>'.$Data[$i]['name'].'</td><td>'.$agrNum[$i].'</td></tr>';
+ $table .='<tr><td>'.strtolower_utf8($Data[$i]['name']).'</td><td>'.$agrNum[$i].'</td><td>'.count($Data[$i]['matlist']).'</td></tr>';
  }
  $table .='</table>';
 
  echo $table;
 
  echo '<br><br>';
-
+ $str01 = "Ее";
+ $str02 = "ее";
+echo $a = (strtolower_utf8($str01)==$str02) ? $str01." равно ".$str02 : $str01." не = ".$str02 ;
 //$table2 ='<table>';
 //for($i=0 ;$i < count($Data) ;$i++){
 //    $table2 .='<tr><td>'.$Data[$i]['name'].'</td><td>'.$agrNum[$i].'</td></tr>';
