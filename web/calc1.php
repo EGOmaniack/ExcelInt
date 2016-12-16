@@ -22,8 +22,8 @@ $Data[] = array(); // Все агрегаты
 
 //$pust = 0; // количество пустых строк для цикла // not used
 
-$gost = array('шестигранник', 'круг', 'лист','уголок','швеллер','цепь','труба','пластина','проволока');
-$work = array('пропан','электроды','эмаль','проволока','кислород','шток');
+$gost = array('шестигранник', 'круг', 'лист','уголок','швеллер','цепь','труба','пластина');
+$work = array('пропан','электроды','эмаль','кислород','шток');
 
 
 for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
@@ -39,6 +39,27 @@ for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
     }
 }
 
+function save_mat($strok, $i ,$sheet){
+    $elem1[] = array();
+    switch ($strok){
+        case 2 :
+            $elem1[0] = $sheet->getCellByColumnAndRow(1,$i)->getValue();
+            $elem1[1] = $sheet->getCellByColumnAndRow(1,$i+1)->getValue();
+            $elem1[6] = $sheet->getCellByColumnAndRow(5,$i)->getValue();
+            $elem1[9] = $sheet->getCellByColumnAndRow(8,$i)->getValue();
+            $elem1[10] = $sheet->getCellByColumnAndRow(9,$i)->getValue();
+            break;
+        case 1 :
+            $elem1[0] = $sheet->getCellByColumnAndRow(1,$i)->getValue();
+            $elem1[6] = $sheet->getCellByColumnAndRow(5,$i)->getValue();
+            $elem1[9] = $sheet->getCellByColumnAndRow(8,$i)->getValue();
+            $elem1[10] = $sheet->getCellByColumnAndRow(9,$i)->getValue();
+            $elem1[11] = $sheet->getCellByColumnAndRow(10,$i)->getValue();
+            break;
+    }
+    return $elem1;
+}
+
 function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
     for ($j=$startRow , $pust = 0; $j < $maxrow; $j++) {
         $val = $sheet->getCellByColumnAndRow(1,$j)->getValue();
@@ -47,26 +68,23 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
 
 
             if( in_array(strtolower_utf8($pref[0]),$spr2)){ // element 0,1,2 марка; 3-11 остальные ячейки
-                $element[0] = $sheet->getCellByColumnAndRow(1,$j)->getValue();
-                $element[1] = $sheet->getCellByColumnAndRow(1,$j+1)->getValue();
-                $element[6] = $sheet->getCellByColumnAndRow(5,$j)->getValue();
-                $element[9] = $sheet->getCellByColumnAndRow(8,$j)->getValue();
-                $element[10] = $sheet->getCellByColumnAndRow(9,$j)->getValue();
-                //$element[11] = $sheet->getCellByColumnAndRow(10,$j)->getValue(); //Считывается формула текстом
 
-                $matlist[] = $element;
+                $matlist[] = save_mat(2,$j,$sheet);
                 unset($element);
                 $j++;
+
             }
             elseif(in_array(strtolower_utf8($pref[0]),$spr)){
-                $element[0] = $sheet->getCellByColumnAndRow(1,$j)->getValue();
-                $element[6] = $sheet->getCellByColumnAndRow(5,$j)->getValue();
-                $element[9] = $sheet->getCellByColumnAndRow(8,$j)->getValue();
-                $element[10] = $sheet->getCellByColumnAndRow(9,$j)->getValue();
-                $element[11] = $sheet->getCellByColumnAndRow(10,$j)->getValue();
 
-                $matlist[] = $element;
+                $matlist[] = save_mat(1,$j,$sheet);
                 unset($element);
+
+            }
+            switch (strtolower_utf8($pref[0])){
+                case "цепь":
+                    break;
+                case "проволока":
+                    break;
             }
 
 
