@@ -61,26 +61,25 @@ function save_mat($strok, $i ,$sheet){
 }
 
 function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
-    for ($j=$startRow , $pust = 0; $j < $maxrow; $j++) {
-        $val = $sheet->getCellByColumnAndRow(1,$j)->getValue();
-        if(strlen($val) >0) {
-            $pref = explode(' ',$val );
+    for ($j = $startRow, $pust = 0; $j < $maxrow; $j++) {
+        $val = $sheet->getCellByColumnAndRow(1, $j)->getValue();
+        if (strlen($val) > 0) {
+            $pref = explode(' ', $val);
 
 
-            if( in_array(strtolower_utf8($pref[0]),$spr2)){ // element 0,1,2 марка; 3-11 остальные ячейки
+            if (in_array(strtolower_utf8($pref[0]), $spr2)) { // element 0,1,2 марка; 3-11 остальные ячейки
 
-                $matlist[] = save_mat(2,$j,$sheet);
+                $matlist[] = save_mat(2, $j, $sheet);
                 unset($element);
                 $j++;
 
-            }
-            elseif(in_array(strtolower_utf8($pref[0]),$spr)){
+            } elseif (in_array(strtolower_utf8($pref[0]), $spr)) {
 
-                $matlist[] = save_mat(1,$j,$sheet);
+                $matlist[] = save_mat(1, $j, $sheet);
                 unset($element);
 
             }
-            switch (strtolower_utf8($pref[0])){
+            switch (strtolower_utf8($pref[0])) {
                 case "цепь":
                     break;
                 case "проволока":
@@ -91,25 +90,25 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
         }
 
 
-        if($sheet->getCellByColumnAndRow(0,$j)->getValue() == 'n' ){
+        if ($sheet->getCellByColumnAndRow(0, $j)->getValue() == 'n') {
             return $matlist;
         }
-        // переписывфем макс число строк и прерываем цикл
+        // переписывем макс число строк и прерываем цикл
         if(strlen($sheet->getCellByColumnAndRow(1,$j)->getValue()) == 0 ){
             if($pust == 5){
                  $higestRow = $j;
                  echo 'Число строк равно '.($higestRow-6).'<br/>';
                 return $matlist;
-                 }else{$pust++;}
+            }else{$pust++;}
                  // echo $pust;
-                 }else{$pust = 0;}
-             }
-        }
+        }else{$pust = 0;}
 
+    }
+}
 //var_dump($Data[3]);
 //echo '<br><br>';
-//var_dump($Data[6]);
-//echo 'Файл принят и обработан'.'<br><br>';
+//var_dump($Data);
+echo 'Файл принят и обработан'.'<br><br>';
 
 $clone = $Data;
 
@@ -125,6 +124,7 @@ foreach ($Data as $key => $value) {
                 if(strtolower_utf8($clone[$k]['matlist'][$l][0]) == strtolower_utf8($value['matlist'][$e][0]) &&
                     strtolower_utf8($clone[$k]['matlist'][$l][1]) == strtolower_utf8($value['matlist'][$e][1]) &&
                     ($clone[$k]['name'] != $value['name'])){
+                        unset($clone[$k]['matlist'][$k]);
                         $numsovp++;
 //                    echo 'original: '.$value['name'].'<br>';
 //                    echo 'clone: '.$clone[$k]['name'].'<br>';
@@ -167,39 +167,20 @@ function strtolower_utf8($string){
 
  echo $table;
 
- echo '<br><br>';
- $str01 = "Ее";
- $str02 = "ее";
-echo $a = (strtolower_utf8($str01)==$str02) ? $str01." равно ".$str02 : $str01." не = ".$str02 ;
-//$table2 ='<table>';
-//for($i=0 ;$i < count($Data) ;$i++){
-//    $table2 .='<tr><td>'.$Data[$i]['name'].'</td><td>'.$agrNum[$i].'</td></tr>';
-//}
-//$table2 .='</table>';
-//
-//echo $table2;
 
+?>
 
-//$string = preg_replace('/\s+/', '', $string); //удаление пробелов
-/*
-* $rest = substr("abcdef", 0, -1); // возвращает "abcde" 
-* $rest = substr("abcdef", 2, -1); // возвращает "cde" 
-* $rest = substr("abcdef", 4, -4); // возвращает false 
-* $rest = substr("abcdef", -3, -1); // возвращает "de" 
-*/ 
-?> 
-
-<!DOCTYPE html> 
-<html> 
+<!DOCTYPE html>
+<html>
 <head>
     <link rel="stylesheet" href="css/main.css?1"/>
-</head> 
+</head>
 
-<body> 
+<body>
 
-<!--<input type="button" value="Сравнить">--> 
+<!--<input type="button" value="Сравнить">-->
 
-</form> 
+</form>
 
-</body> 
+</body>
 </html>
