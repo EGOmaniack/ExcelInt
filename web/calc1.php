@@ -17,8 +17,9 @@ $objWorkSheet = $objExcel->getActiveSheet(); //Вся таблица 1ого л�
 $higestRow = $objWorkSheet->getHighestRow(); // Слишком много перезапишем
 
 echo 'Начинаю обработку файла'.'<br/>';
-$agrNum[] = array();  // Кол-во агрегатов
-$Data[] = array(); // Все агрегаты
+
+$Data; // Все агрегаты
+
 
 //$pust = 0; // количество пустых строк для цикла // not used
 
@@ -31,10 +32,10 @@ for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
     if($ncheck == 'n'){
         $q++;
         $agregat['name'] = $objWorkSheet->getCellByColumnAndRow(1,$i)->getValue();
+        $agregat['options']['number'] = $objWorkSheet->getCellByColumnAndRow(2,$i)->getValue();
         $agregat['matlist'] = create_block($i+1, $higestRow, $objWorkSheet, $gost,$work );
         unset($ncheck);
         $Data[$q]=$agregat;
-        $agrNum[$q] = $objWorkSheet->getCellByColumnAndRow(2,$i)->getValue();
 
     }
 }
@@ -105,17 +106,15 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
 
     }
 }
-//var_dump($Data[3]);
-//echo '<br><br>';
-//var_dump($Data);
+
 echo 'Файл принят и обработан'.'<br><br>';
 
 $clone = $Data;
 
-$compare;
 
-$comparear;
 $numsovp = 0;
+
+//Поиск всех совпадающих материалов среди агрегатов
 foreach ($Data as $key => $value) {
     for($e = 0; $e < count($value['matlist']); $e++){
 
@@ -124,7 +123,7 @@ foreach ($Data as $key => $value) {
                 if(strtolower_utf8($clone[$k]['matlist'][$l][0]) == strtolower_utf8($value['matlist'][$e][0]) &&
                     strtolower_utf8($clone[$k]['matlist'][$l][1]) == strtolower_utf8($value['matlist'][$e][1]) &&
                     ($clone[$k]['name'] != $value['name'])){
-                        unset($clone[$k]['matlist'][$k]);
+                        unset($clone[$k]['matlist'][$l]);
                         $numsovp++;
 //                    echo 'original: '.$value['name'].'<br>';
 //                    echo 'clone: '.$clone[$k]['name'].'<br>';
@@ -138,6 +137,51 @@ foreach ($Data as $key => $value) {
 }
 echo 'Совпадений найдено - '.$numsovp.' шт.';
 
+$matmerge = array();
+//var_dump($Data);exit;
+//Собираем новый массив материалов
+foreach ($Data as $value) {
+    foreach ($value['matlist'] as $mat) {
+
+        if(in_array($mat, $matmerge)){
+            for($o =0; $o < count($matmerge); $o++){
+                echo 1;
+               if($matmerge[$o] == $mat[$kk]){
+                   $matmerge[$o][9] = $matmerge[$o][9] + $mat[$kk][9];
+                   $matmerge[$o][55] = 'Y';
+               }
+            }
+        }else{
+            $matmerge[]=$mat;
+        }
+    }
+//
+//    for($e = 0; $e < count($value['matlist']); $e++){
+//        $matmerge =
+//
+//
+//        //echo 'I\'m in cicle <br/>';
+//        $exist = false; //Обозначает найдено ли совпадение
+//
+//        foreach ($matmerge as $k => $v){
+//
+//            if($matmerge[$v][0] == $Data[$k]['matlist'][$l][0] &&
+//            $matmerge[$v][1] == $Data[$k]['matlist'][$l][1]){
+//
+//                $exist = true; //Найдено совпадение
+//            }
+//        }
+//        //нет совпадения - копируем, если есть суммируем массу
+//        if(!$exist){
+//            $matmerge[$v] = $Data[$k]['matlist'][$l];
+//        }else{
+//            $matmerge[$v][9] += $Data[$k]['matlist'][$l][9];
+//            // * $Data[$k]['options']['number'];
+//        }
+//
+//    }
+}
+//var_dump($matmerge);
 
 function strtolower_utf8($string){
     $convert_to = array(
@@ -159,14 +203,35 @@ function strtolower_utf8($string){
 }
 
 //Рисуем таблицу
- $table ='<table>';
- for($i=0 ;$i < count($Data) ;$i++){
- $table .='<tr><td>'.strtolower_utf8($Data[$i]['name']).'</td><td>'.$agrNum[$i].'</td><td>'.count($Data[$i]['matlist']).'</td></tr>';
+ $table ='<table border="1">
+        <caption>Таблица содержания файла</caption>
+        <tr>
+        <th>Наименование агрегата</th>
+        <th>Кол-во <br/> агрегатов</th>
+        <th>Кол-во <br/> материалов</th>
+        </tr>';
+ for($i=1 ;$i < count($Data) ;$i++){
+ $table .='<tr><td>'.$Data[$i]['name'].'</td><td>'.$Data[$i]['options']['number'].'</td><td>'.count($Data[$i]['matlist']).'</td></tr>';
  }
- $table .='</table>';
+ $table .='</table><br><br>';
 
- echo $table;
+// echo $table;
+//var_dump($Data);
 
+
+//Рисуем таблицу всех материалов
+$table2 ='<table border="1">
+        <caption>Таблица материалов</caption>
+        <tr>
+        <th>материал</th>
+        <th>масса</th>
+        </tr>';
+for($i=0 ;$i < count($matmerge) ;$i++){
+    $table2 .='<tr><td>'.$matmerge[$i][0].'</td><td>'.$matmerge[$i][9].'</td></tr>';
+}
+$table2 .='</table><br><br>';
+
+//echo $table2;
 
 ?>
 

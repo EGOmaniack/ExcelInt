@@ -1,6 +1,9 @@
 <?php
-
-    if(count($_FILES['Excel']['size'])>0)var_dump($_FILES);
+ini_set('display_errors', 0) ;
+ini_set('xdebug.var_display_max_depth', 5);
+ini_set('xdebug.var_display_max_children', 256);
+ini_set('xdebug.var_display_max_data', 1024);
+//    if(count($_FILES['Excel']['size'])>0)echo 'Файл выбран';
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,28 +20,24 @@
     <body>
                 <p id = "print"></p>
 
-<!--        <form name="excelCalc" method="post" action="calc1.php"-->
-<!--              enctype="multipart/form-data">-->
-<!--            <p><br>-->
-<!--                <input type="file" name="fileToUpload" >-->
-
-<!--            </p>-->
+        <form name="excelCalc" method="post" action="calc1.php"
+              enctype="multipart/form-data">
+            <p><br>
+                <input type="file" name="fileToUpload" >
+            </p>
+            <p><input type="submit" value="Отправить">
+                <input type="reset" value="Очистить"></p>
+        </form>
 <!---->
-
-<!--                <textarea name="comment" cols="40" rows="3"></textarea></p>-->
-<!--            <p><input type="submit" value="Отправить">-->
-<!--                <input type="reset" value="Очистить"></p>-->
-<!--        </form>-->
-
-        <div calss="parant">
-            <div class="block">
-
-                <h2>Загрузите файл</h2>
-                <input type="file" name="Excel"> <br>
-                <input id="btn" type="button" name="go" value="Посчитать" disabled = "disables">
-<!--                <img src="pics/mats.jpg" alt=""/>-->
-            </div>
-        </div>
+<!--        <div calss="parant">-->
+<!--            <div class="block">-->
+<!---->
+<!--                <h3>Загрузите файл</h3>-->
+<!--                <input type="file" name="Excel"> <br>-->
+<!--                <input id="btn" type="button" name="go" value="Посчитать" disabled = "disables">-->
+<!---->
+<!--            </div>-->
+<!--        </div>-->
     </body>
     <script src="js/main.js" type="text/javascript"></script>
 </html>

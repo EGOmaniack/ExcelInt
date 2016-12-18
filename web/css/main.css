@@ -15,12 +15,14 @@ td:hover {
   height: 30px;
   border: 2px solid black;
   color: grey;
+    box-shadow: 2px 2px 10px black;
 }
 
 #btn{
     height: 40px;
     width: 100px;
     margin: 12px;
+    box-shadow: 2px 2px 10px black;
 
 }
 .parent{
