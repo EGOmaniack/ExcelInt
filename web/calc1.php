@@ -43,13 +43,6 @@ for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
 function save_mat($strok, $i ,$sheet){
     $elem1[] = array();
     switch ($strok){
-        case 2 :
-            $elem1[0] = $sheet->getCellByColumnAndRow(1,$i)->getValue();
-            $elem1[1] = $sheet->getCellByColumnAndRow(1,$i+1)->getValue();
-            $elem1[6] = $sheet->getCellByColumnAndRow(5,$i)->getValue();
-            $elem1[9] = $sheet->getCellByColumnAndRow(8,$i)->getValue();
-            $elem1[10] = $sheet->getCellByColumnAndRow(9,$i)->getValue();
-            break;
         case 1 :
             $elem1[0] = $sheet->getCellByColumnAndRow(1,$i)->getValue();
             $elem1[6] = $sheet->getCellByColumnAndRow(5,$i)->getValue();
@@ -57,6 +50,13 @@ function save_mat($strok, $i ,$sheet){
             $elem1[10] = $sheet->getCellByColumnAndRow(9,$i)->getValue();
             $elem1[11] = $sheet->getCellByColumnAndRow(10,$i)->getValue();
             break;
+        default :
+            $elem1[0] = $sheet->getCellByColumnAndRow(1,$i)->getValue();
+            $elem1[1] = $sheet->getCellByColumnAndRow(1,$i+1)->getValue();
+            $elem1[6] = $sheet->getCellByColumnAndRow(5,$i)->getValue();
+            $elem1[9] = $sheet->getCellByColumnAndRow(8,$i)->getValue();
+            $elem1[10] = $sheet->getCellByColumnAndRow(9,$i)->getValue();
+
     }
     return $elem1;
 }
@@ -135,53 +135,44 @@ foreach ($Data as $key => $value) {
 
     }
 }
-echo 'Совпадений найдено - '.$numsovp.' шт.';
+echo 'Совпадений найдено - '.$numsovp.' шт.'.'<br/>';
 
-$matmerge = array();
-//var_dump($Data);exit;
+$matmerge;
+//echo $Data[]
 //Собираем новый массив материалов
-foreach ($Data as $value) {
-    foreach ($value['matlist'] as $mat) {
+$count;
 
-        if(in_array($mat, $matmerge)){
-            for($o =0; $o < count($matmerge); $o++){
-                echo 1;
-               if($matmerge[$o] == $mat[$kk]){
-                   $matmerge[$o][9] = $matmerge[$o][9] + $mat[$kk][9];
-                   $matmerge[$o][55] = 'Y';
-               }
+
+$matmerge;
+//Объединение все в единый массив с проверкой копий
+foreach ($Data as $key => $value){
+    for($i = 0; $i < count($value['matlist']);$i++){
+
+        $copy = false;
+        $y = 0;
+        unset($y);
+        for($j = 0; $j < count($matmerge);$j++){   /*Смотрим есть ли копия очередного материала в matmerge*/
+            if(strtolower_utf8($matmerge[$j][0]) == strtolower_utf8($value['matlist'][$i][0]) &&
+                strtolower_utf8($matmerge[$j][1]) == strtolower_utf8($value['matlist'][$i][1])) {
+                $count++; /*Считаем количество учтенных совпадений*/
+                $copy = true;/*Нашли совпадение*/
+                $y = $j;/*Запоминаем порядковый номер совпадения*/
+                break;/*больше не проверяем раз уж нашли одно совпадение*/
+//                echo 'Есть...'.$matmerge[$j][0].'/'.$matmerge[$j][1].'<br/>'
+//                    . 'Копия'.$value['matlist'][$i][0].'/'.$value['matlist'][$i][1].$Data[$key]['name'].' масса= '.$Data[$key]['matlist'][$i][9].'<br/><br/>';
             }
+        }
+        if(!$copy) {
+            $matmerge[] = $value['matlist'][$i];
         }else{
-            $matmerge[]=$mat;
+            $matmerge[$y][9] += $value['matlist'][$i][9];
         }
     }
-//
-//    for($e = 0; $e < count($value['matlist']); $e++){
-//        $matmerge =
-//
-//
-//        //echo 'I\'m in cicle <br/>';
-//        $exist = false; //Обозначает найдено ли совпадение
-//
-//        foreach ($matmerge as $k => $v){
-//
-//            if($matmerge[$v][0] == $Data[$k]['matlist'][$l][0] &&
-//            $matmerge[$v][1] == $Data[$k]['matlist'][$l][1]){
-//
-//                $exist = true; //Найдено совпадение
-//            }
-//        }
-//        //нет совпадения - копируем, если есть суммируем массу
-//        if(!$exist){
-//            $matmerge[$v] = $Data[$k]['matlist'][$l];
-//        }else{
-//            $matmerge[$v][9] += $Data[$k]['matlist'][$l][9];
-//            // * $Data[$k]['options']['number'];
-//        }
-//
-//    }
 }
-//var_dump($matmerge);
+echo 'count '.$count.'<br/>';
+
+var_dump($matmerge);
+
 
 function strtolower_utf8($string){
     $convert_to = array(
