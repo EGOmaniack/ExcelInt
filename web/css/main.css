@@ -12,10 +12,8 @@ td{
   border: 2px solid #D2D3D5;
 }
 td:hover {
-  height: 30px;
-  border: 2px solid black;
   color: grey;
-    box-shadow: 2px 2px 10px black;
+    box-shadow: 1px 1px 20px rgba(0,0,120,30);
 }
 
 #btn{
@@ -37,4 +35,7 @@ td:hover {
     border: solid 1px black; /* Параметры рамки вокруг */
     padding: 10px; /* Поля вокруг текста */
     overflow: auto; /* Добавление полосы прокрутки */
+}
+.mat{
+    color: blueviolet;
 }

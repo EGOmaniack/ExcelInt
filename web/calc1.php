@@ -3,8 +3,10 @@ ini_set('display_errors', 0) ;
 ini_set('xdebug.var_display_max_depth', 5);
 ini_set('xdebug.var_display_max_children', 256);
 ini_set('xdebug.var_display_max_data', 1024);
+//require_once('saveExcel.php');
 require_once('Classes/PHPExcel.php');
 include_once 'Classes/PHPExcel/IOFactory.php';
+//require_once('Classes/PHPExcel/Writer/Excel5.php');
 //var_dump($_FILES);
 
 $filename = $_FILES['fileToUpload']['tmp_name'];
@@ -12,7 +14,7 @@ $objreader = PHPExcel_IOFactory::createReader('Excel2007');//создали ри
 $objreader->setReadDataOnly(true); //только на чтение файла
 //$objExcel = $objreader->load('ListAll2.xlsx');
 $objExcel = $objreader->load($filename);
-$objExcel ->setActiveSheetIndex(0);
+$objExcel ->setActiveSheetIndex(3);
 $objWorkSheet = $objExcel->getActiveSheet(); //Вся таблица 1ого листа
 $higestRow = $objWorkSheet->getHighestRow(); // Слишком много перезапишем
 
@@ -23,8 +25,10 @@ $Data; // Все агрегаты
 
 //$pust = 0; // количество пустых строк для цикла // not used
 
-$gost = array('шестигранник', 'круг', 'лист','уголок','швеллер','цепь','труба','пластина');
-$work = array('пропан','электроды','эмаль','кислород','шток');
+$gost = array('шестигранник', 'круг', 'лист','уголок','швеллер','шнур','труба',
+    'пластина','канат','подкладка');/*Двустрочные материалы*/
+$work = array('пропан','электроды','эмаль','кислород','шток','краска','грунтовка',
+    'растворитель','капролон');/*Однострочные материалы*/
 
 
 for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
@@ -60,11 +64,27 @@ function save_mat($strok, $i ,$sheet){
     }
     return $elem1;
 }
+/*Удаляем пробелы вначале фразы*/
+function killSpaces($str){
+    $exp = explode(' ',$str);
+    $co = count($exp);
+    for($i = 0; $i < $co; $i++){
+        if($exp[$i] == ''){
+            unset($exp[$i]);
+        }else{
+
+            break;}
+    }
+    $str = implode(' ', $exp);
+    return $str;
+
+}
 
 function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
     for ($j = $startRow, $pust = 0; $j < $maxrow; $j++) {
         $val = $sheet->getCellByColumnAndRow(1, $j)->getValue();
         if (strlen($val) > 0) {
+            $val = killSpaces($val);
             $pref = explode(' ', $val);
 
 
@@ -82,8 +102,11 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
             }
             switch (strtolower_utf8($pref[0])) {
                 case "цепь":
+                    $matlist[] = save_mat(2,$j,$sheet);
                     break;
                 case "проволока":
+                    //Заплата /В данном документе все равно нет совпадений по проволоке
+                    $matlist[] = save_mat(2,$j,$sheet);
                     break;
             }
 
@@ -112,37 +135,36 @@ echo 'Файл принят и обработан'.'<br><br>';
 $clone = $Data;
 
 
-$numsovp = 0;
-
-//Поиск всех совпадающих материалов среди агрегатов
-foreach ($Data as $key => $value) {
-    for($e = 0; $e < count($value['matlist']); $e++){
-
-        foreach ($clone as $k => $v) {
-            for($l = 0; $l < count($v['matlist']); $l++){
-                if(strtolower_utf8($clone[$k]['matlist'][$l][0]) == strtolower_utf8($value['matlist'][$e][0]) &&
-                    strtolower_utf8($clone[$k]['matlist'][$l][1]) == strtolower_utf8($value['matlist'][$e][1]) &&
-                    ($clone[$k]['name'] != $value['name'])){
-                        unset($clone[$k]['matlist'][$l]);
-                        $numsovp++;
-//                    echo 'original: '.$value['name'].'<br>';
-//                    echo 'clone: '.$clone[$k]['name'].'<br>';
-//                    echo $clone[$k]['matlist'][$l][0].'/'.$clone[$k]['matlist'][$l][1].'<br><br>';
-
-                }
-            }
-        }
-
-    }
-}
-echo 'Совпадений найдено - '.$numsovp.' шт.'.'<br/>';
+//$numsovp = 0;
+//
+////Поиск всех совпадающих материалов среди агрегатов
+//foreach ($Data as $key => $value) {
+//    for($e = 0; $e < count($value['matlist']); $e++){
+//
+//        foreach ($clone as $k => $v) {
+//            for($l = 0; $l < count($v['matlist']); $l++){
+//                if(strtolower_utf8($clone[$k]['matlist'][$l][0]) == strtolower_utf8($value['matlist'][$e][0]) &&
+//                    strtolower_utf8($clone[$k]['matlist'][$l][1]) == strtolower_utf8($value['matlist'][$e][1]) &&
+//                    ($clone[$k]['name'] != $value['name'])){
+//                        unset($clone[$k]['matlist'][$l]);
+//                        $numsovp++;
+////                    echo 'original: '.$value['name'].'<br>';
+////                    echo 'clone: '.$clone[$k]['name'].'<br>';
+////                    echo $clone[$k]['matlist'][$l][0].'/'.$clone[$k]['matlist'][$l][1].'<br><br>';
+//
+//                }
+//            }
+//        }
+//
+//    }
+//}
+//echo 'Совпадений найдено - '.$numsovp.' шт.'.'<br/>';
 
 $matmerge;
-//echo $Data[]
+
 //Собираем новый массив материалов
+
 $count;
-
-
 $matmerge;
 //Объединение все в единый массив с проверкой копий
 foreach ($Data as $key => $value){
@@ -152,8 +174,8 @@ foreach ($Data as $key => $value){
         $y = 0;
         unset($y);
         for($j = 0; $j < count($matmerge);$j++){   /*Смотрим есть ли копия очередного материала в matmerge*/
-            if(strtolower_utf8($matmerge[$j][0]) == strtolower_utf8($value['matlist'][$i][0]) &&
-                strtolower_utf8($matmerge[$j][1]) == strtolower_utf8($value['matlist'][$i][1])) {
+            if(preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j][0])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i][0])) &&
+                preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j][1])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i][1]))) {
                 $count++; /*Считаем количество учтенных совпадений*/
                 $copy = true;/*Нашли совпадение*/
                 $y = $j;/*Запоминаем порядковый номер совпадения*/
@@ -163,15 +185,23 @@ foreach ($Data as $key => $value){
             }
         }
         if(!$copy) {
-            $matmerge[] = $value['matlist'][$i];
+            $masscount = $value['matlist'][$i];
+            $masscount[9] *= $value['options']['number'];
+            $matmerge[] = $masscount;
+            unset($masscount);
+
+                //* $value['options']['number'];
         }else{
-            $matmerge[$y][9] += $value['matlist'][$i][9];
+            $masscount = $value['matlist'][$i];
+            $masscount[9] *= $value['options']['number'];
+            $matmerge[$y][9] += $masscount[9];
+            unset($masscount);
         }
     }
 }
 echo 'count '.$count.'<br/>';
 
-var_dump($matmerge);
+//var_dump($matmerge);
 
 
 function strtolower_utf8($string){
@@ -201,29 +231,120 @@ function strtolower_utf8($string){
         <th>Кол-во <br/> агрегатов</th>
         <th>Кол-во <br/> материалов</th>
         </tr>';
- for($i=1 ;$i < count($Data) ;$i++){
+ for($i=1 ;$i <= count($Data) ;$i++){
  $table .='<tr><td>'.$Data[$i]['name'].'</td><td>'.$Data[$i]['options']['number'].'</td><td>'.count($Data[$i]['matlist']).'</td></tr>';
  }
  $table .='</table><br><br>';
 
-// echo $table;
-//var_dump($Data);
+ echo $table;
 
+ $form = '<form name="excelCalc" method="post" action="calc1.php"
+              enctype="multipart/form-data">
+             <p><input type="submit" name="fileToSave" value="Отправить">
+        </form>';
+//echo $form;
+//var_dump($Data);
+//$string = preg_replace('/\s+/', '', $string); //удаление пробелов
 
 //Рисуем таблицу всех материалов
 $table2 ='<table border="1">
         <caption>Таблица материалов</caption>
         <tr>
+        <th>Марка</th>
+        <th>обозначение <br/> стандарта или <br/> тех. Условия</th>
+        <th>Код <br/> материала</th>
         <th>материал</th>
+        <th>Еденица <br/> измерения</th>
+        <th>Код <br/> еденицы <br/> измерения</th>
+        <th>Норма <br/> расхода</th>
         <th>масса</th>
+        <th>Стоимость <br/> еденицы <br/> измерения</th>
+        <th>Сумма <br/> на <br/> комплект</th>
         </tr>';
 for($i=0 ;$i < count($matmerge) ;$i++){
-    $table2 .='<tr><td>'.$matmerge[$i][0].'</td><td>'.$matmerge[$i][9].'</td></tr>';
+    $table2 .='<tr><td>'.$matmerge[$i][0].'</td>'.'<td></td><td></td><td></td>'.'<td>'.
+        $matmerge[$i][6].'</td><td></td><td></td><td>'.round($matmerge[$i][9], 2).'</td><td>'.$matmerge[$i][10].'</td><td>'.
+        $matmerge[$i][9] * $matmerge[$i][10].'</td></tr>';
+    if($matmerge[$i][1] != null){$table2 .='<tr><td class="mat">'.$matmerge[$i][1].'</td></tr>';}
 }
 $table2 .='</table><br><br>';
 
-//echo $table2;
+echo $table2;
+//
+//
+////Пора создавать конечный excel файлик
+//$objPHPExcel = new PHPExcel();
+//// Set properties
+//$objPHPExcel->getProperties()->setCreator("ThinkPHP")
+//    ->setLastModifiedBy("EGOmaniack")
+//    ->setTitle("Office 2007 XLSX Test Document")
+//    ->setSubject("Office 2007 XLSX Test Document")
+//    ->setDescription("Test doc for Office 2007 XLSX, generated by PHPExcel.")
+//    ->setKeywords("office 2007 openxml php")
+//    ->setCategory("Test result file");
+//
+//
+//
+//$objPHPExcel->setActiveSheetIndex(0)
+//    ->setCellValue('A1', 'Hello')
+//    ->setCellValue('B1', 'world!');
+//
+//
+//$objPHPExcel->getActiveSheet()->setTitle('Minimalistic demo');
+//
+//$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007') ;
+//$objWriter ->save('php://output')
 
+// Создаем объект класса PHPExcel
+////---------------------------------------------------------------------------
+//$xls = new PHPExcel();
+//// Устанавливаем индекс активного листа
+//$xls->setActiveSheetIndex(0);
+//// Получаем активный лист
+//$sheet = $xls->getActiveSheet();
+//// Подписываем лист
+////$sheet->setTitle('Таблица умножения');
+////
+////// Вставляем текст в ячейку A1
+////$sheet->setCellValue("A1", 'Таблица умножения');
+////$sheet->getStyle('A1')->getFill()->setFillType(
+////    PHPExcel_Style_Fill::FILL_SOLID);
+////$sheet->getStyle('A1')->getFill()->getStartColor()->setRGB('EEEEEE');
+////
+////// Объединяем ячейки
+////$sheet->mergeCells('A1:H1');
+////
+////// Выравнивание текста
+////$sheet->getStyle('A1')->getAlignment()->setHorizontal(
+////    PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+////
+////for ($i = 2; $i < 10; $i++) {
+////    for ($j = 2; $j < 10; $j++) {
+////        // Выводим таблицу умножения
+////        $sheet->setCellValueByColumnAndRow(
+////            $i - 2,
+////            $j,
+////            $i . "x" .$j . "=" . ($i*$j));
+////        // Применяем выравнивание
+////        $sheet->getStyleByColumnAndRow($i - 2, $j)->getAlignment()->
+////        setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+////    }
+////}
+//
+////header ( "Expires: Mon, 1 Apr 1974 05:00:00 GMT" );
+////header ( "Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT" );
+////header ( "Cache-Control: no-cache, must-revalidate" );
+////header ( "Pragma: no-cache" );
+//header ( "Content-Type: application/vnd.ms-excel" );
+//header ( "Content-Disposition: attachment; filename='matrix.xls'" );
+//
+//
+////$objWriter = new PHPExcel_Writer_Excel5($xls);
+////$objWriter->save('php://output');
+//$objWriter = PHPExcel_IOFactory::createWriter($xls, 'Excel5');
+//$objWriter->save('php://output');
+//exit();
+saveExcel($matmerge);
 ?>
 
 <!DOCTYPE html>
