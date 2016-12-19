@@ -1,8 +1,8 @@
 <?php
 ini_set('display_errors', 0) ;
-ini_set('xdebug.var_display_max_depth', 5);
-ini_set('xdebug.var_display_max_children', 256);
-ini_set('xdebug.var_display_max_data', 1024);
+//ini_set('xdebug.var_display_max_depth', 5);
+//ini_set('xdebug.var_display_max_children', 256);
+//ini_set('xdebug.var_display_max_data', 1024);
 //require_once('saveExcel.php');
 require_once('Classes/PHPExcel.php');
 include_once 'Classes/PHPExcel/IOFactory.php';
@@ -18,7 +18,7 @@ $objExcel ->setActiveSheetIndex(3);
 $objWorkSheet = $objExcel->getActiveSheet(); //Вся таблица 1ого листа
 $higestRow = $objWorkSheet->getHighestRow(); // Слишком много перезапишем
 
-echo 'Начинаю обработку файла'.'<br/>';
+//echo 'Начинаю обработку файла'.'<br/>';
 
 $Data; // Все агрегаты
 
@@ -121,7 +121,7 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
         if(strlen($sheet->getCellByColumnAndRow(1,$j)->getValue()) == 0 ){
             if($pust == 5){
                  $higestRow = $j;
-                 echo 'Число строк равно '.($higestRow-6).'<br/>';
+                 //echo 'Число строк равно '.($higestRow-6).'<br/>';
                 return $matlist;
             }else{$pust++;}
                  // echo $pust;
@@ -130,7 +130,7 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
     }
 }
 
-echo 'Файл принят и обработан'.'<br><br>';
+//echo 'Файл принят и обработан'.'<br><br>';
 
 $clone = $Data;
 
@@ -199,7 +199,7 @@ foreach ($Data as $key => $value){
         }
     }
 }
-echo 'count '.$count.'<br/>';
+//echo 'count '.$count.'<br/>';
 
 //var_dump($matmerge);
 
@@ -236,7 +236,7 @@ function strtolower_utf8($string){
  }
  $table .='</table><br><br>';
 
- echo $table;
+ //echo $table;
 
  $form = '<form name="excelCalc" method="post" action="calc1.php"
               enctype="multipart/form-data">
@@ -269,7 +269,7 @@ for($i=0 ;$i < count($matmerge) ;$i++){
 }
 $table2 .='</table><br><br>';
 
-echo $table2;
+//echo $table2;
 //
 //
 ////Пора создавать конечный excel файлик
@@ -296,55 +296,55 @@ echo $table2;
 //$objWriter ->save('php://output')
 
 // Создаем объект класса PHPExcel
-////---------------------------------------------------------------------------
-//$xls = new PHPExcel();
-//// Устанавливаем индекс активного листа
-//$xls->setActiveSheetIndex(0);
-//// Получаем активный лист
-//$sheet = $xls->getActiveSheet();
-//// Подписываем лист
-////$sheet->setTitle('Таблица умножения');
-////
-////// Вставляем текст в ячейку A1
-////$sheet->setCellValue("A1", 'Таблица умножения');
-////$sheet->getStyle('A1')->getFill()->setFillType(
-////    PHPExcel_Style_Fill::FILL_SOLID);
-////$sheet->getStyle('A1')->getFill()->getStartColor()->setRGB('EEEEEE');
-////
-////// Объединяем ячейки
-////$sheet->mergeCells('A1:H1');
-////
-////// Выравнивание текста
-////$sheet->getStyle('A1')->getAlignment()->setHorizontal(
-////    PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-////
-////for ($i = 2; $i < 10; $i++) {
-////    for ($j = 2; $j < 10; $j++) {
-////        // Выводим таблицу умножения
-////        $sheet->setCellValueByColumnAndRow(
-////            $i - 2,
-////            $j,
-////            $i . "x" .$j . "=" . ($i*$j));
-////        // Применяем выравнивание
-////        $sheet->getStyleByColumnAndRow($i - 2, $j)->getAlignment()->
-////        setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-////    }
-////}
-//
-////header ( "Expires: Mon, 1 Apr 1974 05:00:00 GMT" );
-////header ( "Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT" );
-////header ( "Cache-Control: no-cache, must-revalidate" );
-////header ( "Pragma: no-cache" );
-//header ( "Content-Type: application/vnd.ms-excel" );
-//header ( "Content-Disposition: attachment; filename='matrix.xls'" );
-//
-//
-////$objWriter = new PHPExcel_Writer_Excel5($xls);
-////$objWriter->save('php://output');
-//$objWriter = PHPExcel_IOFactory::createWriter($xls, 'Excel5');
+//---------------------------------------------------------------------------
+$xls = new PHPExcel();
+// Устанавливаем индекс активного листа
+$xls->setActiveSheetIndex(0);
+// Получаем активный лист
+$sheet = $xls->getActiveSheet();
+// Подписываем лист
+$sheet->setTitle('Таблица умножения');
+
+// Вставляем текст в ячейку A1
+$sheet->setCellValue("A1", 'Таблица умножения');
+$sheet->getStyle('A1')->getFill()->setFillType(
+    PHPExcel_Style_Fill::FILL_SOLID);
+$sheet->getStyle('A1')->getFill()->getStartColor()->setRGB('EEEEEE');
+
+// Объединяем ячейки
+$sheet->mergeCells('A1:H1');
+
+// Выравнивание текста
+$sheet->getStyle('A1')->getAlignment()->setHorizontal(
+    PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+
+for ($i = 2; $i < 10; $i++) {
+    for ($j = 2; $j < 10; $j++) {
+        // Выводим таблицу умножения
+        $sheet->setCellValueByColumnAndRow(
+            $i - 2,
+            $j,
+            $i . "x" .$j . "=" . ($i*$j));
+        // Применяем выравнивание
+        $sheet->getStyleByColumnAndRow($i - 2, $j)->getAlignment()->
+        setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+    }
+}
+
+header ( "Expires: Mon, 1 Apr 1974 05:00:00 GMT" );
+header ( "Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT" );
+header ( "Cache-Control: no-cache, must-revalidate" );
+header ( "Pragma: no-cache" );
+header ( "Content-Type: application/vnd.ms-excel" );
+header ( "Content-Disposition: attachment; filename='matrix.xls'" );
+
+
+//$objWriter = new PHPExcel_Writer_Excel5($xls);
 //$objWriter->save('php://output');
-//exit();
-saveExcel($matmerge);
+$objWriter = PHPExcel_IOFactory::createWriter($xls, 'Excel5');
+$objWriter->save('php://output');
+exit();
+//saveExcel($matmerge);
 ?>
 
 <!DOCTYPE html>
@@ -357,7 +357,7 @@ saveExcel($matmerge);
 
 <!--<input type="button" value="Сравнить">-->
 
-</form>
+
 
 </body>
 </html>
