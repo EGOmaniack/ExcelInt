@@ -1,8 +1,8 @@
 <?php
 ini_set('display_errors', 0) ;
-ini_set('xdebug.var_display_max_depth', 5);
-ini_set('xdebug.var_display_max_children', 256);
-ini_set('xdebug.var_display_max_data', 1024);
+//ini_set('xdebug.var_display_max_depth', 5);
+//ini_set('xdebug.var_display_max_children', 256);
+//ini_set('xdebug.var_display_max_data', 1024);
 require_once('saveExcel.php');
 require_once('Classes/PHPExcel.php');
 include_once 'Classes/PHPExcel/IOFactory.php';
@@ -120,17 +120,15 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
         // переписывем макс число строк и прерываем цикл
         if(strlen($sheet->getCellByColumnAndRow(1,$j)->getValue()) == 0 ){
             if($pust == 5){
-                 $higestRow = $j;
-                 //echo 'Число строк равно '.($higestRow-6).'<br/>';
                 return $matlist;
             }else{$pust++;}
-                 // echo $pust;
+
         }else{$pust = 0;}
 
     }
 }
 
-echo 'Файл принят и обработан'.'<br><br>';
+
 
 
 //Собираем новый массив материалов
@@ -170,9 +168,7 @@ foreach ($Data as $key => $value){
         }
     }
 }
-echo 'count '.$count.'<br/>';
 
-//var_dump($matmerge);
 
 
 function strtolower_utf8($string){
@@ -194,49 +190,8 @@ function strtolower_utf8($string){
     return str_replace($convert_from, $convert_to, $string);
 }
 
-//Рисуем таблицу
- $table ='<table border="1">
-        <caption>Таблица содержания файла</caption>
-        <tr>
-        <th>Наименование агрегата</th>
-        <th>Кол-во <br/> агрегатов</th>
-        <th>Кол-во <br/> материалов</th>
-        </tr>';
- for($i=1 ;$i <= count($Data) ;$i++){
- $table .='<tr><td>'.$Data[$i]['name'].'</td><td>'.$Data[$i]['options']['number'].'</td><td>'.count($Data[$i]['matlist']).'</td></tr>';
- }
- $table .='</table><br><br>';
 
-echo $table;
-
-
-//Рисуем таблицу всех материалов
-$table2 ='<table border="1">
-        <caption>Таблица материалов</caption>
-        <tr>
-        <th>Марка</th>
-        <th>обозначение <br/> стандарта или <br/> тех. Условия</th>
-        <th>Код <br/> материала</th>
-        <th>материал</th>
-        <th>Еденица <br/> измерения</th>
-        <th>Код <br/> еденицы <br/> измерения</th>
-        <th>Норма <br/> расхода</th>
-        <th>масса</th>
-        <th>Стоимость <br/> еденицы <br/> измерения</th>
-        <th>Сумма <br/> на <br/> комплект</th>
-        </tr>';
-for($i=0 ;$i < count($matmerge) ;$i++){
-    $table2 .='<tr><td>'.$matmerge[$i][0].'</td>'.'<td></td><td></td><td></td>'.'<td>'.
-        $matmerge[$i][6].'</td><td></td><td></td><td>'.round($matmerge[$i][9], 2).'</td><td>'.$matmerge[$i][10].'</td><td>'.
-        $matmerge[$i][9] * $matmerge[$i][10].'</td></tr>';
-    if($matmerge[$i][1] != null){$table2 .='<tr><td class="mat">'.$matmerge[$i][1].'</td></tr>';}
-}
-$table2 .='</table><br><br>';
-
-echo $table2;
-
-
-//saveExcel($matmerge);
+saveExcel($matmerge);
 ?>
 
 <!DOCTYPE html>
