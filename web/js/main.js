@@ -1,13 +1,14 @@
 $(document).ready( function() {
-
-    printP('Укажите Файл excel с калькуляциями', '#5F2421');
-   // printP('Укажите Файл бля');
-
-
-
-    // $('#btn').prop("disable", false);
-
     var defaultcolor = 'black';
+    printP('Укажите Файл excel с калькуляциями', '#5F2421');
+
+    //Блокировак/разблокировка кнопки если вайл не выбран/выбран
+     $('#btn').attr('disabled','disabled');
+    $('#forma').on('change', function (){
+        $('#btn').removeAttr('disabled');
+    });
+
+
 
 
 

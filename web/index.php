@@ -20,24 +20,33 @@ ini_set('xdebug.var_display_max_data', 1024);
     <body>
                 <p id = "print"></p>
 
-        <form name="excelCalc" method="post" action="calc2.php"
+        <form name="excelCalc" method="post" action="calc1.php"
               enctype="multipart/form-data">
             <p><br>
                 <input type="file" name="fileToUpload" >
             </p>
-            <p><input type="submit" value="Отправить">
+            <p><input type="submit" value="На экран">
                 <input type="reset" value="Очистить"></p>
         </form>
+        <br><br>
+                <form name="excelCalc" method="post" action="calc2.php"
+                      enctype="multipart/form-data">
+                    <p><br>
+                        <input type="file" name="fileToUpload" >
+                    </p>
+                    <p><input type="submit" value="в Excel">
+                        <input type="reset" value="Очистить"></p>
+                </form>
 
-        <div calss="parant">
-            <div class="block">
-
-                <h3>Загрузите файл</h3>
-                <input type="file" name="Excel"> <br>
-                <input id="btn" type="button" name="go" value="Посчитать" disabled = "disables">
-
-            </div>
-        </div>
+<!--        <div calss="parant">-->
+<!--            <div class="block">-->
+<!---->
+<!--                <h3>Загрузите файл</h3>-->
+<!--                <input type="file" name="Excel" id="forma"> <br>-->
+<!--                <input id="btn" type="button" name="go" value="Посчитать">-->
+                <!--<input id="btn2" type="button" name="go" value="Посчитать" disabled = "disables">-->
+<!--            </div>-->
+<!--        </div>-->
     </body>
-    <script src="js/main.js" type="text/javascript"></script>
+    <script src="js/main.js?1" type="text/javascript"></script>
 </html>
