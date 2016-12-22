@@ -27,7 +27,7 @@ for ($i = 0; $i < $arrCount ; $i++){
         $arr[1 + $arrCount] = $names;
     }
 }
-sleep(2);
+//sleep(2);
 //
 ////$gg[] = array();
 //$gg['agregat1']['name'] = "Агр вывоза блоков";
