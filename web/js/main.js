@@ -1,6 +1,6 @@
 $(document).ready( function() {
-    // var defaultcolor = 'black';
-    // printP('Укажите Файл excel с калькуляциями', '#5F2421');
+    var defaultcolor = 'black';
+    printP('Укажите Файл excel с калькуляциями', '#5F2421');
     //
     // //Блокировак/разблокировка кнопки если вайл не выбран/выбран
     //  $('#btn').attr('disabled','disabled');
@@ -19,8 +19,10 @@ function printP (text, color){
 }
 
 function names(){
+    printP('Кнопка нажата');
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
+        printP("Ищем  файл");
         if (this.readyState == 4 && this.status == 200) {
             printP(this.responseText);
         }

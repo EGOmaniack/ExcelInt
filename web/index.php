@@ -38,8 +38,8 @@ ini_set('xdebug.var_display_max_data', 1024);
                         <input type="reset" value="Очистить"></p>
                 </form>
                 <br><br>
-                <input placeholder="введите имя" onclick="names()" type="text" id="names">
-                <input type="button" value="ClickMe" id="btn">
+                <input placeholder="введите имя"  type="text" id="names">
+                <input type="button" value="ClickMe" onclick="names()" id="btn">
                 <br>
                 <div id="cont"></div>
 <!--        <div calss="parant">-->
