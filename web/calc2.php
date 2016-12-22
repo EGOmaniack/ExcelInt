@@ -25,9 +25,9 @@ $Data; // Все агрегаты
 
 //$pust = 0; // количество пустых строк для цикла // not used
 
-$gost = array('шестигранник', 'круг', 'лист','уголок','швеллер','шнур','труба',
+$dubstr = array('шестигранник', 'круг', 'лист','уголок','швеллер','шнур','труба',
     'пластина','канат','подкладка','капролон','изделие-заготовка');/*Двустрочные материалы*/
-$work = array('пропан','электроды','эмаль','кислород','шток','краска','грунтовка',
+$onestr = array('пропан','электроды','эмаль','кислород','шток','краска','грунтовка',
     'растворитель','сч','бра9мц2л','бра10мц2л','подкладка');/*Однострочные материалы*/
 
 
@@ -37,31 +37,38 @@ for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
         $q++;
         $agregat['name'] = $objWorkSheet->getCellByColumnAndRow(1,$i)->getValue();
         $agregat['options']['number'] = $objWorkSheet->getCellByColumnAndRow(2,$i)->getValue();
-        $agregat['matlist'] = create_block($i+1, $higestRow, $objWorkSheet, $gost,$work );
+        $agregat['matlist'] = create_block($i+1, $higestRow, $objWorkSheet, $dubstr,$onestr );
         unset($ncheck);
         $Data[$q]=$agregat;
 
     }
 }
-
+//сохранение материала в matlist из Excel
 function save_mat($strok, $i ,$sheet){
     $elem1[] = array();
-    switch ($strok){
-        case 1 :
-            $elem1[0] = $sheet->getCellByColumnAndRow(1,$i)->getValue();
-            $elem1[6] = $sheet->getCellByColumnAndRow(5,$i)->getValue();
-            $elem1[9] = $sheet->getCellByColumnAndRow(8,$i)->getValue();
-            $elem1[10] = $sheet->getCellByColumnAndRow(9,$i)->getValue();
-            $elem1[11] = $sheet->getCellByColumnAndRow(10,$i)->getValue();
-            break;
-        default :
-            $elem1[0] = $sheet->getCellByColumnAndRow(1,$i)->getValue();
-            $elem1[1] = $sheet->getCellByColumnAndRow(1,$i+1)->getValue();
-            $elem1[6] = $sheet->getCellByColumnAndRow(5,$i)->getValue();
-            $elem1[9] = $sheet->getCellByColumnAndRow(8,$i)->getValue();
-            $elem1[10] = $sheet->getCellByColumnAndRow(9,$i)->getValue();
 
-    }
+    $elem1['name'] = $sheet->getCellByColumnAndRow(1,$i)->getValue();
+    $elem1['ei'] = $sheet->getCellByColumnAndRow(5,$i)->getValue();
+    $elem1['mass'] = $sheet->getCellByColumnAndRow(8,$i)->getValue();
+    $elem1['cost'] = $sheet->getCellByColumnAndRow(9,$i)->getValue();
+
+    if($strok == 2){$elem1['mat'] = $sheet->getCellByColumnAndRow(1,$i+1)->getValue();}
+
+//    switch ($strok){
+//        case 1 :
+//            $elem1['name'] = $sheet->getCellByColumnAndRow(1,$i)->getValue();
+//            $elem1['ei'] = $sheet->getCellByColumnAndRow(5,$i)->getValue();
+//            $elem1['mass'] = $sheet->getCellByColumnAndRow(8,$i)->getValue();
+//            $elem1['cost'] = $sheet->getCellByColumnAndRow(9,$i)->getValue();
+//            break;
+//        default :
+//            $elem1['name'] = $sheet->getCellByColumnAndRow(1,$i)->getValue();
+//            $elem1['mat'] = $sheet->getCellByColumnAndRow(1,$i+1)->getValue();
+//            $elem1['ei'] = $sheet->getCellByColumnAndRow(5,$i)->getValue();
+//            $elem1['mass'] = $sheet->getCellByColumnAndRow(8,$i)->getValue();
+//            $elem1['cost'] = $sheet->getCellByColumnAndRow(9,$i)->getValue();
+//
+//    }
     return $elem1;
 }
 /*Удаляем пробелы вначале фразы*/
@@ -79,7 +86,7 @@ function killSpaces($str){
     return $str;
 
 }
-
+//Создаем сущность матлиста($matlist)
 function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
     for ($j = $startRow, $pust = 0; $j < $maxrow; $j++) {
         $val = $sheet->getCellByColumnAndRow(1, $j)->getValue();
@@ -88,7 +95,7 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
             $pref = explode(' ', $val);
 
 
-            if (in_array(strtolower_utf8($pref[0]), $spr2)) { // element 0,1,2 марка; 3-11 остальные ячейки
+            if (in_array(strtolower_utf8($pref[0]), $spr2)) {
 
                 $matlist[] = save_mat(2, $j, $sheet);
                 unset($element);
@@ -143,8 +150,8 @@ foreach ($Data as $key => $value){
         $y = 0;
         unset($y);
         for($j = 0; $j < count($matmerge);$j++){   /*Смотрим есть ли копия очередного материала в matmerge*/
-            if(preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j][0])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i][0])) &&
-                preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j][1])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i][1]))) {
+            if(preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['name'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['name'])) &&
+                preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['mat'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['mat']))) {
                 $count++; /*Считаем количество учтенных совпадений*/
                 $copy = true;/*Нашли совпадение*/
                 $y = $j;/*Запоминаем порядковый номер совпадения*/
@@ -155,15 +162,15 @@ foreach ($Data as $key => $value){
         }
         if(!$copy) {
             $masscount = $value['matlist'][$i];
-            $masscount[9] *= $value['options']['number'];
+            $masscount['mass'] *= $value['options']['number'];
             $matmerge[] = $masscount;
             unset($masscount);
 
                 //* $value['options']['number'];
         }else{
             $masscount = $value['matlist'][$i];
-            $masscount[9] *= $value['options']['number'];
-            $matmerge[$y][9] += $masscount[9];
+            $masscount['mass'] *= $value['options']['number'];
+            $matmerge[$y]['mass'] += $masscount['mass'];
             unset($masscount);
         }
     }
@@ -190,8 +197,8 @@ function strtolower_utf8($string){
     return str_replace($convert_from, $convert_to, $string);
 }
 
-
-saveExcel($matmerge);
+//var_dump($matmerge);
+saveExcel($matmerge,$dubstr, $onestr);
 ?>
 
 <!DOCTYPE html>

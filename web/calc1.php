@@ -40,7 +40,6 @@ for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
         $agregat['matlist'] = create_block($i+1, $higestRow, $objWorkSheet, $gost,$work );
         unset($ncheck);
         $Data[$q]=$agregat;
-
     }
 }
 

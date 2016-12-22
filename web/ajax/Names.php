@@ -22,7 +22,7 @@ $arrCount = count($arr);
 for ($i = 0; $i < $arrCount ; $i++){
     if($_POST['name'] == $arr[$i] ){
         break;
-    }elseif($i = $arrCount){
+    }elseif($i == $arrCount){
         $names['name']=$_POST['name'];
         $arr[1 + $arrCount] = $names;
     }
