@@ -4,6 +4,7 @@ ini_set('xdebug.var_display_max_depth', 5);
 ini_set('xdebug.var_display_max_children', 256);
 ini_set('xdebug.var_display_max_data', 1024);
 
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,11 +38,11 @@ ini_set('xdebug.var_display_max_data', 1024);
                     <p><input type="submit" value="в Excel">
                         <input type="reset" value="Очистить"></p>
                 </form>
-                <br><br>
-                <input placeholder="введите имя"  type="text" id="names">
-                <input type="button" value="ClickMe" onclick="names()" id="btn">
-                <br>
-                <div id="cont"></div>
+<!--                <br><br>-->
+<!--                <input placeholder="введите имя"  type="text" id="names">-->
+<!--                <input type="button" value="ClickMe" onclick="names()" id="btn">-->
+<!--                <br>-->
+<!--                <div id="cont"></div>-->
 <!--        <div calss="parant">-->
 <!--            <div class="block">-->
 <!---->

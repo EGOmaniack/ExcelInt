@@ -75,6 +75,7 @@ function zapoln2($sheet, $arr, $dubstr, $onestr){
     for($j =0; $j < count($onestr); $j++){/*перебираем однострочный перечень материалов*/
         $k = findelem($onestr[$j], $arr, $sheet, $k);
     }
+
     //var_dump($k);
     //var_dump($arr);
 }
@@ -93,6 +94,7 @@ function findelem ($ela,$mats,$sheet, $k){
             $sheet->setCellValueByColumnAndRow(8, $k*2+10, $mats[$z]['mass']);
             $sheet->setCellValueByColumnAndRow(9, $k*2+10, $mats[$z]['cost']);
             $sheet->setCellValueByColumnAndRow(10, $k*2+10, ($mats[$z]['mass']*$mats[$z]['cost']));
+            //$sheet ->getStyleByColumnAndRow(1,$k*x+10)->getFill()->getStartColor()->setRGB('EEEEEE');
             $k++;
         }
     }

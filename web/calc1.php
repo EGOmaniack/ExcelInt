@@ -79,6 +79,8 @@ function killSpaces($str){
 
 }
 
+//function
+
 function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
     for ($j = $startRow, $pust = 0; $j < $maxrow; $j++) {
         $val = $sheet->getCellByColumnAndRow(1, $j)->getValue();

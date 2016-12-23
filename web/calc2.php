@@ -52,7 +52,12 @@ function save_mat($strok, $i ,$sheet){
     $elem1['mass'] = $sheet->getCellByColumnAndRow(8,$i)->getValue();
     $elem1['cost'] = $sheet->getCellByColumnAndRow(9,$i)->getValue();
 
-    if($strok == 2){$elem1['mat'] = $sheet->getCellByColumnAndRow(1,$i+1)->getValue();}
+    if($strok == 2) {
+        $mat = $sheet->getCellByColumnAndRow(1,$i+1)->getValue();
+        $mat = killSpaces($mat);
+        $mat = newgost($mat);
+        $elem1['mat'] = $mat;
+    }
 
 //    switch ($strok){
 //        case 1 :
@@ -71,6 +76,29 @@ function save_mat($strok, $i ,$sheet){
 //    }
     return $elem1;
 }
+/*Выискиваем старые госты  ГОСТ 1050-88 -> 2003; ГОСТ 535-88 -> 2005
+* ГОСТ 51685-2000 -> 2013;
+*/
+function newgost($str){
+    $exp = explode(' ',$str);
+    $nstr = "";
+    for($i=0;$i<count($exp); $i++){
+        if($exp[$i] == 'ГОСТ'){
+            switch ($exp) {
+                case '1050-88':
+                    $exp2 = explode('-',$exp);
+                    $exp2[1] = '-';
+                    $exp2[2] = 2013;
+                    $exp[$i] = implode($exp2);
+                    break;
+            }
+
+
+        }
+    }
+        return $str;
+}
+
 /*Удаляем пробелы вначале фразы*/
 function killSpaces($str){
     $exp = explode(' ',$str);
