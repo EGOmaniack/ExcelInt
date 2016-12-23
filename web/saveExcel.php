@@ -37,12 +37,13 @@ for ($n=0; $n < 11; $n++){
 
 }
 //zapoln($sheet,$arr);
-Zapoln2($sheet, $arr, $dubstr, $onestr);
+zapoln2($sheet, $arr, $dubstr, $onestr);
 
 //header ( "Expires: Mon, 1 Apr 1974 05:00:00 GMT" );
 //header ( "Last-Modified: " . gmdate("D,d M YH:i:s") . " GMT" );
 //header ( "Cache-Control: no-cache, must-revalidate" );
 //header ( "Pragma: no-cache" );
+
 header ( "Content-Type: application/vnd.ms-excel" );
 header ( "Content-Disposition: attachment; filename='Калькуляция.xls'" );
 
@@ -65,34 +66,37 @@ function zapoln($sheet, $arr){
     }
 }
 //Заполнение с сортировкой
-function Zapoln2($sheet, $arr, $dubstr, $onestr){
+
+function zapoln2($sheet, $arr, $dubstr, $onestr){
     $k = 0; /* общий номер строки куда писать в Excel*/
     for($i =0; $i < count($dubstr); $i++){/*перебираем двустрочный перечень материалов*/
-        findelem($dubstr[$i], $arr, $sheet, $k);
-        $k++;
+        $k = findelem($dubstr[$i], $arr, $sheet, $k);
     }
     for($j =0; $j < count($onestr); $j++){/*перебираем однострочный перечень материалов*/
-        findelem($onestr[$j], $arr, $sheet, $k);
-        $k++;
+        $k = findelem($onestr[$j], $arr, $sheet, $k);
     }
-
+    //var_dump($k);
+    //var_dump($arr);
 }
 
 function findelem ($ela,$mats,$sheet, $k){
-    for($i =0; $i < count($mats); $i++){/*перебираем материалы*/
-        $val = killSpaces($mats[$i]['name']);
+
+    for($z =0; $z < count($mats); $z++){/*перебираем материалы*/
+        $val = killSpaces($mats[$z]['name']);
         $val = explode(' ', $val);
         $val = strtolower_utf8($val[0]);
-
-        if($val[0] == $ela){
-            $sheet->setCellValueByColumnAndRow(1, $k*2+10, $mats[$i]['name']);
-            $sheet->setCellValueByColumnAndRow(1, $k*2+11, $mats[$i]['mat']);
-            $sheet->setCellValueByColumnAndRow(5, $k*2+10, $mats[$i]['ei']);
-            $sheet->setCellValueByColumnAndRow(8, $k*2+10, $mats[$i]['mass']);
-            $sheet->setCellValueByColumnAndRow(9, $k*2+10, $mats[$i]['cost']);
-            $sheet->setCellValueByColumnAndRow(10, $k*2+10, ($mats[$i]['mass']*$mats[$i]['cost']));
+//        if($val == 'шестигранник'){var_dump($mats[$z]);}
+        if($val == $ela){
+            $sheet->setCellValueByColumnAndRow(1, $k*2+10, $mats[$z]['name']);
+            $sheet->setCellValueByColumnAndRow(1, $k*2+11, $mats[$z]['mat']);
+            $sheet->setCellValueByColumnAndRow(5, $k*2+10, $mats[$z]['ei']);
+            $sheet->setCellValueByColumnAndRow(8, $k*2+10, $mats[$z]['mass']);
+            $sheet->setCellValueByColumnAndRow(9, $k*2+10, $mats[$z]['cost']);
+            $sheet->setCellValueByColumnAndRow(10, $k*2+10, ($mats[$z]['mass']*$mats[$z]['cost']));
+            $k++;
         }
     }
+    return $k;
 }
 
 

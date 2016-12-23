@@ -12,37 +12,14 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="saveExcel.php" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/web/saveExcel.php">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="492">
-                    <caret line="76" column="5" lean-forward="true" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
-                    <folding>
-                      <element signature="e#6#92#0#PHP" expanded="true" />
-                      <marker date="1482450296157" expanded="true" signature="2731:3252" ph="..." />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="878">
-              <caret line="54" column="29" lean-forward="false" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
+            <state relative-caret-position="266">
+              <caret line="18" column="4" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
               <folding>
                 <marker date="1482445214302" expanded="true" signature="1363:1585" ph="..." />
               </folding>
@@ -53,8 +30,8 @@
       <file leaf-file-name="calc1.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/calc1.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="47" column="20" lean-forward="true" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+            <state relative-caret-position="289">
+              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding>
                 <marker date="1482445486929" expanded="true" signature="7491:7690" ph="..." />
                 <marker date="1482445486929" expanded="true" signature="7556:7690" ph="..." />
@@ -65,19 +42,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calc2.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="calc2.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/calc2.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="27" column="29" lean-forward="false" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="29" />
+            <state relative-caret-position="337">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding>
-                <element signature="n#save_mat#0;n#!!top" expanded="false" />
                 <element signature="n#killSpaces#0;n#!!top" expanded="false" />
-                <element signature="e#4954#6538#0#PHP" expanded="false" />
+                <element signature="e#4942#6526#0#PHP" expanded="false" />
                 <element signature="n#strtolower_utf8#0;n#!!top" expanded="false" />
-                <marker date="1482449356962" expanded="true" signature="7753:7893" ph="..." />
-                <marker date="1482449356962" expanded="true" signature="7760:7819" ph="..." />
-                <marker date="1482449356962" expanded="true" signature="7827:7885" ph="..." />
+                <marker date="1482452484935" expanded="true" signature="7741:7881" ph="..." />
+                <marker date="1482452484935" expanded="true" signature="7748:7807" ph="..." />
+                <marker date="1482452484935" expanded="true" signature="7815:7873" ph="..." />
               </folding>
             </state>
           </provider>
@@ -115,6 +91,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="saveExcel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/saveExcel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="64" column="93" lean-forward="true" selection-start-line="64" selection-start-column="93" selection-end-line="64" selection-end-column="93" />
+              <folding>
+                <element signature="e#6#92#0#PHP" expanded="true" />
+                <marker date="1482452902118" expanded="true" signature="2815:3351" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -132,6 +121,7 @@
       <find>break</find>
       <find>таблицу</find>
       <find>echo</find>
+      <find>var_</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -369,12 +359,12 @@
       <workItem from="1482277390400" duration="4013000" />
       <workItem from="1482375059254" duration="2681000" />
       <workItem from="1482381042774" duration="2303000" />
-      <workItem from="1482444633127" duration="5662000" />
+      <workItem from="1482444633127" duration="8315000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148342000" />
+    <option name="totallyTimeSpent" value="150995000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="961" height="1160" extended-state="0" />
@@ -850,28 +840,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/ajax/Names.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="793">
-          <caret line="50" column="23" lean-forward="true" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="878">
-          <caret line="54" column="29" lean-forward="false" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
-          <folding>
-            <marker date="1482445214302" expanded="true" signature="1363:1585" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/calc1.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="47" column="20" lean-forward="true" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+        <state relative-caret-position="289">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
             <marker date="1482445486929" expanded="true" signature="7491:7690" ph="..." />
             <marker date="1482445486929" expanded="true" signature="7556:7690" ph="..." />
@@ -881,29 +853,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/ajax/Names.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="793">
+          <caret line="50" column="23" lean-forward="true" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/calc2.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="27" column="29" lean-forward="false" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="29" />
+        <state relative-caret-position="337">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
-            <element signature="n#save_mat#0;n#!!top" expanded="false" />
             <element signature="n#killSpaces#0;n#!!top" expanded="false" />
-            <element signature="e#4954#6538#0#PHP" expanded="false" />
+            <element signature="e#4942#6526#0#PHP" expanded="false" />
             <element signature="n#strtolower_utf8#0;n#!!top" expanded="false" />
-            <marker date="1482449356962" expanded="true" signature="7753:7893" ph="..." />
-            <marker date="1482449356962" expanded="true" signature="7760:7819" ph="..." />
-            <marker date="1482449356962" expanded="true" signature="7827:7885" ph="..." />
+            <marker date="1482452484935" expanded="true" signature="7741:7881" ph="..." />
+            <marker date="1482452484935" expanded="true" signature="7748:7807" ph="..." />
+            <marker date="1482452484935" expanded="true" signature="7815:7873" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/saveExcel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="76" column="5" lean-forward="true" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
+        <state relative-caret-position="198">
+          <caret line="64" column="93" lean-forward="true" selection-start-line="64" selection-start-column="93" selection-end-line="64" selection-end-column="93" />
           <folding>
             <element signature="e#6#92#0#PHP" expanded="true" />
-            <marker date="1482450296157" expanded="true" signature="2731:3252" ph="..." />
+            <marker date="1482452902118" expanded="true" signature="2815:3351" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="18" column="4" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+          <folding>
+            <marker date="1482445214302" expanded="true" signature="1363:1585" ph="..." />
           </folding>
         </state>
       </provider>
