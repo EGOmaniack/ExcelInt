@@ -77,27 +77,36 @@ function save_mat($strok, $i ,$sheet){
     return $elem1;
 }
 /*Выискиваем старые госты  ГОСТ 1050-88 -> 2003; ГОСТ 535-88 -> 2005
-* ГОСТ 51685-2000 -> 2013;
-*/
+* ГОСТ 51685-2000 -> 2013; */
 function newgost($str){
-    $exp = explode(' ',$str);
-    $nstr = "";
-    for($i=0;$i<count($exp); $i++){
-        if($exp[$i] == 'ГОСТ'){
-            switch ($exp) {
-                case '1050-88':
-                    $exp2 = explode('-',$exp);
-                    $exp2[1] = '-';
-                    $exp2[2] = 2013;
-                    $exp[$i] = implode($exp2);
-                    break;
-            }
-
-
-        }
-    }
+//    $exp = explode(' ',$str);
+//    for($i=0;$i<count($exp); $i++){
+//        if($exp[$i] == 'ГОСТ'){
+//            $str2 = "";
+//            switch ($exp[$i+1]) {
+//                case '1050-88':
+//                    $exp2 = explode('-',$exp[$i+1]);
+//                    $exp2[1] = '-';
+//                    $exp2[2] = '2013';
+//                    $exp[$i+1] = implode($exp2);
+//                    //$str = implode($exp);
+//                    foreach ($exp as $value){
+//                        $str2[] = $value;
+//                        $str2[] = ' ';
+//                    }
+//                    $str = implode($str2);
+//                    unset($str2);
+//                    break;
+//            }
+//
+//
+//        }
+//    }
+    $str = str_replace("1050-88","1050-2003",$str);
+    $str = str_replace('535-88','535-2005',$str);
+    $str = str_replace('51685-2000','51685-2013',$str);
         return $str;
-}
+}//  /\s+/
 
 /*Удаляем пробелы вначале фразы*/
 function killSpaces($str){
