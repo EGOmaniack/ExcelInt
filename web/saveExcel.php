@@ -18,7 +18,7 @@ $sheet = $xls->getActiveSheet();
 // Подписываем лист
 $sheet->setTitle('ведомость материалов');
 
-// Вставляем текст в ячейку A1
+// Вставляем текст в ячейку B2
 $sheet->setCellValue("B2", 'Ведомость материалов');
 $sheet->getStyle('B2')->getFill()->setFillType(
     PHPExcel_Style_Fill::FILL_SOLID);

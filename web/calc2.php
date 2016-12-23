@@ -10,6 +10,7 @@ include_once 'Classes/PHPExcel/IOFactory.php';
 //var_dump($_FILES);
 
 $filename = $_FILES['fileToUpload']['tmp_name'];
+
 $objreader = PHPExcel_IOFactory::createReader('Excel2007');//создали ридер
 $objreader->setReadDataOnly(true); //только на чтение файла
 //$objExcel = $objreader->load('ListAll2.xlsx');
