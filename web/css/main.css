@@ -23,6 +23,7 @@ td:hover {
     box-shadow: 2px 2px 10px black;
 
 }
+
 .parent{
     position: absolute;	/* Абсолютное позиционирование */
     width: 400px; /* Ширина слоя в пикселах */
