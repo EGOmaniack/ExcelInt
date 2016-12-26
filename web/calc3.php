@@ -1,4 +1,10 @@
 <?php
+
+$filetmpname = $_FILES['fileToUpload']['tmp_name'];
+$filename = $_FILES['fileToUpload']['name'];
+
+echo $filename.'<br>';
+echo $filetmpname;
 ?>
 
 <!DOCTYPE html>
