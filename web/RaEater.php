@@ -36,7 +36,7 @@ if(file_exists('111.txt')) {
                     $item = (float)$s;
                     //echo $item.'<br>';
                     $sqls = "INSERT INTO ra(value, Ra) VALUES (" . $item . ",'" . $Ra . "');";
-//                    $mysqli->query($sqls);
+                    $mysqli->query($sqls);
                 }
 
             }
