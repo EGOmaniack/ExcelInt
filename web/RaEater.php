@@ -13,7 +13,7 @@ if ($mysqli->connect_errno) {
 $mysqli->set_charset("utf8");
 
 if(file_exists('111.txt') ) {
-    echo "<br>"."Вижу файд, начинаю"."<br>";
+    echo "<br>"."Вижу файл, начинаю копать"."<br>";
     $Ra;
     echo $mysqli->info;
     $handle = fopen("111.txt", "r");

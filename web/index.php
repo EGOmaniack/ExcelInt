@@ -23,7 +23,7 @@ ini_set('xdebug.var_display_max_data', 1024);
     <body>
                 <p id = "print"></p>
 
-        <form name="excelCalc" method="post" action="calc1.php"
+        <form name="excelCalc" method="post" action="calc3.php"
               enctype="multipart/form-data">
             <p><br>
                 <input type="file" name="fileToUpload" >
