@@ -5,11 +5,11 @@
  * Date: 25.12.2016
  * Time: 13:36
  */
-$mysqli = new mysqli('localhost', 'root','Rgrur4frg56eq16','derdata');
-//if ($mysqli->connect_errno) {
-//    echo "Не удалось подключиться к MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-//}
-//$mysqli->set_charset("utf8");
+$mysqli = new mysqli('localhost', 'root','Rgrur4frg56eq16','thedata');
+if ($mysqli->connect_errno) {
+    echo "Не удалось подключиться к MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
+$mysqli->set_charset("utf8");
 if(file_exists('111.txt')) {
 
     $Ra;
@@ -35,15 +35,15 @@ if(file_exists('111.txt')) {
                     $s = preg_replace("/[^0-9\.]/", "", $line);
                     $item = (float)$s;
                     //echo $item.'<br>';
-                    $sqls = "INSERT INTO ras(value, Ra) VALUES (" . $item . ",'" . $Ra . "');";
+                    $sqls = "INSERT INTO ra(value, Ra) VALUES (" . $item . ",'" . $Ra . "');";
 //                    $mysqli->query($sqls);
                 }
 
             }
         }
-//        $mysqli->commit();
+        $mysqli->commit();
 echo "Готово)";
         fclose($handle);
-//        unlink('111.txt');
+        unlink('111.txt');
     }
 }
