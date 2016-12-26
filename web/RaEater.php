@@ -6,11 +6,12 @@
  * Time: 13:36
  */
 echo 'Welcome to RaEater';
-$mysqli = new mysqli('localhost', 'root','Rgrur4frg56eq16','thedata');
+$mysqli = new mysqli('10.40.100.48', 'root','Rgrur4frg56eq16','thedata');
 if ($mysqli->connect_errno) {
     echo "Не удалось подключиться к MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 $mysqli->set_charset("utf8");
+
 if(file_exists('111.txt') ) {
     echo "<br>"."Вижу файд, начинаю"."<br>";
     $Ra;

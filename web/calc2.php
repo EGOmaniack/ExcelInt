@@ -4,6 +4,7 @@ ini_set('display_errors', 0) ;
 //ini_set('xdebug.var_display_max_children', 256);
 //ini_set('xdebug.var_display_max_data', 1024);
 require_once('saveExcel.php');
+require_once('BDgets.php');
 require_once('Classes/PHPExcel.php');
 include_once 'Classes/PHPExcel/IOFactory.php';
 //require_once('Classes/PHPExcel/Writer/Excel5.php');
@@ -22,6 +23,9 @@ $higestRow = $objWorkSheet->getHighestRow(); // Слишком много пер
 //echo 'Начинаю обработку файла'.'<br/>';
 
 $Data; // Все агрегаты
+$Ras = BDgetRa();
+
+
 
 
 //$pust = 0; // количество пустых строк для цикла // not used
@@ -56,7 +60,7 @@ function save_mat($strok, $i ,$sheet){
     if($strok == 2) {
         $mat = $sheet->getCellByColumnAndRow(1,$i+1)->getValue();
         $mat = killSpaces($mat);
-        $mat = newgost($mat);
+        $mat = newgost($mat ,$elem1['name']);
         $elem1['mat'] = $mat;
     }
 
@@ -79,30 +83,8 @@ function save_mat($strok, $i ,$sheet){
 }
 /*Выискиваем старые госты  ГОСТ 1050-88 -> 2003; ГОСТ 535-88 -> 2005
 * ГОСТ 51685-2000 -> 2013; */
-function newgost($str){
-//    $exp = explode(' ',$str);
-//    for($i=0;$i<count($exp); $i++){
-//        if($exp[$i] == 'ГОСТ'){
-//            $str2 = "";
-//            switch ($exp[$i+1]) {
-//                case '1050-88':
-//                    $exp2 = explode('-',$exp[$i+1]);
-//                    $exp2[1] = '-';
-//                    $exp2[2] = '2013';
-//                    $exp[$i+1] = implode($exp2);
-//                    //$str = implode($exp);
-//                    foreach ($exp as $value){
-//                        $str2[] = $value;
-//                        $str2[] = ' ';
-//                    }
-//                    $str = implode($str2);
-//                    unset($str2);
-//                    break;
-//            }
-//
-//
-//        }
-//    }
+function newgost($str, $name){
+
     $str = str_replace("1050-88","1050-2003",$str);
     $str = str_replace('535-88','535-2005',$str);
     $str = str_replace('51685-2000','51685-2013',$str);

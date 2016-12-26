@@ -40,20 +40,7 @@ ini_set('xdebug.var_display_max_data', 1024);
                     <p><input type="submit" value="в Excel">
                         <input type="reset" value="Очистить"></p>
                 </form>
-<!--                <br><br>-->
-<!--                <input placeholder="введите имя"  type="text" id="names">-->
-<!--                <input type="button" value="ClickMe" onclick="names()" id="btn">-->
-<!--                <br>-->
-<!--                <div id="cont"></div>-->
-<!--        <div calss="parant">-->
-<!--            <div class="block">-->
-<!---->
-<!--                <h3>Загрузите файл</h3>-->
-<!--                <input type="file" name="Excel" id="forma"> <br>-->
-<!--                <input id="btn" type="button" name="go" value="Посчитать">-->
-                <!--<input id="btn2" type="button" name="go" value="Посчитать" disabled = "disables">-->
-<!--            </div>-->
-<!--        </div>-->
+
     </body>
     <script src="js/main.js?1" type="text/javascript"></script>
 </html>
