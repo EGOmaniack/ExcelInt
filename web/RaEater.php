@@ -5,13 +5,14 @@
  * Date: 25.12.2016
  * Time: 13:36
  */
+echo 'Welcome to RaEater';
 $mysqli = new mysqli('localhost', 'root','Rgrur4frg56eq16','thedata');
 if ($mysqli->connect_errno) {
     echo "Не удалось подключиться к MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 $mysqli->set_charset("utf8");
-if(file_exists('111.txt')) {
-
+if(file_exists('111.txt') ) {
+    echo "<br>"."Вижу файд, начинаю"."<br>";
     $Ra;
     echo $mysqli->info;
     $handle = fopen("111.txt", "r");
@@ -29,21 +30,22 @@ if(file_exists('111.txt')) {
                     $exp = explode("&", $raline);
                     $exp[1] = (int)$exp[1];
                     $Ra = implode("", $exp);
-                    //echo $Ra.'<br>';
                 } else {
                     $line = str_replace(',', '.', $line);
                     $s = preg_replace("/[^0-9\.]/", "", $line);
                     $item = (float)$s;
                     //echo $item.'<br>';
-                    $sqls = "INSERT INTO ra(value, Ra) VALUES (" . $item . ",'" . $Ra . "');";
+                    $sqls = "INSERT INTO ras(item, ra_group) VALUES (" . $item . ",'" . $Ra . "');";
                     $mysqli->query($sqls);
                 }
 
             }
         }
         $mysqli->commit();
-echo "Готово)";
+echo "<br>"."Готово)";
         fclose($handle);
         unlink('111.txt');
     }
+}else{
+    echo "<br>"."файла нету";
 }
