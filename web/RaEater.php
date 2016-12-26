@@ -13,7 +13,7 @@ $mysqli->set_charset("utf8");
 if(file_exists('111.txt')) {
 
     $Ra;
-
+    echo $mysqli->info;
     $handle = fopen("111.txt", "r");
     if ($handle) {
         while (($line = fgets($handle)) !== false) {

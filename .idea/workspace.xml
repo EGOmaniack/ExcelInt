@@ -77,11 +77,11 @@
       <file leaf-file-name="RaEater.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/RaEater.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
               <folding>
-                <marker date="1482720693567" expanded="true" signature="100:307" ph="..." />
-                <marker date="1482720693567" expanded="true" signature="1234:1296" ph="INSERT INTO ras... " />
+                <marker date="1482720925315" expanded="true" signature="100:307" ph="..." />
+                <marker date="1482720925315" expanded="true" signature="1257:1319" ph="INSERT INTO ras... " />
               </folding>
             </state>
           </provider>
@@ -374,10 +374,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175765000" />
+    <option name="totallyTimeSpent" value="175996000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="960" height="1160" extended-state="1" />
+    <frame x="0" y="0" width="960" height="1160" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21080509" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
@@ -859,11 +859,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/RaEater.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+        <state relative-caret-position="255">
+          <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
           <folding>
-            <marker date="1482720693567" expanded="true" signature="100:307" ph="..." />
-            <marker date="1482720693567" expanded="true" signature="1234:1296" ph="INSERT INTO ras... " />
+            <marker date="1482720925315" expanded="true" signature="100:307" ph="..." />
+            <marker date="1482720925315" expanded="true" signature="1257:1319" ph="INSERT INTO ras... " />
           </folding>
         </state>
       </provider>
