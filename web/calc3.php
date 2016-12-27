@@ -7,15 +7,13 @@ $filename = $_FILES['fileToUpload']['name'];
 
 echo $filename.'<br>';
 echo $ftn.'<br>';
-if (!move_uploaded_file( $_FILES['fileToUpload']['tmp_name'], "usr/share/1.xlsx" ) ) {
-    throw new RuntimeException('Failed to move uploaded file.'); }
 
 $objreader = PHPExcel_IOFactory::createReader('Excel2007');//создали ридер
 echo "Reader создан".'<br>';
 $objreader->setReadDataOnly(true); //только на чтение файла
 echo "Выставлены параметры чтения".'<br>';
 //$objExcel = $objreader->load('ListAll2.xlsx');
-$objExcel = $objreader->load('usr/share/1.xlsx');
+$objExcel = $objreader->load($_FILES['fileToUpload']['name']);
 echo "подгружаем файл".'<br>';
 $objExcel ->setActiveSheetIndex(3);
 $objWorkSheet = $objExcel->getActiveSheet(); //Вся таблица 1ого листа
