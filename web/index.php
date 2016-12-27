@@ -26,7 +26,7 @@ $ra = BDgetRa();
     <body>
                 <p id = "print"></p>
 
-        <form name="excelCalc" method="post" action="calc3.php"
+        <form name="excelCalc" method="post" action="calc1.php"
               enctype="multipart/form-data">
             <p><br>
                 <input type="file" name="fileToUpload" >

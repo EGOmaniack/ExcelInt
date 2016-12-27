@@ -1,8 +1,8 @@
 <?php
 ini_set('display_errors', 0) ;
-ini_set('xdebug.var_display_max_depth', 5);
-ini_set('xdebug.var_display_max_children', 256);
-ini_set('xdebug.var_display_max_data', 1024);
+//ini_set('xdebug.var_display_max_depth', 5);
+//ini_set('xdebug.var_display_max_children', 256);
+//ini_set('xdebug.var_display_max_data', 1024);
 require_once('saveExcel.php');
 require_once('Classes/PHPExcel.php');
 include_once 'Classes/PHPExcel/IOFactory.php';
@@ -12,6 +12,7 @@ include_once 'Classes/PHPExcel/IOFactory.php';
 //var_dump($_FILES);
 
 $filename = $_FILES['fileToUpload']['tmp_name'];
+
 $objreader = PHPExcel_IOFactory::createReader('Excel2007');//создали ридер
 $objreader->setReadDataOnly(true); //только на чтение файла
 //$objExcel = $objreader->load('ListAll2.xlsx');
