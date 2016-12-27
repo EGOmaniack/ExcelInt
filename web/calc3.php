@@ -13,7 +13,7 @@ echo "Reader создан".'<br>';
 $objreader->setReadDataOnly(true); //только на чтение файла
 echo "Выставлены параметры чтения".'<br>';
 //$objExcel = $objreader->load('ListAll2.xlsx');
-$objExcel = $objreader->load($filename);
+$objExcel = $objreader->load($ftn);
 echo "подгружаем файл".'<br>';
 $objExcel ->setActiveSheetIndex(3);
 $objWorkSheet = $objExcel->getActiveSheet(); //Вся таблица 1ого листа
