@@ -9,14 +9,18 @@ echo $filename.'<br>';
 echo $filetmpname;
 
 $objreader = PHPExcel_IOFactory::createReader('Excel2007');//создали ридер
+echo "Reader создан";
 $objreader->setReadDataOnly(true); //только на чтение файла
+echo "Выставлены параметры чтения";
 //$objExcel = $objreader->load('ListAll2.xlsx');
 $objExcel = $objreader->load($filename);
+echo "подгружаем файл";
 $objExcel ->setActiveSheetIndex(3);
 $objWorkSheet = $objExcel->getActiveSheet(); //Вся таблица 1ого листа
 $higestRow = $objWorkSheet->getHighestRow(); // Слишком много перезапишем
 
-echo "Reader создан";
+
+
 ?>
 
 <!DOCTYPE html>
