@@ -66,11 +66,11 @@
       <file leaf-file-name="calc3.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/calc3.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="18" column="53" lean-forward="false" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
+            <state relative-caret-position="330">
+              <caret line="15" column="33" lean-forward="false" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
               <folding>
-                <marker date="1482808055869" expanded="true" signature="887:902" ph="..." />
-                <marker date="1482808055869" expanded="true" signature="989:1043" ph="..." />
+                <marker date="1482808746073" expanded="true" signature="787:802" ph="..." />
+                <marker date="1482808746073" expanded="true" signature="889:943" ph="..." />
               </folding>
             </state>
           </provider>
@@ -340,7 +340,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="195133000" />
+    <option name="totallyTimeSpent" value="196168000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -352,7 +352,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="960" height="1160" extended-state="0" />
+    <frame x="0" y="0" width="960" height="1160" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.118644066" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
@@ -852,11 +852,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/calc3.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="53" lean-forward="false" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
+        <state relative-caret-position="330">
+          <caret line="15" column="33" lean-forward="false" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
           <folding>
-            <marker date="1482808055869" expanded="true" signature="887:902" ph="..." />
-            <marker date="1482808055869" expanded="true" signature="989:1043" ph="..." />
+            <marker date="1482808746073" expanded="true" signature="787:802" ph="..." />
+            <marker date="1482808746073" expanded="true" signature="889:943" ph="..." />
           </folding>
         </state>
       </provider>
