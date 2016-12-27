@@ -1,4 +1,6 @@
 <?php
+require_once('Classes/PHPExcel.php');
+include_once 'Classes/PHPExcel/IOFactory.php';
 
 $filetmpname = $_FILES['fileToUpload']['tmp_name'];
 $filename = $_FILES['fileToUpload']['name'];
