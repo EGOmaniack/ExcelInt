@@ -1,6 +1,6 @@
 <?php
 require_once('Classes/PHPExcel.php');
-require_once('Classes/PHPExcel/IOFactory.php');
+//include_once('Classes/PHPExcel/IOFactory.php');
 
 $filetmpname = $_FILES['fileToUpload']['tmp_name'];
 $filename = $_FILES['fileToUpload']['name'];
@@ -26,7 +26,7 @@ $higestRow = $objWorkSheet->getHighestRow(); // Слишком много пер
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="css/main.css?1"/>
+    <link rel="stylesheet" href="css/main.css?2"/>
     <title>Вторая страница</title>
 </head>
 
