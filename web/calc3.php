@@ -1,12 +1,12 @@
 <?php
 require_once('Classes/PHPExcel.php');
-//include_once('Classes/PHPExcel/IOFactory.php');
+include_once('Classes/PHPExcel/IOFactory.php');
 
-$filetmpname = $_FILES['fileToUpload']['tmp_name'];
+$ftn = $_FILES['fileToUpload']['tmp_name'];
 $filename = $_FILES['fileToUpload']['name'];
 
 echo $filename.'<br>';
-echo $filetmpname.'<br>';
+echo $ftn.'<br>';
 
 $objreader = PHPExcel_IOFactory::createReader('Excel2007');//создали ридер
 echo "Reader создан".'<br>';
