@@ -4,6 +4,9 @@ ini_set('xdebug.var_display_max_depth', 5);
 ini_set('xdebug.var_display_max_children', 256);
 ini_set('xdebug.var_display_max_data', 1024);
 
+require_once('BDgets.php');
+$ra = BDgetRa();
+var_dump($ra);
 //$str = "45 ГОСТ 1050-88";
 //$n_str = str_replace("1050-88","1050-2003",$str);
 //echo $n_str;
