@@ -23,7 +23,6 @@ $higestRow = $objWorkSheet->getHighestRow(); // Слишком много пер
 //echo 'Начинаю обработку файла'.'<br/>';
 
 $Data; // Все агрегаты
-$Ras = BDgetRa();
 
 
 
@@ -120,7 +119,7 @@ function getmatsize($name){
         return $value;
     }
     $name = preg_replace("/[^0-9\.]/", "", $name);
-    $name = (FLOAT)$name;
+    $name = (float)$name;
 //    var_dump($name);
     return $name;
 }
