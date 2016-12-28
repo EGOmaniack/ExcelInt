@@ -229,7 +229,7 @@ foreach ($Data as $key => $value){
         if(!$copy) {
             $masscount = $value['matlist'][$i];
             $masscount['mass'] *= $value['options']['number'];
-            $matmerge[] = $masscount;
+            $matmerge[$y]['mass'] = $masscount;
             unset($masscount);
 
                 //* $value['options']['number'];
