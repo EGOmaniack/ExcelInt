@@ -15,7 +15,6 @@ $mysqli->set_charset("utf8");
 if(file_exists('111.txt') ) {
     echo "<br>"."Вижу файл, начинаю копать"."<br>";
     $Ra;
-    echo $mysqli->info;
     $handle = fopen("111.txt", "r");
     if ($handle) {
         while (($line = fgets($handle)) !== false) {
@@ -43,7 +42,7 @@ if(file_exists('111.txt') ) {
             }
         }
         $mysqli->commit();
-echo "<br>"."Готово)";
+        echo "<br>"."Готово)";
         fclose($handle);
         unlink('111.txt');
     }

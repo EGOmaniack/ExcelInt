@@ -1,8 +1,8 @@
 <?php
 ini_set('display_errors', 0) ;
-//ini_set('xdebug.var_display_max_depth', 5);
-//ini_set('xdebug.var_display_max_children', 256);
-//ini_set('xdebug.var_display_max_data', 1024);
+ini_set('xdebug.var_display_max_depth', 5);
+ini_set('xdebug.var_display_max_children', 256);
+ini_set('xdebug.var_display_max_data', 1024);
 require_once('saveExcel.php');
 require_once('Classes/PHPExcel.php');
 include_once 'Classes/PHPExcel/IOFactory.php';
@@ -28,10 +28,8 @@ $Data; // Все агрегаты
 
 //$pust = 0; // количество пустых строк для цикла // not used
 
-$gost = array('шестигранник', 'круг', 'лист','уголок','швеллер','шнур','труба',
-    'пластина','канат','подкладка','капролон','изделие-заготовка');/*Двустрочные материалы*/
-$work = array('пропан','электроды','эмаль','кислород','шток','краска','грунтовка',
-    'растворитель','сч','бра9мц2л','бра10мц2л','подкладка');/*Однострочные материалы*/
+$gost = BDgetDictionary(2);/*Двустрочные материалы*/
+$work = BDgetDictionary(1);/*Однострочные материалы*/
 
 
 for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {

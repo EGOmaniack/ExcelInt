@@ -1,8 +1,8 @@
 <?php
 ini_set('display_errors', 0) ;
-//ini_set('xdebug.var_display_max_depth', 5);
-//ini_set('xdebug.var_display_max_children', 256);
-//ini_set('xdebug.var_display_max_data', 1024);
+ini_set('xdebug.var_display_max_depth', 5);
+ini_set('xdebug.var_display_max_children', 256);
+ini_set('xdebug.var_display_max_data', 1024);
 require_once('saveExcel.php');
 require_once('BDgets.php');
 require_once('Classes/PHPExcel.php');
@@ -30,10 +30,8 @@ $Ras = BDgetRa();
 
 //$pust = 0; // количество пустых строк для цикла // not used
 
-$dubstr = array('шестигранник', 'круг', 'лист','уголок','швеллер','шнур','труба',
-    'пластина','канат','подкладка','капролон','изделие-заготовка');/*Двустрочные материалы*/
-$onestr = array('пропан','электроды','эмаль','кислород','шток','краска','грунтовка',
-    'растворитель','сч','бра9мц2л','бра10мц2л');/*Однострочные материалы*/
+$dubstr = BDgetDictionary(2);/*Двустрочные материалы*/
+$onestr = BDgetDictionary(1);/*Однострочные материалы*/
 
 
 for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
@@ -50,17 +48,19 @@ for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
 }
 //сохранение материала в matlist из Excel
 function save_mat($strok, $i ,$sheet){
-    $elem1[] = array();
 
-    $elem1['name'] = $sheet->getCellByColumnAndRow(1,$i)->getValue();
-    $elem1['ei'] = $sheet->getCellByColumnAndRow(5,$i)->getValue();
-    $elem1['mass'] = $sheet->getCellByColumnAndRow(8,$i)->getValue();
-    $elem1['cost'] = $sheet->getCellByColumnAndRow(9,$i)->getValue();
 
+    $elem1['name'] = killSpaces($sheet->getCellByColumnAndRow(1,$i)->getValue());//строка с названием и Excel как она есть
+    $elem1['sname']= strtolower_utf8(explode(" ", $elem1['name'])[0]);
+    $elem1['ei'] = $sheet->getCellByColumnAndRow(5,$i)->getValue();//единица измерения
+    $elem1['mass'] = $sheet->getCellByColumnAndRow(8,$i)->getValue();//масса материала в проектк
+    $elem1['cost'] = $sheet->getCellByColumnAndRow(9,$i)->getValue();// стоимость tltybws vfnthbfkf
+
+    $elem1['size'] = getmatsize($elem1['name']);
     if($strok == 2) {
-        $mat = $sheet->getCellByColumnAndRow(1,$i+1)->getValue();
+        $mat = $sheet->getCellByColumnAndRow(1,$i+1)->getValue();//марка материала
         $mat = killSpaces($mat);
-        $mat = newgost($mat ,$elem1['name']);
+        $mat = newgost($mat);
         $elem1['mat'] = $mat;
     }
 
@@ -81,10 +81,54 @@ function save_mat($strok, $i ,$sheet){
 //    }
     return $elem1;
 }
+
+function getmatsize($name){
+    if(strpos($name, "ГОСТ")>0){
+        $name = substr($name,0, strpos($name, "ГОСТ"));
+    }
+    $name = killSpaces($name);
+
+    if(strpos($name, "-В")>0){/*у всего что -В вытаскиваем значение*/
+        $value = str_replace(',', '.', $name);
+        if(strtolower_utf8(explode(' ',$value)[0]) != "уголок") {
+            $value = preg_replace("/[^0-9\.]/", "", $value);
+            $value = (float)$value;
+            return $value;
+        }
+    }
+    if(strpos($name, "II")>0){/*у всего что II вытаскиваем значение*/
+//        echo ($name."<br>");
+        $value = substr($name,strpos($name,"II"));
+//        echo $value."<br>";
+        $value = str_replace(',', '.', $value);
+        $value = preg_replace("/[^0-9\.]/", "", $value);
+        $value = (int)$value;
+        return $value;
+    }
+    if(strtolower_utf8(explode(' ',$name)[0]) == "уголок"){
+        if(strpos($name, "х")>0){$value = explode("х", $name);} /*русское х*/
+        else{$value = explode("x", $name);} /*английсое x*/
+        foreach ($value as $key => $str) {
+            $str = preg_replace("/[^0-9\.]/", "", $str);
+            $value[$key] = $str;
+        }
+        if($value[0] == $value[1]) {
+            $value[1] = $value[2];
+            unset($value[2]);
+        }
+
+        return $value;
+    }
+    $name = preg_replace("/[^0-9\.]/", "", $name);
+    $name = (FLOAT)$name;
+//    var_dump($name);
+    return $name;
+}
+//var_dump($Data);
 /*Выискиваем старые госты  ГОСТ 1050-88 -> 2003; ГОСТ 535-88 -> 2005
 * ГОСТ 51685-2000 -> 2013; */
-function newgost($str, $name){
-
+function newgost($str){
+        //Замена номеров госта в наименовании материала
     $str = str_replace("1050-88","1050-2003",$str);
     $str = str_replace('535-88','535-2005',$str);
     $str = str_replace('51685-2000','51685-2013',$str);
@@ -99,13 +143,12 @@ function killSpaces($str){
         if($exp[$i] == ''){
             unset($exp[$i]);
         }else{
-
             break;}
     }
     $str = implode(' ', $exp);
     return $str;
-
 }
+
 //Создаем сущность матлиста($matlist)
 function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
     for ($j = $startRow, $pust = 0; $j < $maxrow; $j++) {
@@ -170,8 +213,11 @@ foreach ($Data as $key => $value){
         $y = 0;
         unset($y);
         for($j = 0; $j < count($matmerge);$j++){   /*Смотрим есть ли копия очередного материала в matmerge*/
-            if(preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['name'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['name'])) &&
-                preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['mat'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['mat']))) {
+            /*if(preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['name'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['name'])) &&
+                preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['mat'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['mat']))) {*/
+            if($matmerge[$j]['sname'] == $value['matlist'][$i]['sname'] &&
+                preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['mat'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['mat'])) &&
+                $matmerge[$j]['size'][0] == $value['matlist'][$i]['size'][0]) {
                 $count++; /*Считаем количество учтенных совпадений*/
                 $copy = true;/*Нашли совпадение*/
                 $y = $j;/*Запоминаем порядковый номер совпадения*/
@@ -197,7 +243,7 @@ foreach ($Data as $key => $value){
 }
 
 
-
+//exit();
 function strtolower_utf8($string){
     $convert_to = array(
         "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
