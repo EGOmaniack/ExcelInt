@@ -14,19 +14,13 @@ $objreader = PHPExcel_IOFactory::createReader('Excel2007');//создали ри
 $objreader->setReadDataOnly(true); //только на чтение файла
 $objExcel = $objreader->load($filename);
 $objExcel ->setActiveSheetIndex(3);
-$objWorkSheet = $objExcel->getActiveSheet(); //Вся таблица 1ого листа
+$objWorkSheet = $objExcel->getActiveSheet(); //Вся таблица 4ого листа
 $higestRow = $objWorkSheet->getHighestRow(); // Слишком много перезапишем
-
 
 $Data; // Все агрегаты
 
-
-
-
-
 $dubstr = BDgetDictionary(2);/*Двустрочные материалы*/
 $onestr = BDgetDictionary(1);/*Однострочные материалы*/
-
 
 for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
     $ncheck = $objWorkSheet->getCellByColumnAndRow(0,$i)->getValue();
@@ -37,7 +31,6 @@ for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
         $agregat['matlist'] = create_block($i+1, $higestRow, $objWorkSheet, $dubstr,$onestr );
         unset($ncheck);
         $Data[$q]=$agregat;
-
     }
 }
 //сохранение материала в matlist из Excel
@@ -47,8 +40,8 @@ function save_mat($strok, $i ,$sheet){
     $elem1['name'] = killSpaces($sheet->getCellByColumnAndRow(1,$i)->getValue());//строка с названием и Excel как она есть
     $elem1['sname']= strtolower_utf8(explode(" ", $elem1['name'])[0]);
     $elem1['ei'] = $sheet->getCellByColumnAndRow(5,$i)->getValue();//единица измерения
-    $elem1['mass'] = $sheet->getCellByColumnAndRow(8,$i)->getValue();//масса материала в проектк
-    $elem1['cost'] = $sheet->getCellByColumnAndRow(9,$i)->getValue();// стоимость tltybws vfnthbfkf
+    $elem1['mass'] = (float)$sheet->getCellByColumnAndRow(8,$i)->getValue();//масса материала в проектк
+    $elem1['cost'] = (float)$sheet->getCellByColumnAndRow(9,$i)->getValue();// стоимость tltybws vfnthbfkf
     $elem1['size'] = getmatsize($elem1['name']);
     
     if($strok == 2) {
@@ -64,7 +57,7 @@ function getmatsize($name){
     if(strpos($name, "ГОСТ")>0){
         $name = substr($name,0, strpos($name, "ГОСТ"));
     }
-    $name = killSpaces($name);
+    // $name = killSpaces($name);//уже сделано
 
     if(strpos($name, "-В")>0){/*у всего что -В вытаскиваем значение*/
         $value = str_replace(',', '.', $name);
@@ -108,6 +101,7 @@ function getmatsize($name){
 function newgost($str){
         //Замена номеров госта в наименовании материала
     $str = str_replace("1050-88","1050-2003",$str);
+    $str = str_replace("380-2005","380-2008",$str);
     $str = str_replace('535-88','535-2005',$str);
     $str = str_replace('51685-2000','51685-2013',$str);
         return $str;
@@ -189,7 +183,6 @@ foreach ($Data as $key => $value){
 
         $copy = false;
         $y = 0;
-        unset($y);
         for($j = 0; $j < count($matmerge);$j++){   /*Смотрим есть ли копия очередного материала в matmerge*/
             /*if(preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['name'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['name'])) &&
                 preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['mat'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['mat']))) {*/
@@ -204,19 +197,15 @@ foreach ($Data as $key => $value){
 //                    . 'Копия'.$value['matlist'][$i][0].'/'.$value['matlist'][$i][1].$Data[$key]['name'].' масса= '.$Data[$key]['matlist'][$i][9].'<br/><br/>';
             }
         }
+        $newmat = $value['matlist'][$i];
+        $newmat['mass'] *= $value['options']['number'];
+
         if(!$copy) {
-            $masscount = $value['matlist'][$i];
-            $masscount['mass'] *= $value['options']['number'];
-            $matmerge[] = $masscount;
-            unset($masscount);
-
-
+            $matmerge[] = $newmat;
         }else{
-            $masscount = $value['matlist'][$i];
-            $masscount['mass'] *= $value['options']['number'];
-            $matmerge[$y]['mass'] += $masscount['mass'];
-            unset($masscount);
+            $matmerge[$y]['mass'] += $newmat['mass'];
         }
+        unset($newmat);
     }
 }
 
