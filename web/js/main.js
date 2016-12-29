@@ -1,6 +1,6 @@
 $(document).ready( function() {
     var defaultcolor = 'black';
-    printP('Укажите Файл excel с калькуляциями', '#5F2421');
+    printP('alpha версия v 0.012a', '#5F2421');
     //
     // //Блокировак/разблокировка кнопки если вайл не выбран/выбран
     //  $('#btn').attr('disabled','disabled');
@@ -8,14 +8,17 @@ $(document).ready( function() {
     //     $('#btn').removeAttr('disabled');
     // });
 
+    // сворачиваем разворачиваем текст
+    $('.ShowHide').click(function(){
+		$('.hiddeble').toggleClass('hidden');
+	});
 
 
 
 
 //сделать запись на экране
 function printP (text, color){
-    $('#print').text(text);
-    $('#print').css('color', (color == undefined ? defaultcolor : color));
+    $('#print').text(text).css('color', (color == undefined ? defaultcolor : color));
 }
 
     // $('#btn').click(function(){

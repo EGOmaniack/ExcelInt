@@ -29,20 +29,29 @@ $sek = strtotime("now");
             <p id = "print"></p>
             <div class="container">
                 <div class="blockhead">
-                    Заголовок блока
+                    Объединить материалы
                 </div>
                 <div class="thumb">
                     <form name="excelCalc" method="post" action="calc2.php"
                         enctype="multipart/form-data">
-                        <div class="text">Тут будет текст с описанием данного сервиса. Он будет многострочным
-                            и довольно таки большим. Тут будет расписано для чего этот сервис нужен и как
-                             с ним работать
+                        <div class="text">Наш первый сервис позволяет объединять одинаковые
+                             материалы из ведомости материалов с учетом количества агрегатов. 
+                             <a href ="/files/пример.xlsx">Пример оформления заготовки</a><br>
                         </div>
-                        <p><br>
+                        <div class="text hiddeble hidden">
+                             Файл принимется как минимум в формате Excel 2007 - "xlsx"
+                             Внутри, агрегаты должны быть указаны, как показано в примере:<br>
+                             1) В колонке А ставится английское "n".<br>
+                             2) В колонке B название агрегата<br>
+                             3) В колонке С количество агрегатов<br>
+                             Все в одну строку. Даже если у вас один агрегат его тоже надо указывать.
+                        </div>
+                        <input class="ShowHide" type="button" name="ShowHide" value="Развернуть/Свернуть">
+                        
                             <div class="picplace">
                                 <input class = "picbtn" type="file" name="fileToUpload" >
                             </div>
-                            </p>
+                            
                             <div >
                                 <p><input class = "submit btns" type="submit" value="Посчитать">
                                 <input class="btns reset" type="reset" value="Очистить"></p>

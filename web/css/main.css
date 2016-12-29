@@ -2,11 +2,29 @@
   margin: 0;
   padding: 0; 
 }
-
+html{
+width: 100%;
+  font-family: Verdana;
+  background: #ddd;
+}
+#print{
+  padding: 2px 6px;
+  font-size: 10px;
+  height: 0;
+  overflow: visible;
+}
+.main{
+  margin: 10px 15px ;
+  width: auto;
+  min-height: 800px;
+  background-color: white;
+  overflow: hidden;
+  padding: 0 0 20px 0;
+}
 .picplace{
     height: 40px;
     width: 95%;
-    margin: 12px;
+    margin: 0 12px 5px 12px;
     border: 2px dashed #D8D8D8;
     background-color: #FFFFEF;
     border-radius: 8px;
@@ -49,12 +67,25 @@
     -webkit-transition-duration: 0.1s; /* Safari */
     transition-duration: 0.1s;
 }
+.ShowHide{
+  width: 100%;
+  border: none;
+  color: white;
+  padding: 8px;
+  background-color: #4CAF50;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 5px;
+  -webkit-transition-duration: 0.1s; /* Safari */
+  transition-duration: 0.1s;
+}
 .btns:hover{
   box-shadow: 0 5px 10px 0 rgba(0,0,0,0.24),
   0 17px 50px 0 rgba(0,0,0,0.19);
 }
 .btns:active:hover{
-
   color: #EEEEDE;
   margin: 7px;
   padding: 13px 30px;
@@ -64,7 +95,22 @@
   margin: 10% auto;
 }
 .text{
-  padding: 10px 10px;
+  height: auto;
+  font-size: 18px;
+  padding: 10px 10px 0;
+  overflow:auto;
+  max-height: 160px;
+  min-height: 20px;
+  -webkit-transition-duration: 0.2s; /* Safari */
+  transition-duration: 0.2s;
+}
+.text.hidden{
+  /*visibility: hidden;*/
+  font-size: 0px;
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0; 
 }
 .thumb{
   margin: 0 auto;
@@ -75,7 +121,4 @@
   border: 1px solid #eee;
   box-shadow: 0 2px 30px silver;
 }
-.main{
-  width: 100%;
-  height: 100%;
-}
+
