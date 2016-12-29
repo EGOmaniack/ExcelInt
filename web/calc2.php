@@ -120,7 +120,7 @@ function getmatsize($name){
     }
     $name = preg_replace("/[^0-9\.]/", "", $name);
     $name = (float)$name;
-//    var_dump($name);
+    //var_dump($name);
     return $name;
 }
 //var_dump($Data);
@@ -228,10 +228,10 @@ foreach ($Data as $key => $value){
         if(!$copy) {
             $masscount = $value['matlist'][$i];
             $masscount['mass'] *= $value['options']['number'];
-            $matmerge[$y]['mass'] = $masscount;
+            $matmerge[] = $masscount;
             unset($masscount);
 
-                //* $value['options']['number'];
+
         }else{
             $masscount = $value['matlist'][$i];
             $masscount['mass'] *= $value['options']['number'];
@@ -242,7 +242,6 @@ foreach ($Data as $key => $value){
 }
 
 
-//exit();
 function strtolower_utf8($string){
     $convert_to = array(
         "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
@@ -262,6 +261,7 @@ function strtolower_utf8($string){
     return str_replace($convert_from, $convert_to, $string);
 }
 
+//var_dump($Data);
 //var_dump($matmerge);
 saveExcel($matmerge,$dubstr, $onestr);
 ?>

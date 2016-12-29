@@ -5,7 +5,8 @@ ini_set('xdebug.var_display_max_children', 256);
 ini_set('xdebug.var_display_max_data', 1024);
 
  require_once('BDgets.php');
-//$ra = BDgetRa();                
+
+$ra = BDgetRa();                
 //var_dump($ra);
 //$str = "45 ГОСТ 1050-88";
 //$n_str = str_replace("1050-88","1050-2003",$str);
@@ -39,13 +40,13 @@ $sek = strtotime("now");
                              <a href ="files/пример.xlsx">Пример оформления заготовки</a><br>
                         </div>
                         <div class="text hiddeble hidden">
-                             Файл принимется как минимум в формате Excel 2007 - "xlsx"
+                             Файл принимается как минимум в формате Excel 2007 - "xlsx"
                              Внутри, агрегаты должны быть указаны, как показано в примере:<br>
                              1) В колонке А ставится английское "n".<br>
                              2) В колонке B название агрегата<br>
                              3) В колонке С количество агрегатов<br>
                              Все в одну строку. Даже если у вас один агрегат его тоже надо указывать.<br>
-                             стили оформления не имеют значения
+                             Стили оформления не имеют значения
                         </div>
                         <input class="ShowHide" type="button" name="ShowHide" value="Развернуть/Свернуть">
                         
