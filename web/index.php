@@ -26,28 +26,31 @@ $sek = strtotime("now");
     
     <body>
         <div class="main">
-    <div class="container">
-                    <p id = "print"></p>
-        <div class="thumb">
-            <form name="excelCalc" method="post" action="calc1.php"
-                enctype="multipart/form-data">
-                <p><br>
-                    <input type="file" name="fileToUpload" >
-                </p>
-                <p><input type="submit" value="На экран">
-                    <input type="reset" value="Очистить"></p>
-            </form>
-        </div>
-            <br><br>
+            <p id = "print"></p>
+            <div class="container">
+                <div class="blockhead">
+                    Заголовок блока
+                </div>
+                <div class="thumb">
                     <form name="excelCalc" method="post" action="calc2.php"
                         enctype="multipart/form-data">
+                        <div class="text">Тут будет текст с описанием данного сервиса. Он будет многострочным
+                            и довольно таки большим. Тут будет расписано для чего этот сервис нужен и как
+                             с ним работать
+                        </div>
                         <p><br>
-                            <input type="file" name="fileToUpload" >
-                        </p>
-                        <p><input type="submit" value="в Excel">
-                            <input type="reset" value="Очистить"></p>
+                            <div class="picplace">
+                                <input class = "picbtn" type="file" name="fileToUpload" >
+                            </div>
+                            </p>
+                            <div >
+                                <p><input class = "submit btns" type="submit" value="Посчитать">
+                                <input class="btns reset" type="reset" value="Очистить"></p>
+                            </div>
                     </form>
-    </div></div>
+                </div>
+            </div>
+        </div>
     </body>
     <script src="js/main.js?<?=$sek?>" type="text/javascript"></script>
 </html>

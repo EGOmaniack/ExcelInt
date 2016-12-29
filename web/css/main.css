@@ -2,55 +2,78 @@
   margin: 0;
   padding: 0; 
 }
-table{
-  border:1px solid dimgrey;
-  background-color: #F9FAFC;
-}
 
-td{
-  height: 30px;
-  border: 2px solid #D2D3D5;
-}
-td:hover {
-  color: grey;
-    box-shadow: 1px 1px 20px fadeout(rgba(0,0,120,30), 70%);
-}
-
-#btn{
+.picplace{
     height: 40px;
-    width: 100px;
+    width: 95%;
     margin: 12px;
-    box-shadow: 2px 2px 10px black;
-
+    border: 2px dashed #D8D8D8;
+    background-color: #FFFFEF;
+    border-radius: 8px;
 }
-
-.parent{
-    position: absolute;	/* Абсолютное позиционирование */
-    width: 400px; /* Ширина слоя в пикселах */
-    height: 300px; /* Высота слоя в пикселах */
-    left: 50%; /* Положение слоя от левого края */
-    top: 50%; /* Положение слоя от верхнего края */
-    margin-left: -211px; /* Отступ слева, включает padding и border */
-    margin-top: -150px;	/* Отступ сверху */
-    background: #fc0; /* Цвет фона */
-    border: solid 1px black; /* Параметры рамки вокруг */
-    padding: 10px; /* Поля вокруг текста */
-    overflow: auto; /* Добавление полосы прокрутки */
+.picbtn{
+  position: absolute;
+  margin: 5px 15%;
+  font-size: 18px;
 }
-.mat{
-    color: blueviolet;
+.blockhead{
+  font-size: 20px;
+  margin: 2px 2px;
+  padding: 5px 5px;
+  text-align: center;
+  font-weight: bold; 
+  background-color: #eee;
 }
+.submit{
+  background-color: #4CAF50;
+}
+.reset{
+  background-color: #f44336;
+  float: right;
+}
+.reset:hover{
+  background-color: #FF5346;
+}
+.submit:hover{
+  background-color: #55B859;
+}
+.btns{
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 5px;
+    -webkit-transition-duration: 0.1s; /* Safari */
+    transition-duration: 0.1s;
+}
+.btns:hover{
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.24),
+  0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.btns:active:hover{
 
+  color: #EEEEDE;
+  margin: 7px;
+  padding: 13px 30px;
+}
 .container{
-  width: 300px;
-  margin: 10% auto; 
+  width: 70%;
+  margin: 10% auto;
+}
+.text{
+  padding: 10px 10px;
 }
 .thumb{
-  width: 500px;
-  height: 200px;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
   float: left;
   overflow: hidden;
   border: 1px solid #eee;
+  box-shadow: 0 2px 30px silver;
 }
 .main{
   width: 100%;
