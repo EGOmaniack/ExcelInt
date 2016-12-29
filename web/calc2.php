@@ -7,27 +7,22 @@ require_once('saveExcel.php');
 require_once('BDgets.php');
 require_once('Classes/PHPExcel.php');
 include_once 'Classes/PHPExcel/IOFactory.php';
-//require_once('Classes/PHPExcel/Writer/Excel5.php');
-//var_dump($_FILES);
 
 $filename = $_FILES['fileToUpload']['tmp_name'];
 
 $objreader = PHPExcel_IOFactory::createReader('Excel2007');//создали ридер
 $objreader->setReadDataOnly(true); //только на чтение файла
-//$objExcel = $objreader->load('ListAll2.xlsx');
 $objExcel = $objreader->load($filename);
 $objExcel ->setActiveSheetIndex(3);
 $objWorkSheet = $objExcel->getActiveSheet(); //Вся таблица 1ого листа
 $higestRow = $objWorkSheet->getHighestRow(); // Слишком много перезапишем
 
-//echo 'Начинаю обработку файла'.'<br/>';
 
 $Data; // Все агрегаты
 
 
 
 
-//$pust = 0; // количество пустых строк для цикла // not used
 
 $dubstr = BDgetDictionary(2);/*Двустрочные материалы*/
 $onestr = BDgetDictionary(1);/*Однострочные материалы*/
@@ -54,30 +49,14 @@ function save_mat($strok, $i ,$sheet){
     $elem1['ei'] = $sheet->getCellByColumnAndRow(5,$i)->getValue();//единица измерения
     $elem1['mass'] = $sheet->getCellByColumnAndRow(8,$i)->getValue();//масса материала в проектк
     $elem1['cost'] = $sheet->getCellByColumnAndRow(9,$i)->getValue();// стоимость tltybws vfnthbfkf
-
     $elem1['size'] = getmatsize($elem1['name']);
+    
     if($strok == 2) {
         $mat = $sheet->getCellByColumnAndRow(1,$i+1)->getValue();//марка материала
         $mat = killSpaces($mat);
         $mat = newgost($mat);
         $elem1['mat'] = $mat;
     }
-
-//    switch ($strok){
-//        case 1 :
-//            $elem1['name'] = $sheet->getCellByColumnAndRow(1,$i)->getValue();
-//            $elem1['ei'] = $sheet->getCellByColumnAndRow(5,$i)->getValue();
-//            $elem1['mass'] = $sheet->getCellByColumnAndRow(8,$i)->getValue();
-//            $elem1['cost'] = $sheet->getCellByColumnAndRow(9,$i)->getValue();
-//            break;
-//        default :
-//            $elem1['name'] = $sheet->getCellByColumnAndRow(1,$i)->getValue();
-//            $elem1['mat'] = $sheet->getCellByColumnAndRow(1,$i+1)->getValue();
-//            $elem1['ei'] = $sheet->getCellByColumnAndRow(5,$i)->getValue();
-//            $elem1['mass'] = $sheet->getCellByColumnAndRow(8,$i)->getValue();
-//            $elem1['cost'] = $sheet->getCellByColumnAndRow(9,$i)->getValue();
-//
-//    }
     return $elem1;
 }
 

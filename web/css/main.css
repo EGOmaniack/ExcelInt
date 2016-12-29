@@ -16,7 +16,7 @@ width: 100%;
 .main{
   margin: 10px 15px ;
   width: auto;
-  min-height: 800px;
+  min-height: auto;
   background-color: white;
   overflow: hidden;
   padding: 0 0 20px 0;
@@ -40,6 +40,7 @@ width: 100%;
   padding: 5px 5px;
   text-align: center;
   font-weight: bold; 
+  /*background-color: aqua;*/
   background-color: #eee;
 }
 .submit{
@@ -72,7 +73,8 @@ width: 100%;
   border: none;
   color: white;
   padding: 8px;
-  background-color: #4CAF50;
+  /*background-color: #4CAF50;*/
+  background-color: #65C171;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -92,7 +94,7 @@ width: 100%;
 }
 .container{
   width: 70%;
-  margin: 10% auto;
+  margin: 10% auto 20px;
 }
 .text{
   height: auto;
@@ -116,7 +118,6 @@ width: 100%;
   margin: 0 auto;
   width: 100%;
   height: auto;
-  float: left;
   overflow: hidden;
   border: 1px solid #eee;
   box-shadow: 0 2px 30px silver;

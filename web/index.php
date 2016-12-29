@@ -50,16 +50,20 @@ $sek = strtotime("now");
                         </div>
                         <input class="ShowHide" type="button" name="ShowHide" value="Развернуть/Свернуть">
                         
-                            <div class="picplace">
-                                <input class = "picbtn" type="file" name="fileToUpload" >
-                            </div>
+                        <div class="picplace">
+                            <input class = "picbtn" type="file" name="fileToUpload" >
+                        </div>
                             
-                            <div >
-                                <p><input class = "submit btns" type="submit" value="Посчитать">
-                                <input class="btns reset" type="reset" value="Очистить"></p>
-                            </div>
+                        <div >
+                            <p><input class = "submit btns" type="submit" value="Посчитать">
+                            <input class="btns reset" type="reset" value="Очистить"></p>
+                        </div>
                     </form>
                 </div>
+            </div>
+            
+            <div>
+            
             </div>
         </div>
     </body>
