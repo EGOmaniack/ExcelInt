@@ -36,7 +36,7 @@ $sek = strtotime("now");
                         enctype="multipart/form-data">
                         <div class="text">Наш первый сервис позволяет объединять одинаковые
                              материалы из ведомости материалов с учетом количества агрегатов. 
-                             <a href ="files/example.xlsx">Пример оформления заготовки</a><br>
+                             <a href ="ExcelInt/web/files/пример.xlsx">Пример оформления заготовки</a><br>
                         </div>
                         <div class="text hiddeble hidden">
                              Файл принимется как минимум в формате Excel 2007 - "xlsx"
