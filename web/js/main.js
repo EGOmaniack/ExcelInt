@@ -28,19 +28,19 @@ function printP (text, color){
     //         method: "POST",
     //         data: { name : $('#names').val(), age : 22 },
     //         dataType: "json"
-    //
+    
     //     }).done(function (aa) {
-    //
+    
     //         var array = $.map(aa, function(value, index) {
     //             return [value];
     //         });
     //         var Agregats,matlist;
-    //
+    
     //         // for (var j=0 ; j < array.length ; j++ ){
     //         //  // Agregats[array[j].name] = array[j].matlist;
     //         //  Agregats.push({array[j].name:array[j].matlist});
     //         // }
-    //
+    
     //         $('#btn').val('Ready');
     //         // $(body).appendTo('<br><div>'+aa.name+'</div>');
     //         // alert(aa.name);
@@ -51,7 +51,7 @@ function printP (text, color){
     //         $('#cont').html(htmlstr);
     //         this.value="Ready";
     //     })
-    //
+    
     // });
 
 });

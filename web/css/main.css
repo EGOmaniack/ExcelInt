@@ -16,9 +16,8 @@ width: 100%;
 .main{
   margin: 10px 15px ;
   width: auto;
-  min-height: auto;
   background-color: white;
-  overflow: hidden;
+  overflow: auto;
   padding: 0 0 20px 0;
 }
 .picplace{
@@ -93,7 +92,8 @@ width: 100%;
   padding: 13px 30px;
 }
 .container{
-  width: 70%;
+  max-width: 70%;
+  min-width: 400px;
   margin: 10% auto 20px;
 }
 .text{
