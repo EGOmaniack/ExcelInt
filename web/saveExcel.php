@@ -45,7 +45,7 @@ zapoln2($sheet, $arr, $dubstr, $onestr);
 //header ( "Pragma: no-cache" );
 
 header ( "Content-Type: application/vnd.ms-excel" );
-header ( "Content-Disposition: attachment; filename='Калькуляция.xls'" );
+header ( "Content-Disposition: attachment; filename='Калькуляция.xls" );
 
 
 

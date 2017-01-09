@@ -20,6 +20,7 @@ $sek = strtotime("now");
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="css/main.css?<?=$sek?>"/>
         <script src="js/jquery-3.1.1.min.js"></script>
+        <!--<link rel="icon" type="image/png" href="/pics/lgo_m_b.png" />-->
         <!--<script src="js/office.js"></script>-->
         <!--<script src="https://appsforoffice.microsoft.com/lib/1/hosted/Office.js"/>-->
 
