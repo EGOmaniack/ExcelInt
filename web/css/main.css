@@ -8,10 +8,11 @@ width: 100%;
   background: #ddd;
 }
 #print{
-  padding: 2px 6px;
+  margin: 6px;
   font-size: 10px;
   height: 0;
   overflow: visible;
+  float: right;
 }
 .main{
   margin: 10px 15px ;
@@ -19,6 +20,14 @@ width: 100%;
   background-color: white;
   overflow: auto;
   padding: 0 0 20px 0;
+}
+#top{
+  /*background-color: #F3F3F3;*/
+  height: 70px;
+  /*box-shadow: 0 -5px 20px ;*/
+}
+#bottom{
+  height: 70px;
 }
 .picplace{
     height: 40px;
@@ -94,7 +103,7 @@ width: 100%;
 .container{
   max-width: 70%;
   min-width: 400px;
-  margin: 10% auto 20px;
+  margin: 20px auto;
 }
 .text{
   height: auto;

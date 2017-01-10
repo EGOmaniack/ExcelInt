@@ -27,9 +27,16 @@ $sek = strtotime("now");
     </head>
     
     <body>
+        <noscript>
+            Для полной функциональности этого сайта необходимо включить JavaScript.
+            Вот <a href="http://www.enable-javascript.com/ru/" target="_blank">
+            инструкции, как включить JavaScript в вашем браузере</ a>.
+        </noscript>
         <div class="main">
-            <p id = "print"></p>
-            <div class="container">
+            <div id="top">
+            
+            </div>
+            <div class="container" id="mergemat">
                 <div class="blockhead">
                     Объединить материалы
                 </div>
@@ -40,7 +47,7 @@ $sek = strtotime("now");
                              материалы из ведомости материалов с учетом количества агрегатов. 
                              <a href ="files/пример.xlsx">Пример оформления заготовки</a><br>
                         </div>
-                        <div class="text hiddeble hidden">
+                        <div class="text hiddeble">
                              Файл принимается как минимум в формате Excel 2007 - "xlsx"
                              Внутри, агрегаты должны быть указаны, как показано в примере:<br>
                              1) В колонке А ставится английское "n".<br>
@@ -64,10 +71,11 @@ $sek = strtotime("now");
                 </div>
             </div>
             
-            <div>
+            <div id="bottom">
             
             </div>
         </div>
+        <p id = "print"></p>
     </body>
     <script src="js/main.js?<?=$sek?>" type="text/javascript"></script>
 </html>

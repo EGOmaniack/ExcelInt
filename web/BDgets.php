@@ -9,7 +9,7 @@
 
 function BDgetRa()
 {
-    $mysqli = new mysqli('10.40.100.48', 'root', 'Rgrur4frg56eq16', 'thedata');
+    $mysqli = new mysqli('localhost', 'root', 'Rgrur4frg56eq16', 'thedata');
     if ($mysqli->connect_errno) {
         echo "Не удалось подключиться к MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
@@ -26,7 +26,7 @@ function BDgetRa()
 
 function setDictionary(){
 
-    $mysqli = new mysqli('10.40.100.48', 'root', 'Rgrur4frg56eq16', 'thedata');
+    $mysqli = new mysqli('localhost', 'root', 'Rgrur4frg56eq16', 'thedata');
     $mysqli->set_charset("utf8");
     if ($mysqli->connect_errno) {
         echo "Не удалось подключиться к MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
@@ -35,7 +35,7 @@ function setDictionary(){
     $donestr = BDgetDictionary(1);
 
     $dubstr = array('шестигранник', 'круг', 'лист','уголок','шнур','труба',
-        'пластина','канат','подкладка','капролон','швеллер','изделие-заготовка');/*Двустрочные материалы*/
+        'пластина','канат','подкладка','капролон','швеллер','изделие-заготовка','трубка');/*Двустрочные материалы*/
     $onestr = array('пропан','электроды','эмаль','кислород','шток','краска','грунтовка',
         'растворитель','сч','бра9мц2л','бра10мц2л');/*Однострочные материалы*/
 
@@ -59,7 +59,7 @@ function setDictionary(){
 //var_dump(BDgetDictionary(2));
 function BDgetDictionary($i)
 {
-    $mysqli = new mysqli('10.40.100.48', 'root', 'Rgrur4frg56eq16', 'thedata');
+    $mysqli = new mysqli('localhost', 'root', 'Rgrur4frg56eq16', 'thedata');
     if ($mysqli->connect_errno) {
         echo "Не удалось подключиться к MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }

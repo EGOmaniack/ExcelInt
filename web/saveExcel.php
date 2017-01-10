@@ -30,7 +30,7 @@ $sheet->mergeCells('B2:H2');
 // Выравнивание текста
 $sheet->getStyle('B2')->getAlignment()->setHorizontal(
     PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-
+$sheet->getColumnDimension('B')->setAutoSize(true);
 //расставляем номера колонок
 for ($n=0; $n < 11; $n++){
     $sheet->setCellValueByColumnAndRow($n, 8, $n+1);
