@@ -1,6 +1,6 @@
 $(document).ready( function() {
     var defaultcolor = 'black';
-    printP('beta версия v 0.012.3b', '#5F2421');
+    printP('beta версия v 0.013.0b', '#5F2421');
     //
     // //Блокировак/разблокировка кнопки если вайл не выбран/выбран
     //  $('#btn').attr('disabled','disabled');
