@@ -8,19 +8,26 @@ require_once('BDgets.php');
 require_once('Classes/PHPExcel.php');
 include_once 'Classes/PHPExcel/IOFactory.php';
 
-$filename = $_FILES['fileToUpload']['tmp_name'];
+$file = $_FILES['fileToUpload']['tmp_name'];
 
 $objreader = PHPExcel_IOFactory::createReader('Excel2007');//создали ридер
 $objreader->setReadDataOnly(true); //только на чтение файла
-$objExcel = $objreader->load($filename);
+$objExcel = $objreader->load($file);
 $objExcel ->setActiveSheetIndex(3);
 $objWorkSheet = $objExcel->getActiveSheet(); //Вся таблица 4ого листа
 $higestRow = $objWorkSheet->getHighestRow(); // Слишком много перезапишем
-
+$filename = $_FILES['fileToUpload']['name'];
 $Data; // Все агрегаты
 
 $dubstr = BDgetDictionary(2);/*Двустрочные материалы*/
 $onestr = BDgetDictionary(1);/*Однострочные материалы*/
+
+$agregat['name'] = $filename;
+$agregat['options']['number'] = 1;
+$agregat['matlist'] = create_block(0, $higestRow, $objWorkSheet, $dubstr,$onestr );
+$Data[]=$agregat;
+
+if(count($Data) == 0) unset($Data);
 
 for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
     $ncheck = $objWorkSheet->getCellByColumnAndRow(0,$i)->getValue();
@@ -33,6 +40,12 @@ for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
         $Data[$q]=$agregat;
     }
 }
+// if(count($Data) == 0){
+//     $agregat['name'] = $_FILES['fileToUpload']['name'];
+//         $agregat['options']['number'] = 1;
+//         $agregat['matlist'] = create_block(0, $higestRow, $objWorkSheet, $dubstr,$onestr );
+//         $Data[]=$agregat;
+// }
 //сохранение материала в matlist из Excel
 function save_mat($strok, $i ,$sheet){
 

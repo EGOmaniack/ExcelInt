@@ -20,7 +20,7 @@ $sek = strtotime("now");
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="css/main.css?<?=$sek?>"/>
         <script src="js/jquery-3.1.1.min.js"></script>
-        <!--<link rel="icon" type="image/png" href="/pics/lgo_m_b.png" />-->
+        <link rel="icon" type="image/png" href="/pics/logo_min.png" />
         <!--<script src="js/office.js"></script>-->
         <!--<script src="https://appsforoffice.microsoft.com/lib/1/hosted/Office.js"/>-->
 
@@ -45,7 +45,7 @@ $sek = strtotime("now");
                         enctype="multipart/form-data">
                         <div class="text">Наш первый сервис позволяет объединять одинаковые
                              материалы из ведомости материалов с учетом количества агрегатов. 
-                             <a href ="files/пример.xlsx">Пример оформления заготовки</a><br>
+                             <a href ="files/example.xlsx">Пример оформления заготовки</a><br>
                         </div>
                         <div class="text hiddeble">
                              Файл принимается как минимум в формате Excel 2007 - "xlsx"
