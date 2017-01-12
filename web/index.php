@@ -7,7 +7,16 @@ ini_set('xdebug.var_display_max_data', 1024);
 require_once('BDgets.php');
 require_once('logsParser.php');
 
-$log = getlog('matmerge_versions_log.txt');
+$mergeLog = getlog('matmerge_versions_log.txt');
+$mlog = "<div id = 'verdiv'>";
+foreach($mergeLog as $key=> $value){
+    $mlog .='<p class = "vername">'.$value['ver'].'</p><ul>';
+    for($i = 0;$i < count($value['logs']);$i++){
+        $mlog .="<li>".$value['logs'][$i]."</li>";
+    }
+    $mlog .="</ul>";
+}
+$mlog .="</div>";
 $sek = strtotime("now");
 ?>
 <!DOCTYPE html>
@@ -31,11 +40,11 @@ $sek = strtotime("now");
         </noscript>
         <div class="main">
             <div id="top">
-            
+            <p id = "print"></p>
             </div>
             <div class="container" id="mergemat">
                 <div class="blockhead">
-                    Объединить материалы
+                    Объединить материалы <a id="mw"><?=$mergeLog[0]['ver']?></a>
                 </div>
                 <div class="thumb">
                     <form name="excelCalc" method="post" action="find_mat_copy.php"
@@ -48,9 +57,9 @@ $sek = strtotime("now");
                              Файл принимается как минимум в формате Excel 2007 - "xlsx"
                              Если планируется посчитать несколко агрегатов или др. инж. едениц, то:<br>
                              Внутри, агрегаты должны быть указаны, как показано в <a href ="files/example_many.xlsx">этом</a> примере:<br>
-                             1) В колонке А ставится английское "n".<br>
-                             2) В колонке B название агрегата<br>
-                             3) В колонке С количество агрегатов<br>
+                             <lo><li> В колонке А ставится английское "n".</li>
+                             <li> В колонке B название агрегата</li>
+                             <li> В колонке С количество агрегатов</li></lo>
                              Все в одну строку. Если у вас один агрегат его указывать необязательно.<br>
                              Номер листа с материалами должен быть 4ым. Название листа не имеет значения.<br>
                              Стили оформления не имеют значения
@@ -73,7 +82,13 @@ $sek = strtotime("now");
             
             </div>
         </div>
-        <p id = "print"></p>
+        <p id = "ver"><?=getlog('all_ver_log.txt')[0]['ver']?> </p>
+        <div id="modal_form"><!-- Сaмo oкнo --> 
+            <span id="modal_close">X</span> <!-- Кнoпкa зaкрыть -->
+            <?=$mlog?> 
+            <!-- Тут любoе сoдержимoе -->
+        </div>
+        <div id="overlay"></div><!-- Пoдлoжкa -->
     </body>
     <script src="js/main.js?<?=$sek?>" type="text/javascript"></script>
 </html>
