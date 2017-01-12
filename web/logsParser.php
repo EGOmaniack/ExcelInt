@@ -7,9 +7,9 @@ ini_set('xdebug.var_display_max_data', 1024);
 // var_dump (getlog('matmerge_versions_log.txt'));
 
 function getlog($logname){
-  if(file_exists($_SERVER["DOCUMENT_ROOT"]."/logs/".$logname)){
+  if(file_exists("./logs/".$logname)){
     $ver;
-    $handle = fopen($_SERVER["DOCUMENT_ROOT"]."/logs/".$logname,"r");
+    $handle = fopen("./logs/".$logname,"r");
     if($handle){
         while(($line = fgets($handle)) !== false){
             if(strpos($line , "v") !== false/*substr($line, 0, 1) === 'v'*/){
