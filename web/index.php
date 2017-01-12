@@ -4,13 +4,10 @@ ini_set('xdebug.var_display_max_depth', 5);
 ini_set('xdebug.var_display_max_children', 256);
 ini_set('xdebug.var_display_max_data', 1024);
 
- require_once('BDgets.php');
+require_once('BDgets.php');
+require_once('logsParser.php');
 
-//ra = BDgetRa();                
-//var_dump($ra);
-//$str = "45 ГОСТ 1050-88";
-//$n_str = str_replace("1050-88","1050-2003",$str);
-//echo $n_str;
+$log = getlog('matmerge_versions_log.txt');
 $sek = strtotime("now");
 ?>
 <!DOCTYPE html>
@@ -41,7 +38,7 @@ $sek = strtotime("now");
                     Объединить материалы
                 </div>
                 <div class="thumb">
-                    <form name="excelCalc" method="post" action="calc2.php"
+                    <form name="excelCalc" method="post" action="find_mat_copy.php"
                         enctype="multipart/form-data">
                         <div class="text">Наш первый сервис позволяет объединять одинаковые
                              материалы из ведомости материалов с учетом количества агрегатов. 

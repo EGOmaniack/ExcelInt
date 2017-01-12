@@ -5,15 +5,15 @@
  * Date: 25.12.2016
  * Time: 13:36
  */
-echo 'Welcome to RaEater';
+echo 'Welcome to RaEater<br>';
 $mysqli = new mysqli('localhost', 'root','Rgrur4frg56eq16','thedata');
 if ($mysqli->connect_errno) {
     echo "Не удалось подключиться к MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 $mysqli->set_charset("utf8");
 
-if(file_exists('111.txt') ) {
-    echo "<br>"."Вижу файл, начинаю копать"."<br>";
+if(file_exists('111.txt')){
+    echo "Вижу файл, начинаю копать"."<br>";
     $Ra;
     $handle = fopen("111.txt", "r");
     if ($handle) {
@@ -47,5 +47,5 @@ if(file_exists('111.txt') ) {
         unlink('111.txt');
     }
 }else{
-    echo "<br>"."файла нету";
+    echo "файла с Ra нету";
 }

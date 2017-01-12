@@ -22,13 +22,14 @@ $Data; // Все агрегаты
 $dubstr = BDgetDictionary(2);/*Двустрочные материалы*/
 $onestr = BDgetDictionary(1);/*Однострочные материалы*/
 
+//  Обрабатывем таблицу как обычныйфайл с калькуляциями без добавления n "имя агрегата" "количество"
 $agregat['name'] = $filename;
 $agregat['options']['number'] = 1;
 $agregat['matlist'] = create_block(0, $higestRow, $objWorkSheet, $dubstr,$onestr );
 $Data[]=$agregat;
 
 if(count($Data) == 0) unset($Data);
-
+// если такого не оказалось то удаляем (просто что-бы не было пустого агрегата в массиве) и пытаемся найти по формату  n "имя агрегата" "количество"
 for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
     $ncheck = $objWorkSheet->getCellByColumnAndRow(0,$i)->getValue();
     if($ncheck == 'n'){
@@ -48,7 +49,6 @@ for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
 // }
 //сохранение материала в matlist из Excel
 function save_mat($strok, $i ,$sheet){
-
 
     $elem1['name'] = killSpaces($sheet->getCellByColumnAndRow(1,$i)->getValue());//строка с названием и Excel как она есть
     $elem1['sname']= strtolower_utf8(explode(" ", $elem1['name'])[0]);
@@ -245,6 +245,54 @@ function strtolower_utf8($string){
 //var_dump($Data);
 //var_dump($matmerge);
 saveExcel($matmerge,$dubstr, $onestr);
+//makeDataTable($Data);
+//makemergeTable($matmerge);
+
+function makeDataTable ($Data){
+    //Рисуем таблицу
+    $table ='<table border="1">
+            <caption>Таблица содержания файла</caption>
+            <tr>
+            <th>Наименование агрегата</th>
+            <th>Кол-во <br/> агрегатов</th>
+            <th>Кол-во <br/> материалов</th>
+            </tr>';
+    for($i=1 ;$i <= count($Data) ;$i++){
+    $table .='<tr><td>'.$Data[$i]['name'].'</td><td>'.$Data[$i]['options']['number'].'</td><td>'.count($Data[$i]['matlist']).'</td></tr>';
+    }
+    $table .='</table><br><br>';
+
+    echo $table;
+}
+
+function makemergeTable($matmerge){
+    //Рисуем таблицу всех материалов
+    $table2 ='<table border="1">
+            <caption>Таблица материалов</caption>
+            <tr>
+            <th>№</th>
+            <th>Наименование<br> материала</th>
+            <th>Марка</th>
+            <th>обозначение <br/> стандарта или <br/> тех. Условия</th>
+            <th>Код <br/> материала</th>
+            <th>материал</th>
+            <th>Еденица <br/> измерения</th>
+            <th>Код <br/> еденицы <br/> измерения</th>
+            <th>Норма <br/> расхода</th>
+            <th>масса</th>
+            <th>Стоимость <br/> еденицы <br/> измерения</th>
+            <th>Сумма <br/> на <br/> комплект</th>
+            </tr>';
+    for($i=0 ;$i < count($matmerge) ;$i++){
+        $table2 .='<tr><td>'.$i.'</td><td>'.$matmerge[$i]['name'].'</td>'.'<td></td><td></td><td></td><td></td>'.'<td>'.
+            $matmerge[$i]['ei'].'</td><td></td><td></td><td>'.round($matmerge[$i]['mass'], 2).'</td><td>'.$matmerge[$i]['cost'].'</td><td>'.
+            $matmerge[$i]['mass'] * $matmerge[$i]['cost'].'</td></tr>';
+        if($matmerge[$i]['mat'] != null){$table2 .='<tr><td>'.'-'.'</td><td class = "mat">'.$matmerge[$i]['mat'].'</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>';}
+    }
+    $table2 .='</table><br><br>';
+
+    echo $table2;
+}
 ?>
 
 <!DOCTYPE html>
