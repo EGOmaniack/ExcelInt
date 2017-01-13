@@ -82,7 +82,7 @@ $sek = strtotime("now");
                 </div>
                 <div class="thumb">
                     <form action="file://dvgd-okbsrv-11/Print">
-                        <button class="btns submit" type="submit">Изображения</button>
+                        <button class="submit" type="submit">Изображения</button>
                     </form>
                 </div>
             </div>
