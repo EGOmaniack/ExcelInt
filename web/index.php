@@ -31,13 +31,18 @@ $sek = strtotime("now");
         <!--<script src="https://appsforoffice.microsoft.com/lib/1/hosted/Office.js"/>-->
 
     </head>
-    
+
     <body>
         <noscript>
             Для полной функциональности этого сайта необходимо включить JavaScript.
             Вот <a href="http://www.enable-javascript.com/ru/" target="_blank">
             инструкции, как включить JavaScript в вашем браузере</ a>.
         </noscript>
+
+        <div id='name'></div>  
+        <div id='version'></div> 
+        <div id='os'></div>
+
         <div class="main">
             <div id="top">
             <p id = "print"></p>
@@ -69,7 +74,6 @@ $sek = strtotime("now");
                         <div class="picplace">
                             <input class = "picbtn" type="file" name="fileToUpload" >
                         </div>
-                            
                         <div >
                             <p><input class = "submit btns" type="submit" value="Посчитать">
                             <input class="btns reset" type="reset" value="Очистить"></p>
@@ -77,7 +81,19 @@ $sek = strtotime("now");
                     </form>
                 </div>
             </div>
-            
+            <div class="container" id="pkbsrv">
+                <div class="blockhead">
+                    Сетевые ресурсы
+                </div>
+                <div class="thumb">
+                    <form action="file://dvgd-okbsrv-11/Print">
+                        <button class="submit btns" type="submit">Изображения</button>
+                    </form>
+                     <form action="file://dvgd-okbsrv-11/Обменник">
+                        <button class="submit btns" type="submit">Обменник</button>
+                    </form>
+                </div>
+            </div>
             <div id="bottom">
             
             </div>

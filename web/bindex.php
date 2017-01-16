@@ -31,13 +31,18 @@ $sek = strtotime("now");
         <!--<script src="https://appsforoffice.microsoft.com/lib/1/hosted/Office.js"/>-->
 
     </head>
-    
+
     <body>
         <noscript>
             Для полной функциональности этого сайта необходимо включить JavaScript.
             Вот <a href="http://www.enable-javascript.com/ru/" target="_blank">
             инструкции, как включить JavaScript в вашем браузере</ a>.
         </noscript>
+
+        <div id='name'></div>  
+        <div id='version'></div> 
+        <div id='os'></div>
+
         <div class="main">
             <div id="top">
             <p id = "print"></p>
@@ -82,7 +87,10 @@ $sek = strtotime("now");
                 </div>
                 <div class="thumb">
                     <form action="file://dvgd-okbsrv-11/Print">
-                        <button class="submit" type="submit">Изображения</button>
+                        <button class="submit btns" type="submit">Изображения</button>
+                    </form>
+                     <form action="file://dvgd-okbsrv-11/Обменник">
+                        <button class="submit btns" type="submit">Обменник</button>
                     </form>
                 </div>
             </div>
