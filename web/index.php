@@ -59,7 +59,7 @@ $sek = strtotime("now");
                              <a href ="files/example.xlsx">Пример оформления заготовки</a><br>
                         </div>
                         <div class="text hiddeble">
-                             Файл принимается как минимум в формате Excel 2007 - "xlsx"
+                             Файл принимается как минимум в формате Excel 2007г - "xlsx"
                              Если планируется посчитать несколко агрегатов или др. инж. едениц, то:<br>
                              Внутри, агрегаты должны быть указаны, как показано в <a href ="files/example_many.xlsx">этом</a> примере:<br>
                              <lo><li> В колонке А ставится английское "n".</li>
@@ -89,7 +89,7 @@ $sek = strtotime("now");
                     <form action="file://dvgd-okbsrv-11/Print">
                         <button class="submit btns" type="submit">Изображения</button>
                     </form>
-                     <form action="file://dvgd-okbsrv-11/Обменник">
+                     <form action="file://dvgd-okbsrv-12/Обменник">
                         <button class="submit btns" type="submit">Обменник</button>
                     </form>
                 </div>

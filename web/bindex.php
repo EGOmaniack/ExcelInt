@@ -89,9 +89,12 @@ $sek = strtotime("now");
                     <form action="file://dvgd-okbsrv-11/Print">
                         <button class="submit btns" type="submit">Изображения</button>
                     </form>
-                     <form action="file://dvgd-okbsrv-11/Обменник">
+                     <form action="file://dvgd-okbsrv-12/Обменник">
                         <button class="submit btns" type="submit">Обменник</button>
                     </form>
+                    <!--<form action="C:\">
+                        <button class="submit btns" type="submit">Массовик</button>
+                    </form>-->
                 </div>
             </div>
             <div id="bottom">
