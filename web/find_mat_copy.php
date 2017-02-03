@@ -97,7 +97,7 @@ function getmatsize($name){
         return $value;
     }
     if(strtolower_utf8(explode(' ',$name)[0]) == "уголок"){
-        var_dump ($name);
+       // var_dump ($name);
         if(strpos($name, "х")>0){$value = explode("х", $name);} /*русское х*/
         else{$value = explode("x", $name);} /*английсое x*/
         foreach ($value as $key => $str) {
@@ -255,9 +255,9 @@ function strtolower_utf8($string){
 
 //var_dump($Data);
 //var_dump($matmerge);
-//saveExcel($matmerge,$dubstr, $onestr);
+saveExcel($matmerge,$dubstr, $onestr);
 //makeDataTable($Data);
-makemergeTable($matmerge);
+//makemergeTable($matmerge);
 
 function makeDataTable ($Data){
     //Рисуем таблицу
