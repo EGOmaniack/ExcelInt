@@ -19,8 +19,12 @@ $higestRow = $objWorkSheet->getHighestRow(); // Слишком много пер
 $filename = $_FILES['fileToUpload']['name'];
 $Data; // Все агрегаты
 
+
+
 $dubstr = BDgetDictionary(2);/*Двустрочные материалы*/
 $onestr = BDgetDictionary(1);/*Однострочные материалы*/
+
+
 
 //  Обрабатывем таблицу как обычныйфайл с калькуляциями без добавления n "имя агрегата" "количество"
 $agregat['name'] = $filename;
@@ -41,6 +45,8 @@ for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
         $Data[$q]=$agregat;
     }
 }
+
+
 // if(count($Data) == 0){
 //     $agregat['name'] = $_FILES['fileToUpload']['name'];
 //         $agregat['options']['number'] = 1;
@@ -67,11 +73,12 @@ function save_mat($strok, $i ,$sheet){
 }
 
 function getmatsize($name){
+    
+
     if(strpos($name, "ГОСТ")>0){
         $name = substr($name,0, strpos($name, "ГОСТ"));
     }
     // $name = killSpaces($name);//уже сделано
-
     if(strpos($name, "-В")>0){/*у всего что -В вытаскиваем значение*/
         $value = str_replace(',', '.', $name);
         if(strtolower_utf8(explode(' ',$value)[0]) != "уголок") {
@@ -89,20 +96,21 @@ function getmatsize($name){
         $value = (int)$value;
         return $value;
     }
-    if(strtolower_utf8(explode(' ',$name)[0]) == "уголок"){
-        if(strpos($name, "х")>0){$value = explode("х", $name);} /*русское х*/
-        else{$value = explode("x", $name);} /*английсое x*/
-        foreach ($value as $key => $str) {
-            $str = preg_replace("/[^0-9\.]/", "", $str);
-            $value[$key] = $str;
-        }
-        if($value[0] == $value[1]) {
-            $value[1] = $value[2];
-            unset($value[2]);
-        }
+    // if(strtolower_utf8(explode(' ',$name)[0]) == "уголок"){
+    //     if(strpos($name, "х")>0){$value = explode("х", $name);} /*русское х*/
+    //     else{$value = explode("x", $name);} /*английсое x*/
+    //     foreach ($value as $key => $str) {
+    //         $str = preg_replace("/[^0-9\.]/", "", $str);
+    //         $value[$key] = $str;
+    //     }
+    //     if($value[0] == $value[1]) {
+    //         $value[1] = $value[2];
+    //         unset($value[2]);
+    //     }
 
-        return $value;
-    }
+    //     return $value;
+    // }
+//    if(strtolower_utf8(explode(' ',$name))[0] == "труба") echo $name."<br>";
     $name = preg_replace("/[^0-9\.]/", "", $name);
     $name = (float)$name;
     //var_dump($name);
@@ -191,27 +199,28 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
 $count;
 $matmerge;
 //Объединение все в единый массив с проверкой копий
-foreach ($Data as $key => $value){
-    for($i = 0; $i < count($value['matlist']);$i++){
-
+foreach ($Data as $key => $agregat){
+    for($i = 0; $i < count($agregat['matlist']);$i++){
+        //if($agregat['matlist'][$i]['sname'] == 'труба') var_dump($agregat['matlist'][$i]);
         $copy = false;
         $y = 0;
         for($j = 0; $j < count($matmerge);$j++){   /*Смотрим есть ли копия очередного материала в matmerge*/
             /*if(preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['name'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['name'])) &&
                 preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['mat'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['mat']))) {*/
-            if($matmerge[$j]['sname'] == $value['matlist'][$i]['sname'] &&
+            if($matmerge[$j]['sname'] == $agregat['matlist'][$i]['sname'] &&
                 preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['mat'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['mat'])) &&
-                $matmerge[$j]['size'][0] == $value['matlist'][$i]['size'][0]) {
-                $count++; /*Считаем количество учтенных совпадений*/
-                $copy = true;/*Нашли совпадение*/
-                $y = $j;/*Запоминаем порядковый номер совпадения*/
-                break;/*больше не проверяем раз уж нашли одно совпадение*/
+                 $matmerge[$j]['size'] == $agregat['matlist'][$i]['size']) {
+                   
+                    $count++; /*Считаем количество учтенных совпадений*/
+                    $copy = true;/*Нашли совпадение*/
+                    $y = $j;/*Запоминаем порядковый номер совпадения*/
+                    break;/*больше не проверяем раз уж нашли одно совпадение*/
 //                echo 'Есть...'.$matmerge[$j][0].'/'.$matmerge[$j][1].'<br/>'
 //                    . 'Копия'.$value['matlist'][$i][0].'/'.$value['matlist'][$i][1].$Data[$key]['name'].' масса= '.$Data[$key]['matlist'][$i][9].'<br/><br/>';
             }
         }
-        $newmat = $value['matlist'][$i];
-        $newmat['mass'] *= $value['options']['number'];
+        $newmat = $agregat['matlist'][$i];
+        $newmat['mass'] *= $agregat['options']['number'];
 
         if(!$copy) {
             $matmerge[] = $newmat;
@@ -221,6 +230,7 @@ foreach ($Data as $key => $value){
         unset($newmat);
     }
 }
+echo $count;
 
 
 function strtolower_utf8($string){
@@ -243,8 +253,8 @@ function strtolower_utf8($string){
 }
 
 //var_dump($Data);
-//var_dump($matmerge);
-saveExcel($matmerge,$dubstr, $onestr);
+var_dump($matmerge);
+//saveExcel($matmerge,$dubstr, $onestr);
 //makeDataTable($Data);
 //makemergeTable($matmerge);
 
@@ -257,7 +267,7 @@ function makeDataTable ($Data){
             <th>Кол-во <br/> агрегатов</th>
             <th>Кол-во <br/> материалов</th>
             </tr>';
-    for($i=1 ;$i <= count($Data) ;$i++){
+    for($i=0 ;$i <= count($Data) ;$i++){
     $table .='<tr><td>'.$Data[$i]['name'].'</td><td>'.$Data[$i]['options']['number'].'</td><td>'.count($Data[$i]['matlist']).'</td></tr>';
     }
     $table .='</table><br><br>';
@@ -298,7 +308,7 @@ function makemergeTable($matmerge){
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="css/main.css?1"/>
+    <link rel="stylesheet" href="css/main.css?2"/>
 </head>
 
 <body>
