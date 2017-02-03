@@ -96,20 +96,21 @@ function getmatsize($name){
         $value = (int)$value;
         return $value;
     }
-    // if(strtolower_utf8(explode(' ',$name)[0]) == "уголок"){
-    //     if(strpos($name, "х")>0){$value = explode("х", $name);} /*русское х*/
-    //     else{$value = explode("x", $name);} /*английсое x*/
-    //     foreach ($value as $key => $str) {
-    //         $str = preg_replace("/[^0-9\.]/", "", $str);
-    //         $value[$key] = $str;
-    //     }
-    //     if($value[0] == $value[1]) {
-    //         $value[1] = $value[2];
-    //         unset($value[2]);
-    //     }
+    if(strtolower_utf8(explode(' ',$name)[0]) == "уголок"){
+        var_dump ($name);
+        if(strpos($name, "х")>0){$value = explode("х", $name);} /*русское х*/
+        else{$value = explode("x", $name);} /*английсое x*/
+        foreach ($value as $key => $str) {
+            $str = preg_replace("/[^0-9\.]/", "", $str);
+            $value[$key] = $str;
+        }
+        if($value[0] == $value[1]) {
+            $value[1] = $value[2];
+            unset($value[2]);
+        }
 
-    //     return $value;
-    // }
+        return $value;
+    }
 //    if(strtolower_utf8(explode(' ',$name))[0] == "труба") echo $name."<br>";
     $name = preg_replace("/[^0-9\.]/", "", $name);
     $name = (float)$name;
@@ -208,15 +209,15 @@ foreach ($Data as $key => $agregat){
             /*if(preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['name'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['name'])) &&
                 preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['mat'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['mat']))) {*/
             if($matmerge[$j]['sname'] == $agregat['matlist'][$i]['sname'] &&
-                preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['mat'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['mat'])) &&
+                preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['mat'])) == preg_replace('/\s+/', '', strtolower_utf8($agregat['matlist'][$i]['mat'])) &&
                  $matmerge[$j]['size'] == $agregat['matlist'][$i]['size']) {
                    
                     $count++; /*Считаем количество учтенных совпадений*/
                     $copy = true;/*Нашли совпадение*/
                     $y = $j;/*Запоминаем порядковый номер совпадения*/
                     break;/*больше не проверяем раз уж нашли одно совпадение*/
-//                echo 'Есть...'.$matmerge[$j][0].'/'.$matmerge[$j][1].'<br/>'
-//                    . 'Копия'.$value['matlist'][$i][0].'/'.$value['matlist'][$i][1].$Data[$key]['name'].' масса= '.$Data[$key]['matlist'][$i][9].'<br/><br/>';
+                // echo 'Есть...'.$matmerge[$j]['name'].'/'.$matmerge[$j]['size'].'<br/>'
+                //     . 'Копия'.$agregat['matlist'][$i]['name'].'/'.$agregat['matlist'][$i]['size'].' масса= '.$Data[$key]['matlist'][$i]['mass'].'<br/><br/>';
             }
         }
         $newmat = $agregat['matlist'][$i];
@@ -230,8 +231,8 @@ foreach ($Data as $key => $agregat){
         unset($newmat);
     }
 }
-echo $count;
-
+//echo $count;
+//var_dump ($matmerge);
 
 function strtolower_utf8($string){
     $convert_to = array(
@@ -253,10 +254,10 @@ function strtolower_utf8($string){
 }
 
 //var_dump($Data);
-var_dump($matmerge);
+//var_dump($matmerge);
 //saveExcel($matmerge,$dubstr, $onestr);
 //makeDataTable($Data);
-//makemergeTable($matmerge);
+makemergeTable($matmerge);
 
 function makeDataTable ($Data){
     //Рисуем таблицу
