@@ -59,6 +59,7 @@ function save_mat($strok, $i ,$sheet){
     $elem1['name'] = killSpaces($sheet->getCellByColumnAndRow(1,$i)->getValue());//строка с названием и Excel как она есть
     $elem1['sname']= strtolower_utf8(explode(" ", $elem1['name'])[0]);
     $elem1['ei'] = $sheet->getCellByColumnAndRow(5,$i)->getValue();//единица измерения
+    $elem1['mass_string'] = $sheet->getCellByColumnAndRow(8,$i)->getValue();
     $elem1['mass'] = (float)$sheet->getCellByColumnAndRow(8,$i)->getValue();//масса материала в проектк
     $elem1['cost'] = (float)$sheet->getCellByColumnAndRow(9,$i)->getValue();// стоимость tltybws vfnthbfkf
     $elem1['size'] = getmatsize($elem1['name']);
@@ -70,6 +71,11 @@ function save_mat($strok, $i ,$sheet){
         $elem1['mat'] = $mat;
     }
     return $elem1;
+}
+
+function get_mass ($mass){
+    $mass = str_replace(',','.',$mass);
+    return (float) $mass;
 }
 
 function getmatsize($name){
@@ -173,10 +179,7 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
                     $matlist[] = save_mat(2,$j,$sheet);
                     break;
             }
-
-
         }
-
 
         if ($sheet->getCellByColumnAndRow(0, $j)->getValue() == 'n') {
             return $matlist;
@@ -188,7 +191,6 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
             }else{$pust++;}
 
         }else{$pust = 0;}
-
     }
 }
 
@@ -196,7 +198,7 @@ function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
 
 
 //Собираем новый массив материалов
-
+echo ($objWorkSheet->getCellByColumnAndRow(8,985)->getValue());
 $count;
 $matmerge;
 //Объединение все в единый массив с проверкой копий
@@ -205,6 +207,7 @@ foreach ($Data as $key => $agregat){
         //if($agregat['matlist'][$i]['sname'] == 'труба') var_dump($agregat['matlist'][$i]);
         $copy = false;
         $y = 0;
+        //if($matmerge[$j]['sname'] == "шестигранник" && $matmerge[$j]['size'] == 12) var_dump ($matmerge[$j]);
         for($j = 0; $j < count($matmerge);$j++){   /*Смотрим есть ли копия очередного материала в matmerge*/
             /*if(preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['name'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['name'])) &&
                 preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['mat'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['mat']))) {*/
@@ -255,7 +258,7 @@ function strtolower_utf8($string){
 
 //var_dump($Data);
 //var_dump($matmerge);
-saveExcel($matmerge,$dubstr, $onestr);
+//  saveExcel($matmerge,$dubstr, $onestr);
 //makeDataTable($Data);
 //makemergeTable($matmerge);
 
