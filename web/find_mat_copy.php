@@ -9,7 +9,10 @@ require_once('Classes/PHPExcel.php');
 include_once 'Classes/PHPExcel/IOFactory.php';
 
 $file = $_FILES['fileToUpload']['tmp_name'];
-
+// $tfile = file_get_contents($_FILES['fileToUpload']['tmp_name']);
+// file_put_contents('tmp_name.xls', $tfile);
+// var_dump ($_FILES['fileToUpload']['tmp_name']);
+// exit;
 $objreader = PHPExcel_IOFactory::createReader('Excel2007');//создали ридер
 $objreader->setReadDataOnly(true); //только на чтение файла
 $objExcel = $objreader->load($file);
