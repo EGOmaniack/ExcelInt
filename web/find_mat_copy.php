@@ -11,7 +11,7 @@ include_once 'Classes/PHPExcel/IOFactory.php';
 $file = $_FILES['fileToUpload']['tmp_name'];
 $tfile = file_get_contents($_FILES['fileToUpload']['tmp_name']);
 $date = date("d-m-Y--g-i-s");
-echo $date;
+//echo $date;
 file_put_contents('./uploads/'.$date.".xlsx", $tfile);
 
 $objreader = PHPExcel_IOFactory::createReader('Excel2007');//создали ридер
@@ -50,6 +50,50 @@ for($i = 0, $q = 0; $i < $higestRow ; $i++  ) {
     }
 }
 
+//Создаем сущность матлиста($matlist)
+function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
+    for ($j = $startRow, $pust = 0; $j < $maxrow; $j++) {
+        $val = $sheet->getCellByColumnAndRow(1, $j)->getValue();
+        if (strlen($val) > 0) {
+            $val = killSpaces($val);
+            $pref = explode(' ', $val);
+
+
+            if (in_array(strtolower_utf8($pref[0]), $spr2)) {
+
+                $matlist[] = save_mat(2, $j, $sheet);
+                unset($element);
+                //$j++;   /*Есть ситуации, когда подкладка пишется в одну строку и сразу за ней идет след. материал.*/
+                /*Тогда при пропуске строки след материал не учитывается */
+            } elseif (in_array(strtolower_utf8($pref[0]), $spr)) {
+
+                $matlist[] = save_mat(1, $j, $sheet);
+                unset($element);
+
+            }
+            switch (strtolower_utf8($pref[0])) {
+                case "цепь":
+                    $matlist[] = save_mat(2,$j,$sheet);
+                    break;
+                case "проволока":
+                    //Заплата /В данном документе все равно нет совпадений по проволоке
+                    $matlist[] = save_mat(2,$j,$sheet);
+                    break;
+            }
+        }
+
+        if ($sheet->getCellByColumnAndRow(0, $j)->getValue() == 'n') {
+            return $matlist;
+        }
+        // переписывем макс число строк и прерываем цикл
+        if(strlen($sheet->getCellByColumnAndRow(1,$j)->getValue()) == 0 ){
+            if($pust == 50){
+                return $matlist;
+            }else{$pust++;}
+
+        }else{$pust = 0;}
+    }
+}
 
 // if(count($Data) == 0){
 //     $agregat['name'] = $_FILES['fileToUpload']['name'];
@@ -66,7 +110,9 @@ function save_mat($strok, $i ,$sheet){
     $elem1['mass'] = get_mass($sheet->getCellByColumnAndRow(8,$i)->getValue());//масса материала в проектк
     $elem1['cost'] = (float)$sheet->getCellByColumnAndRow(9,$i)->getValue();// стоимость tltybws vfnthbfkf
     $elem1['size'] = getmatsize($elem1['name']);
-    
+
+    //if($elem1['mass'] == 4.49) var_dump($elem1);
+
     if($strok == 2) {
         $mat = $sheet->getCellByColumnAndRow(1,$i+1)->getValue();//марка материала
         $mat = killSpaces($mat);
@@ -153,54 +199,6 @@ function killSpaces($str){
     return $str;
 }
 
-//Создаем сущность матлиста($matlist)
-function create_block($startRow,$maxrow, $sheet, $spr2,$spr ){
-    for ($j = $startRow, $pust = 0; $j < $maxrow; $j++) {
-        $val = $sheet->getCellByColumnAndRow(1, $j)->getValue();
-        if (strlen($val) > 0) {
-            $val = killSpaces($val);
-            $pref = explode(' ', $val);
-
-
-            if (in_array(strtolower_utf8($pref[0]), $spr2)) {
-
-                $matlist[] = save_mat(2, $j, $sheet);
-                unset($element);
-                $j++;
-
-            } elseif (in_array(strtolower_utf8($pref[0]), $spr)) {
-
-                $matlist[] = save_mat(1, $j, $sheet);
-                unset($element);
-
-            }
-            switch (strtolower_utf8($pref[0])) {
-                case "цепь":
-                    $matlist[] = save_mat(2,$j,$sheet);
-                    break;
-                case "проволока":
-                    //Заплата /В данном документе все равно нет совпадений по проволоке
-                    $matlist[] = save_mat(2,$j,$sheet);
-                    break;
-            }
-        }
-
-        if ($sheet->getCellByColumnAndRow(0, $j)->getValue() == 'n') {
-            return $matlist;
-        }
-        // переписывем макс число строк и прерываем цикл
-        if(strlen($sheet->getCellByColumnAndRow(1,$j)->getValue()) == 0 ){
-            if($pust == 50){
-                return $matlist;
-            }else{$pust++;}
-
-        }else{$pust = 0;}
-    }
-}
-
-
-
-
 //Собираем новый массив материалов
 $count;
 $matmerge;
@@ -208,17 +206,23 @@ $matmerge;
 foreach ($Data as $key => $agregat){
     for($i = 0; $i < count($agregat['matlist']);$i++){
         //if($agregat['matlist'][$i]['sname'] == 'труба') var_dump($agregat['matlist'][$i]);
+        if($agregat['matlist'][$i]['sname'] == 'лист' &&
+            $agregat['matlist'][$i]['mass'] == 4.49 ) {
+                //var_dump($agregat['matlist'][$i]);
+                //$count++;
+            }
         $copy = false;
         $y = 0;
-        if($agregat['matlist'][$i]['sname'] == "шестигранник" && $agregat['matlist'][$i]['size'] == 12) var_dump ($agregat['matlist'][$i]);
+        //if($agregat['matlist'][$i]['sname'] == "шестигранник" && $agregat['matlist'][$i]['size'] == 12) var_dump ($agregat['matlist'][$i]);
         for($j = 0; $j < count($matmerge);$j++){   /*Смотрим есть ли копия очередного материала в matmerge*/
             /*if(preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['name'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['name'])) &&
                 preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['mat'])) == preg_replace('/\s+/', '', strtolower_utf8($value['matlist'][$i]['mat']))) {*/
             if($matmerge[$j]['sname'] == $agregat['matlist'][$i]['sname'] &&
                 preg_replace('/\s+/', '', strtolower_utf8($matmerge[$j]['mat'])) == preg_replace('/\s+/', '', strtolower_utf8($agregat['matlist'][$i]['mat'])) &&
+                $agregat['matlist'][$i] != 0 &&
                  $matmerge[$j]['size'] == $agregat['matlist'][$i]['size']) {
                    
-                    $count++; /*Считаем количество учтенных совпадений*/
+                    //$count++; /*Считаем количество учтенных совпадений*/
                     $copy = true;/*Нашли совпадение*/
                     $y = $j;/*Запоминаем порядковый номер совпадения*/
                     break;/*больше не проверяем раз уж нашли одно совпадение*/

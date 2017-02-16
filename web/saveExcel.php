@@ -47,10 +47,12 @@ zapoln2($sheet, $arr, $dubstr, $onestr);
 header ( "Content-Type: application/vnd.ms-excel" );
 header ( "Content-Disposition: attachment; filename='Калькуляция.xls" );
 
-
 $date = date("d-m-Y--g-i-s");
 $objWriter = PHPExcel_IOFactory::createWriter($xls, 'Excel5');
-file_put_contents('./uploads/'.$date."-out".".xlsx", $objWriter);
+
+//file_put_contents('./uploads/'.$date."-out".".xlsx", $objWriter->save('111.xlsx'));
+
+
 $objWriter->save('php://output');
 exit();
 }
