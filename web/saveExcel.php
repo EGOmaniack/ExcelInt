@@ -50,10 +50,11 @@ header ( "Content-Disposition: attachment; filename='Калькуляция.xls"
 $date = date("d-m-Y--g-i-s");
 $objWriter = PHPExcel_IOFactory::createWriter($xls, 'Excel5');
 
-//file_put_contents('./uploads/'.$date."-out".".xlsx", $objWriter->save('111.xlsx'));
+//file_put_contents('./uploads/'.$date."-out".".xlsx", 'php://output');
 
 
 $objWriter->save('php://output');
+//file_put_contents('./uploads/'.$date."-out".".xlsx", 'php://output');
 exit();
 }
 

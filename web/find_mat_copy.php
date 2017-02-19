@@ -10,9 +10,9 @@ include_once 'Classes/PHPExcel/IOFactory.php';
 
 $file = $_FILES['fileToUpload']['tmp_name'];
 $tfile = file_get_contents($_FILES['fileToUpload']['tmp_name']);
-$date = date("d-m-Y--g-i-s");
+$date = date("d-m-Y-g-i-s");
 //echo $date;
-file_put_contents('./uploads/'.$date.".xlsx", $tfile);
+file_put_contents('./uploads/'.$date.str_replace(":","x",$_SERVER['REMOTE_ADDR']).".xlsx", $tfile);
 
 $objreader = PHPExcel_IOFactory::createReader('Excel2007');//создали ридер
 $objreader->setReadDataOnly(true); //только на чтение файла
