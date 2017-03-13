@@ -50,7 +50,8 @@ function get_vlad_adresses($xml){
         foreach($adresses as $key => $value) {
             echo "\t&ltdistrict name='".$key."'&gt\n<br>";
                 foreach($value as $adr) {
-                    echo "\t\t&ltaddres auditory='".random_int(150,1500)."' pack_id='".random_int(1,6)."'&gt";
+                    $lifts = random_int(1, 8);
+                    echo "\t\t&ltaddres lifts='".$lifts."' auditory='".(random_int(800,1000)*$lifts)."' pack_id='".random_int(1,6)."'&gt";
                     echo $adr;
                     echo "&lt/addres&gt <br>\n";
                 }
@@ -102,7 +103,8 @@ function get_adresses($xml){
         foreach($adresses as $key => $value) {
             echo "\t&ltdistrict name='".$key."'&gt\n";
                 foreach($value as $adr) {
-                    echo "\t\t&ltaddres auditory='".random_int(150,1500)."' pack_id='".random_int(10,25)."'&gt";
+                    $lifts = random_int(1, 8);
+                    echo "\t\t&ltaddres lifts='".$lifts."' auditory='".(random_int(800,1000)*$lifts)."' pack_id='".random_int(1,6)."'&gt";
                     echo $adr;
                     echo "&lt/addres&gt <br>\n";
                 }
