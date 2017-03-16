@@ -1,157 +1,157 @@
 <adresses>
     <town name='Khabarovsk'>
         <district name='Центральный район '>
-            <addres auditory='228' pack_id='2'>ул. Карла Маркса, 51 </addres>
-            <addres auditory='1478' pack_id='2'>ул. Карла Маркса, 61 (остановка «Ленинградская») </addres>
-            <addres auditory='1126' pack_id='1'>ул. Ленина, 22 </addres>
-            <addres auditory='523' pack_id='1'>ул. Ленина, 37 — ул. Шеронова </addres>
-            <addres auditory='235' pack_id='3'>ул. Ленина, 70 </addres>
-            <addres auditory='1236' pack_id='2'>ул. Муравьева-Амурского, 25 </addres>
-            <addres auditory='902' pack_id='3'>ул. Муравьева-Амурского, 27 </addres>
-            <addres auditory='1416' pack_id='6'>ул. Муравьева-Амурского, 32 — 34 </addres>
-            <addres auditory='390' pack_id='3'>ул. Муравьева-Амурского, 35 (возле кафе «Золотая птичка») </addres>
-            <addres auditory='1059' pack_id='1'>ул. Муравьева-Амурского, 35 — ул. Пушкина </addres>
-            <addres auditory='985' pack_id='3'>ул. Волочаевская, 77 </addres>
-            <addres auditory='354' pack_id='5'>пер. Батарейный, 14 </addres>
-            <addres auditory='1481' pack_id='4'>пер. Кадровый, 8 </addres>
-            <addres auditory='977' pack_id='4'>ул. Ленина — ул. Шеронова (территория, прилегающая к ТЦ ООО «МиС») </addres>
-            <addres auditory='1033' pack_id='3'>ул. Ленина, 40 (площадь им. Блюхера) </addres>
-            <addres auditory='629' pack_id='6'>ул. Ленина, 53 – ул. Вострецова </addres>
-            <addres auditory='416' pack_id='5'>ул. Ленина, 72 </addres>
-            <addres auditory='1330' pack_id='1'>ул. Ленинградская, 28 (возле киоска) </addres>
-            <addres auditory='1318' pack_id='3'>ул. Л. Толстого,19 (территория, прилегающая к Центральному рынку) </addres>
-            <addres auditory='627' pack_id='1'>ул. Ким Ю Чена, 25 – ул. Л.Толстого </addres>
-            <addres auditory='384' pack_id='2'>ул. Ленина, 22 </addres>
-            <addres auditory='1355' pack_id='2'>ул. Ленина — ул. Калинина </addres>
-            <addres auditory='1125' pack_id='3'>ул. Ленина, 50 – ул. Постышева </addres>
-            <addres auditory='1383' pack_id='2'>ул. Шеронова, 123 – Амурский бульвар </addres>
-            <addres auditory='643' pack_id='6'>Амурский бульвар — ул. Льва Толстого, остановка трамвая «Рынок», в город </addres>
+            <addres lifts='7' auditory='5698' pack_id='17'>ул. Карла Маркса, 51 </addres>
+            <addres lifts='3' auditory='2856' pack_id='10'>ул. Карла Маркса, 61 (остановка «Ленинградская») </addres>
+            <addres lifts='8' auditory='6688' pack_id='2'>ул. Ленина, 22 </addres>
+            <addres lifts='7' auditory='6685' pack_id='7'>ул. Ленина, 37 — ул. Шеронова </addres>
+            <addres lifts='5' auditory='4630' pack_id='12'>ул. Ленина, 70 </addres>
+            <addres lifts='3' auditory='2844' pack_id='12'>ул. Муравьева-Амурского, 25 </addres>
+            <addres lifts='5' auditory='4795' pack_id='3'>ул. Муравьева-Амурского, 27 </addres>
+            <addres lifts='3' auditory='2868' pack_id='24'>ул. Муравьева-Амурского, 32 — 34 </addres>
+            <addres lifts='1' auditory='900' pack_id='1'>ул. Муравьева-Амурского, 35 (возле кафе «Золотая птичка») </addres>
+            <addres lifts='7' auditory='5628' pack_id='18'>ул. Муравьева-Амурского, 35 — ул. Пушкина </addres>
+            <addres lifts='5' auditory='4900' pack_id='16'>ул. Волочаевская, 77 </addres>
+            <addres lifts='1' auditory='838' pack_id='22'>пер. Батарейный, 14 </addres>
+            <addres lifts='8' auditory='7232' pack_id='21'>пер. Кадровый, 8 </addres>
+            <addres lifts='7' auditory='6496' pack_id='3'>ул. Ленина — ул. Шеронова (территория, прилегающая к ТЦ ООО «МиС») </addres>
+            <addres lifts='8' auditory='6856' pack_id='12'>ул. Ленина, 40 (площадь им. Блюхера) </addres>
+            <addres lifts='8' auditory='7544' pack_id='17'>ул. Ленина, 53 – ул. Вострецова </addres>
+            <addres lifts='1' auditory='935' pack_id='13'>ул. Ленина, 72 </addres>
+            <addres lifts='2' auditory='1802' pack_id='7'>ул. Ленинградская, 28 (возле киоска) </addres>
+            <addres lifts='6' auditory='4800' pack_id='5'>ул. Л. Толстого,19 (территория, прилегающая к Центральному рынку) </addres>
+            <addres lifts='6' auditory='5430' pack_id='15'>ул. Ким Ю Чена, 25 – ул. Л.Толстого </addres>
+            <addres lifts='8' auditory='7232' pack_id='22'>ул. Ленина, 22 </addres>
+            <addres lifts='4' auditory='3632' pack_id='25'>ул. Ленина — ул. Калинина </addres>
+            <addres lifts='2' auditory='1854' pack_id='10'>ул. Ленина, 50 – ул. Постышева </addres>
+            <addres lifts='4' auditory='3828' pack_id='4'>ул. Шеронова, 123 – Амурский бульвар </addres>
+            <addres lifts='5' auditory='4420' pack_id='10'>Амурский бульвар — ул. Льва Толстого, остановка трамвая «Рынок», в город </addres>
         </district>
         <district name='Кировский район '>
-            <addres auditory='180' pack_id='6'>Амурский бульвар, 23 </addres>
-            <addres auditory='779' pack_id='4'>ул. Брестская, 3 </addres>
-            <addres auditory='1343' pack_id='3'>ул. Брестская, 23 </addres>
-            <addres auditory='1165' pack_id='2'>ул. Джамбула (ост. «Стадион «Нефтяник») </addres>
-            <addres auditory='622' pack_id='3'>ул. Джамбула (ост. «Советская») </addres>
-            <addres auditory='458' pack_id='3'>ул. Серышева, во дворе дома № 7 </addres>
-            <addres auditory='1039' pack_id='1'>ул. Тихоокеанская, 16 (магазин «Маяк») </addres>
-            <addres auditory='1138' pack_id='5'>ул. Тихоокеанская (ост. «З8 школа») </addres>
-            <addres auditory='971' pack_id='2'>ул. Тихоокеанская, 130 </addres>
-            <addres auditory='611' pack_id='4'>ул. Шелеста, (ост. «Топографический техникум» (по направлению в центр), за киоском «Экспресс-сервис» </addres>
+            <addres lifts='7' auditory='6545' pack_id='13'>Амурский бульвар, 23 </addres>
+            <addres lifts='7' auditory='5761' pack_id='3'>ул. Брестская, 3 </addres>
+            <addres lifts='7' auditory='6181' pack_id='19'>ул. Брестская, 23 </addres>
+            <addres lifts='2' auditory='1784' pack_id='14'>ул. Джамбула (ост. «Стадион «Нефтяник») </addres>
+            <addres lifts='5' auditory='4765' pack_id='5'>ул. Джамбула (ост. «Советская») </addres>
+            <addres lifts='2' auditory='1806' pack_id='9'>ул. Серышева, во дворе дома № 7 </addres>
+            <addres lifts='8' auditory='7336' pack_id='7'>ул. Тихоокеанская, 16 (магазин «Маяк») </addres>
+            <addres lifts='6' auditory='5034' pack_id='15'>ул. Тихоокеанская (ост. «З8 школа») </addres>
+            <addres lifts='2' auditory='1842' pack_id='15'>ул. Тихоокеанская, 130 </addres>
+            <addres lifts='4' auditory='3660' pack_id='11'>ул. Шелеста, (ост. «Топографический техникум» (по направлению в центр), за киоском «Экспресс-сервис» </addres>
         </district>
         <district name='Железнодорожный район '>
-            <addres auditory='884' pack_id='5'>ул. Большая, 4-6 </addres>
-            <addres auditory='1398' pack_id='4'>ул. Болъшая, 93 — ул. Вяземская </addres>
-            <addres auditory='1186' pack_id='1'>ул. Большая, 95 </addres>
-            <addres auditory='169' pack_id='1'>ул. Воровского, 26 </addres>
-            <addres auditory='776' pack_id='6'>Восточное шоссе, 46-48 </addres>
-            <addres auditory='1387' pack_id='4'>ул. Вяземская, 22 </addres>
-            <addres auditory='761' pack_id='5'>ул. Владивостокская, 44-46 (возле киоска "Хлеб") </addres>
-            <addres auditory='230' pack_id='4'>ул. Воронежская (ост. «Пассажирское депо», в город) </addres>
-            <addres auditory='1065' pack_id='4'>ул. Воронежская (ост. «Пассажирское депо» (из города, за остановочным павильоном) </addres>
-            <addres auditory='503' pack_id='5'>ул. Воронежская, 15 </addres>
-            <addres auditory='298' pack_id='2'>ул. Гагарина, 7 </addres>
-            <addres auditory='1378' pack_id='2'>ул. Гагарина, 9 </addres>
-            <addres auditory='301' pack_id='3'>ул. Гагарина ( конечная остановка маршрута № 14) </addres>
-            <addres auditory='168' pack_id='5'>пер. Гаражный, 7 </addres>
-            <addres auditory='700' pack_id='2'>ул. Карла Маркса, 93 </addres>
-            <addres auditory='1043' pack_id='5'>ул. Карла Маркса, 99 </addres>
-            <addres auditory='422' pack_id='1'>ул. Карла Маркса, 108 -110 </addres>
-            <addres auditory='499' pack_id='1'>ул. Карла Маркса, 117 </addres>
-            <addres auditory='200' pack_id='4'>ул. Карла Маркса, 132-134 </addres>
-            <addres auditory='396' pack_id='2'>ул. Карла Маркса, 143г </addres>
-            <addres auditory='675' pack_id='2'>ул. Карла Маркса — ул. Окружная (напротив «Аптеки») </addres>
-            <addres auditory='643' pack_id='6'>ул. Краснодарская, 25 </addres>
-            <addres auditory='1229' pack_id='6'>Матвеевское шоссе, 13-15а </addres>
-            <addres auditory='183' pack_id='6'>ул. Нововыборгская, 23-пер.Турбинный </addres>
-            <addres auditory='1370' pack_id='1'>пр-т 60-летия Октября, 67 </addres>
-            <addres auditory='599' pack_id='2'>пр-т 60-летия Октября, 84 </addres>
-            <addres auditory='849' pack_id='2'>пр-т 60-летия Октября, 106 </addres>
-            <addres auditory='1067' pack_id='2'>пр-т 60-летия Октября, 124 </addres>
-            <addres auditory='926' pack_id='6'>ул. Промышленная, 23 </addres>
-            <addres auditory='411' pack_id='6'>ул. Шелеста, 116а </addres>
-            <addres auditory='358' pack_id='5'>Привокзальная площадь, конечная остановка трамвая </addres>
-            <addres auditory='1446' pack_id='5'>ул. Карла Маркса, 91— 93 </addres>
-            <addres auditory='265' pack_id='2'>ул. Карла Маркса, 112 </addres>
-            <addres auditory='272' pack_id='6'>ул. Воронежская (ост. «Автовокзал»— в город) </addres>
-            <addres auditory='933' pack_id='1'>ул. Серышева, 88 </addres>
+            <addres lifts='7' auditory='6622' pack_id='3'>ул. Большая, 4-6 </addres>
+            <addres lifts='4' auditory='3544' pack_id='21'>ул. Болъшая, 93 — ул. Вяземская </addres>
+            <addres lifts='4' auditory='3424' pack_id='6'>ул. Большая, 95 </addres>
+            <addres lifts='1' auditory='819' pack_id='15'>ул. Воровского, 26 </addres>
+            <addres lifts='5' auditory='4060' pack_id='16'>Восточное шоссе, 46-48 </addres>
+            <addres lifts='5' auditory='4145' pack_id='24'>ул. Вяземская, 22 </addres>
+            <addres lifts='7' auditory='5922' pack_id='12'>ул. Владивостокская, 44-46 (возле киоска "Хлеб") </addres>
+            <addres lifts='7' auditory='5859' pack_id='19'>ул. Воронежская (ост. «Пассажирское депо», в город) </addres>
+            <addres lifts='5' auditory='4820' pack_id='21'>ул. Воронежская (ост. «Пассажирское депо» (из города, за остановочным павильоном) </addres>
+            <addres lifts='2' auditory='1846' pack_id='19'>ул. Воронежская, 15 </addres>
+            <addres lifts='4' auditory='3876' pack_id='25'>ул. Гагарина, 7 </addres>
+            <addres lifts='3' auditory='2994' pack_id='4'>ул. Гагарина, 9 </addres>
+            <addres lifts='2' auditory='1948' pack_id='7'>ул. Гагарина ( конечная остановка маршрута № 14) </addres>
+            <addres lifts='2' auditory='1838' pack_id='1'>пер. Гаражный, 7 </addres>
+            <addres lifts='3' auditory='2694' pack_id='21'>ул. Карла Маркса, 93 </addres>
+            <addres lifts='7' auditory='6118' pack_id='1'>ул. Карла Маркса, 99 </addres>
+            <addres lifts='8' auditory='7592' pack_id='1'>ул. Карла Маркса, 108 -110 </addres>
+            <addres lifts='1' auditory='811' pack_id='7'>ул. Карла Маркса, 117 </addres>
+            <addres lifts='3' auditory='2805' pack_id='20'>ул. Карла Маркса, 132-134 </addres>
+            <addres lifts='8' auditory='7224' pack_id='4'>ул. Карла Маркса, 143г </addres>
+            <addres lifts='4' auditory='3748' pack_id='25'>ул. Карла Маркса — ул. Окружная (напротив «Аптеки») </addres>
+            <addres lifts='8' auditory='7992' pack_id='17'>ул. Краснодарская, 25 </addres>
+            <addres lifts='8' auditory='6872' pack_id='21'>Матвеевское шоссе, 13-15а </addres>
+            <addres lifts='4' auditory='3628' pack_id='7'>ул. Нововыборгская, 23-пер.Турбинный </addres>
+            <addres lifts='8' auditory='6472' pack_id='20'>пр-т 60-летия Октября, 67 </addres>
+            <addres lifts='8' auditory='6592' pack_id='8'>пр-т 60-летия Октября, 84 </addres>
+            <addres lifts='1' auditory='936' pack_id='20'>пр-т 60-летия Октября, 106 </addres>
+            <addres lifts='3' auditory='2943' pack_id='21'>пр-т 60-летия Октября, 124 </addres>
+            <addres lifts='1' auditory='819' pack_id='6'>ул. Промышленная, 23 </addres>
+            <addres lifts='3' auditory='2766' pack_id='10'>ул. Шелеста, 116а </addres>
+            <addres lifts='3' auditory='2655' pack_id='2'>Привокзальная площадь, конечная остановка трамвая </addres>
+            <addres lifts='4' auditory='3944' pack_id='13'>ул. Карла Маркса, 91— 93 </addres>
+            <addres lifts='7' auditory='6391' pack_id='6'>ул. Карла Маркса, 112 </addres>
+            <addres lifts='8' auditory='7600' pack_id='8'>ул. Воронежская (ост. «Автовокзал»— в город) </addres>
+            <addres lifts='4' auditory='3480' pack_id='10'>ул. Серышева, 88 </addres>
         </district>
         <district name='Краснофлотский район '>
-            <addres auditory='1275' pack_id='1'>пос. Березовка, ул. Сергеевская, 13 </addres>
-            <addres auditory='218' pack_id='3'>ул. Верхнебазовая, 58 </addres>
-            <addres auditory='923' pack_id='6'>ул. Руднева (ост. «З9 магазин») </addres>
-            <addres auditory='512' pack_id='6'>ул. Ильича, 9 </addres>
-            <addres auditory='631' pack_id='5'>ул. Стрельникова, 16а </addres>
-            <addres auditory='1212' pack_id='6'>ул.Стрельникова, 22 (возле хлебного киоска) </addres>
-            <addres auditory='1229' pack_id='1'>ул. Тихоокеанская, 170а </addres>
-            <addres auditory='1263' pack_id='2'>ул. Тихоокеанская/ 182б </addres>
-            <addres auditory='712' pack_id='5'>ул. Тихоокеанская, 199 </addres>
-            <addres auditory='738' pack_id='5'>ул. Трехгорная, 98 </addres>
-            <addres auditory='951' pack_id='2'>ул. Уборевича, 70а </addres>
-            <addres auditory='724' pack_id='3'>ул. Уборевича, 80 </addres>
+            <addres lifts='3' auditory='2520' pack_id='13'>пос. Березовка, ул. Сергеевская, 13 </addres>
+            <addres lifts='6' auditory='5784' pack_id='21'>ул. Верхнебазовая, 58 </addres>
+            <addres lifts='4' auditory='3728' pack_id='10'>ул. Руднева (ост. «З9 магазин») </addres>
+            <addres lifts='7' auditory='6496' pack_id='2'>ул. Ильича, 9 </addres>
+            <addres lifts='1' auditory='842' pack_id='3'>ул. Стрельникова, 16а </addres>
+            <addres lifts='3' auditory='2730' pack_id='6'>ул.Стрельникова, 22 (возле хлебного киоска) </addres>
+            <addres lifts='7' auditory='6314' pack_id='25'>ул. Тихоокеанская, 170а </addres>
+            <addres lifts='2' auditory='1876' pack_id='1'>ул. Тихоокеанская/ 182б </addres>
+            <addres lifts='7' auditory='6062' pack_id='24'>ул. Тихоокеанская, 199 </addres>
+            <addres lifts='8' auditory='7032' pack_id='8'>ул. Трехгорная, 98 </addres>
+            <addres lifts='8' auditory='7432' pack_id='19'>ул. Уборевича, 70а </addres>
+            <addres lifts='1' auditory='876' pack_id='12'>ул. Уборевича, 80 </addres>
         </district>
     </town>
     <town name='Vladivostok'>
         <district name='All'>
-            <addres auditory='1121' pack_id='16'>100 лет Владивостоку пр-т, 40 КТЦ «Искра» </addres>
-            <addres auditory='1306' pack_id='15'>100 лет Владивостоку пр-т, 42а ТЦ «Искра», салон «МТС» </addres>
-            <addres auditory='1497' pack_id='21'>100 лет Владивостоку пр-т, 68 ТЦ «Парус» </addres>
-            <addres auditory='1400' pack_id='19'>2-я Шоссейная ул., 1 Дальневосточный банк </addres>
-            <addres auditory='1356' pack_id='24'>5-я Проходная ул., 15 Магазин «Гиперавто» </addres>
-            <addres auditory='1355' pack_id='18'>8-я ул., 35 ООО «Влад Мотор Инн корпорейшн» </addres>
-            <addres auditory='849' pack_id='15'>Алеутская ул., 11 ОАО «Приморгражданпроект» </addres>
-            <addres auditory='357' pack_id='23'>Березовая ул., 25 Проходная Владивостокского морского рыбного порта </addres>
-            <addres auditory='466' pack_id='19'>Бестужева ул., 31 Магазин «Сфера-Маркет» </addres>
-            <addres auditory='1238' pack_id='18'>Борисенко ул., 27 Дальневосточный банк </addres>
-            <addres auditory='394' pack_id='25'>Борисенко ул., 35 Гипермаркет «РЕМИ» </addres>
-            <addres auditory='170' pack_id='25'>Бородинская ул., 14 Гипермаркет «Три Кота» </addres>
-            <addres auditory='1285' pack_id='19'>Верхнепортовая ул., 27а Дальневосточный банк </addres>
-            <addres auditory='1181' pack_id='18'>Вилкова ул., 5 Гипермаркет «Реми» </addres>
-            <addres auditory='980' pack_id='23'>Героев Тихоокеанцев ул., 5а Гипермаркет «Три Кота» </addres>
-            <addres auditory='758' pack_id='25'>Дальзаводская ул., 4 Торгово-технический центр «Дазел» </addres>
-            <addres auditory='1168' pack_id='12'>Деревенская ул., 14 Гипермаркет «РЕМИ» </addres>
-            <addres auditory='1311' pack_id='14'>Калинина ул., 230 ТЦ «Диомид» </addres>
-            <addres auditory='1049' pack_id='24'>Карла Жигура ул., 32 Дальневосточный банк </addres>
-            <addres auditory='733' pack_id='19'>Кипарисовая ул., 18 Дальневосточный банк </addres>
-            <addres auditory='816' pack_id='14'>Красного Знамени пр-т, 57 Гипермаркет «РЕМИ» </addres>
-            <addres auditory='561' pack_id='12'>Красного Знамени пр-т, 82 ТД «Тихоокеанский» </addres>
-            <addres auditory='1050' pack_id='17'>Лермонтова ул., 85 (п. Трудовое) Супермаркет «Надежда-95» </addres>
-            <addres auditory='775' pack_id='15'>Луговая ул., 18 Торгово-пешеходный комплекс </addres>
-            <addres auditory='499' pack_id='17'>Луговая ул., 91 ТЦ «Сфера Маркет» </addres>
-            <addres auditory='441' pack_id='10'>Маковского, 224 ООО «САММИТ МОТОРС (Владивосток)» </addres>
-            <addres auditory='702' pack_id='20'>Набережная ул., 20 Гостиница «Экватор» </addres>
-            <addres auditory='465' pack_id='21'>Народный пр-т, 28 Супермаркет «Фреш 25» </addres>
-            <addres auditory='1410' pack_id='13'>Народный пр-т, 9, стр. 6 Аптека «АВС» </addres>
-            <addres auditory='860' pack_id='24'>Нейбута ул., 51 Магазин «Фреш 25» </addres>
-            <addres auditory='835' pack_id='24'>Некрасовская ул., 29 Супермаркет «ОК!» </addres>
-            <addres auditory='352' pack_id='11'>Океанский пр-т, 17 БЦ «Фреш Плаза» (минимаркет «Парус») </addres>
-            <addres auditory='1320' pack_id='19'>Океанский пр-т, 48а Trinity Irish Pub </addres>
-            <addres auditory='473' pack_id='14'>Океанский пр-т, 48а Дальневосточный банк </addres>
-            <addres auditory='703' pack_id='11'>Павленко пер., 6 Супермаркет «Фреш 25» </addres>
-            <addres auditory='342' pack_id='16'>Петра Великого ул., 2 Помещение «Фесконтракт Интернешионал» </addres>
-            <addres auditory='1421' pack_id='21'>Полетаева ул., 6д ТРК «Седанка-Сити» </addres>
-            <addres auditory='230' pack_id='14'>Посьетская ул., 20 Гостиница «Приморье» </addres>
-            <addres auditory='199' pack_id='11'>Пушкинская ул., 46 Дальневосточный банк </addres>
-            <addres auditory='811' pack_id='19'>Русская ул., 19а Дальневосточный банк </addres>
-            <addres auditory='577' pack_id='14'>Русская ул., 19а Дальневосточный банк (со стороны ул. Кирова) </addres>
-            <addres auditory='1226' pack_id='12'>Русская ул., 44 ТЦ «Универсам» </addres>
-            <addres auditory='1228' pack_id='21'>Русская ул., 94а Магазин «Зеленый остров» </addres>
-            <addres auditory='501' pack_id='17'>Русский остров, бухта Аякс АЗК № 417 </addres>
-            <addres auditory='1161' pack_id='21'>Сахалинская ул., 48 Магазин «Ода» </addres>
-            <addres auditory='424' pack_id='20'>Светланская ул., 112 ТЦ «Стрелец» </addres>
-            <addres auditory='1394' pack_id='15'>Светланская ул., 33 ГУМ </addres>
-            <addres auditory='606' pack_id='16'>Светланская ул., 72 Столовая ОАО «ДЦСС» </addres>
-            <addres auditory='1136' pack_id='17'>Семеновская ул., 15 Супермаркет «Фреш 25» (в ТЦ «Clover House») </addres>
-            <addres auditory='373' pack_id='22'>Снеговая ул., 64 ОАО «Дальхимпром» </addres>
-            <addres auditory='1215' pack_id='22'>Стрельникова ул., 9 Проходная Владивостокского морского торгового порта </addres>
-            <addres auditory='327' pack_id='16'>Тимирязева ул., 31 Супермаркет «Космос» </addres>
-            <addres auditory='1130' pack_id='15'>Ульяновская ул., 7 Супермаркет «СуперГуд» </addres>
-            <addres auditory='744' pack_id='17'>Успенского ул., 58 Фабрика мороженого ООО «Владайс» </addres>
-            <addres auditory='365' pack_id='13'>Фонтанная ул., 40 ОАО «ДНИИМФ» </addres>
-            <addres auditory='1267' pack_id='21'>Черемуховая ул., 15 ТЦ «Черемушки» </addres>
-            <addres auditory='392' pack_id='15'>Черняховского ул., 5 Супермаркет «Фреш 25» </addres>
-            <addres auditory='1074' pack_id='22'>Шилкинская ул., 10а Супермаркет «РЕМИ» </addres>
-            <addres auditory='1309' pack_id='17'>Юмашева ул., 19 Гипермаркет «Три Кота»</addres>
+            <addres lifts='8' auditory='7592' pack_id='18'>100 лет Владивостоку пр-т, 40 КТЦ «Искра» </addres>
+            <addres lifts='1' auditory='898' pack_id='12'>100 лет Владивостоку пр-т, 42а ТЦ «Искра», салон «МТС» </addres>
+            <addres lifts='6' auditory='5646' pack_id='8'>100 лет Владивостоку пр-т, 68 ТЦ «Парус» </addres>
+            <addres lifts='3' auditory='2655' pack_id='23'>2-я Шоссейная ул., 1 Дальневосточный банк </addres>
+            <addres lifts='5' auditory='4580' pack_id='10'>5-я Проходная ул., 15 Магазин «Гиперавто» </addres>
+            <addres lifts='5' auditory='4130' pack_id='15'>8-я ул., 35 ООО «Влад Мотор Инн корпорейшн» </addres>
+            <addres lifts='8' auditory='7704' pack_id='12'>Алеутская ул., 11 ОАО «Приморгражданпроект» </addres>
+            <addres lifts='5' auditory='4000' pack_id='3'>Березовая ул., 25 Проходная Владивостокского морского рыбного порта </addres>
+            <addres lifts='8' auditory='7344' pack_id='9'>Бестужева ул., 31 Магазин «Сфера-Маркет» </addres>
+            <addres lifts='4' auditory='3992' pack_id='17'>Борисенко ул., 27 Дальневосточный банк </addres>
+            <addres lifts='5' auditory='4670' pack_id='7'>Борисенко ул., 35 Гипермаркет «РЕМИ» </addres>
+            <addres lifts='3' auditory='2481' pack_id='6'>Бородинская ул., 14 Гипермаркет «Три Кота» </addres>
+            <addres lifts='2' auditory='1838' pack_id='18'>Верхнепортовая ул., 27а Дальневосточный банк </addres>
+            <addres lifts='8' auditory='7120' pack_id='11'>Вилкова ул., 5 Гипермаркет «Реми» </addres>
+            <addres lifts='6' auditory='5094' pack_id='15'>Героев Тихоокеанцев ул., 5а Гипермаркет «Три Кота» </addres>
+            <addres lifts='6' auditory='5460' pack_id='10'>Дальзаводская ул., 4 Торгово-технический центр «Дазел» </addres>
+            <addres lifts='6' auditory='5136' pack_id='14'>Деревенская ул., 14 Гипермаркет «РЕМИ» </addres>
+            <addres lifts='5' auditory='4275' pack_id='3'>Калинина ул., 230 ТЦ «Диомид» </addres>
+            <addres lifts='3' auditory='2841' pack_id='4'>Карла Жигура ул., 32 Дальневосточный банк </addres>
+            <addres lifts='1' auditory='946' pack_id='9'>Кипарисовая ул., 18 Дальневосточный банк </addres>
+            <addres lifts='1' auditory='905' pack_id='19'>Красного Знамени пр-т, 57 Гипермаркет «РЕМИ» </addres>
+            <addres lifts='7' auditory='6251' pack_id='24'>Красного Знамени пр-т, 82 ТД «Тихоокеанский» </addres>
+            <addres lifts='4' auditory='3940' pack_id='22'>Лермонтова ул., 85 (п. Трудовое) Супермаркет «Надежда-95» </addres>
+            <addres lifts='2' auditory='1872' pack_id='20'>Луговая ул., 18 Торгово-пешеходный комплекс </addres>
+            <addres lifts='1' auditory='875' pack_id='19'>Луговая ул., 91 ТЦ «Сфера Маркет» </addres>
+            <addres lifts='3' auditory='2919' pack_id='25'>Маковского, 224 ООО «САММИТ МОТОРС (Владивосток)» </addres>
+            <addres lifts='5' auditory='4505' pack_id='18'>Набережная ул., 20 Гостиница «Экватор» </addres>
+            <addres lifts='5' auditory='4840' pack_id='23'>Народный пр-т, 28 Супермаркет «Фреш 25» </addres>
+            <addres lifts='8' auditory='6952' pack_id='4'>Народный пр-т, 9, стр. 6 Аптека «АВС» </addres>
+            <addres lifts='4' auditory='3676' pack_id='24'>Нейбута ул., 51 Магазин «Фреш 25» </addres>
+            <addres lifts='8' auditory='7608' pack_id='18'>Некрасовская ул., 29 Супермаркет «ОК!» </addres>
+            <addres lifts='2' auditory='1756' pack_id='22'>Океанский пр-т, 17 БЦ «Фреш Плаза» (минимаркет «Парус») </addres>
+            <addres lifts='8' auditory='7144' pack_id='6'>Океанский пр-т, 48а </addres>
+            <addres lifts='6' auditory='5010' pack_id='19'>Океанский пр-т, 48а </addres>
+            <addres lifts='6' auditory='5646' pack_id='23'>Павленко пер., 6 Супермаркет «Фреш 25» </addres>
+            <addres lifts='5' auditory='4780' pack_id='9'>Петра Великого ул., 2 Помещение «Фесконтракт Интернешионал» </addres>
+            <addres lifts='4' auditory='3292' pack_id='4'>Полетаева ул., 6д ТРК «Седанка-Сити» </addres>
+            <addres lifts='4' auditory='3376' pack_id='22'>Посьетская ул., 20 Гостиница «Приморье» </addres>
+            <addres lifts='5' auditory='4855' pack_id='22'>Пушкинская ул., 46 Дальневосточный банк </addres>
+            <addres lifts='2' auditory='1828' pack_id='13'>Русская ул., 19а Дальневосточный банк </addres>
+            <addres lifts='3' auditory='2721' pack_id='9'>Русская ул., 19а Дальневосточный банк (со стороны ул. Кирова) </addres>
+            <addres lifts='4' auditory='3208' pack_id='15'>Русская ул., 44 ТЦ «Универсам» </addres>
+            <addres lifts='4' auditory='3448' pack_id='1'>Русская ул., 94а Магазин «Зеленый остров» </addres>
+            <addres lifts='3' auditory='2724' pack_id='22'>Русский остров, бухта Аякс АЗК № 417 </addres>
+            <addres lifts='3' auditory='2574' pack_id='25'>Сахалинская ул., 48 Магазин «Ода» </addres>
+            <addres lifts='5' auditory='4835' pack_id='7'>Светланская ул., 112 ТЦ «Стрелец» </addres>
+            <addres lifts='2' auditory='1726' pack_id='13'>Светланская ул., 33 ГУМ </addres>
+            <addres lifts='2' auditory='1654' pack_id='19'>Светланская ул., 72 Столовая ОАО «ДЦСС» </addres>
+            <addres lifts='3' auditory='2658' pack_id='24'>Семеновская ул., 15 Супермаркет «Фреш 25» (в ТЦ «Clover House») </addres>
+            <addres lifts='6' auditory='5310' pack_id='19'>Снеговая ул., 64 ОАО «Дальхимпром» </addres>
+            <addres lifts='5' auditory='4605' pack_id='1'>Стрельникова ул., 9 Проходная Владивостокского морского торгового порта </addres>
+            <addres lifts='2' auditory='1828' pack_id='23'>Тимирязева ул., 31 Супермаркет «Космос» </addres>
+            <addres lifts='5' auditory='4010' pack_id='4'>Ульяновская ул., 7 Супермаркет «СуперГуд» </addres>
+            <addres lifts='3' auditory='2586' pack_id='20'>Успенского ул., 58 Фабрика мороженого ООО «Владайс» </addres>
+            <addres lifts='3' auditory='2667' pack_id='11'>Фонтанная ул., 40 ОАО «ДНИИМФ» </addres>
+            <addres lifts='4' auditory='3892' pack_id='22'>Черемуховая ул., 15 ТЦ «Черемушки» </addres>
+            <addres lifts='6' auditory='4962' pack_id='5'>Черняховского ул., 5 Супермаркет «Фреш 25» </addres>
+            <addres lifts='2' auditory='1992' pack_id='9'>Шилкинская ул., 10а Супермаркет «РЕМИ» </addres>
+            <addres lifts='3' auditory='2646' pack_id='2'>Юмашева ул., 19 Гипермаркет «Три Кота»</addres>
         </district>
     </town>
 </adresses>
