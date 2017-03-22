@@ -95,6 +95,16 @@ $sek = strtotime("now");
                     </form>
                 </div>
             </div>
+            <div class="container" id="platformDocs">
+                <div class="blockhead">
+                    Документы по платформам
+                </div>
+                <div class="thumb">
+                    <div class="text">Ведение документации по платформам<br>
+                    </div>
+                    <a class="btns submit" href="/platformDocs">Перейти</a>
+                </div>
+            </div>
             <div id="bottom">
             
             </div>
