@@ -31,6 +31,7 @@ $(function(){
     
     $('.new_platf').click(function(){
         $('#action_selector').addClass('hide');
+        location.href = "/platformDocs/new_platform.php";
     });
 
     // console.log(window.session.platf_repairs);

@@ -36,8 +36,8 @@ $json = json_encode($_SESSION);
             }
             ?>
                 <div class="platform new_platf">
-                    <img src="img/platforma_new.png" alt="platform_ico">
-                    <p class="lable">Новая патформа</p>
+                    <img src="img/platforma_new.png" alt="platform_ico" href = "/platformDocs/new_platform.php">
+                    <p class="lable">Новая платформа</p>
                 </div>
             </div>
         </div>
