@@ -11,8 +11,9 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=thedata user=postgres pass
     $platforms=[];
 
     while($line = pg_fetch_assoc($result)){
-        $platforms[]=$line;
+        $platforms[$line['platf_number']]=$line;
     }
+    $_SESSION['platforms'] = $platforms;
     // var_dump($platforms);
     pg_free_result($result);
     pg_close($dbconn);

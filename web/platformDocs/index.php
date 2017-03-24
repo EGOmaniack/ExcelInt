@@ -1,7 +1,10 @@
 <?php
  include_once './phpScripts/vers.php';
  include_once './phpScripts/getPlatforms.php';
+ include_once './phpScripts/getPlatf_repairs.php';
 $sek = strtotime("now");
+
+$json = json_encode($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -23,16 +26,16 @@ $sek = strtotime("now");
             <div id="platforms">
             <?php
             if($platforms) {
-                foreach($platforms as $pl){
-                    $platforma = "<div class='platform new'>";
-                    $platforma .="<img id='new_platform' src='img/platforma.png' alt='platform_ico'>";
+                foreach($platforms as $key => $pl){
+                    $platforma = "<div id='".$platforms[$key][platf_number]."' class='platform old_platf'>";
+                    $platforma .="<img src='img/platforma.png' alt='platform_ico'>";
                     $platforma .="<p class='lable'>№ ".$pl['platf_number']."</p>";
                     $platforma .="</div>";
                     echo $platforma;
                 }
             }
             ?>
-                <div class="platform">
+                <div class="platform new_platf">
                     <img src="img/platforma_new.png" alt="platform_ico">
                     <p class="lable">Новая патформа</p>
                 </div>
@@ -40,17 +43,19 @@ $sek = strtotime("now");
         </div>
         <div class="devider"></div>
         <div id='action_selector' class="wrapper hide">
-            <h1 class="title">Выберите действие</h1>
-            <p id="platform_info">222</p>
-            <div class="btns">
+            <h1 class="title">Записи о ремонтах</h1>
+            <p id="platform_info"></p>
+            <div id="repairs"></div>
+            <a href="/platformDocs/new_repair.php" id="new_rep">Добавить запись</a>
+            <!--<div class="btns">
                 <a class="btn" id="change" href="/platformDocs/?flow=change">Изменить</a>
                 <div class="adivider"></div>
                 <a class="btn" id="print" href="/platformDocs/?flow=print">Печать</a>
-            </div>
+            </div>-->
         </div>
         <div class="devider"></div>
     </div>
-    <script type="text/javascript" src="js/main.js"></script>
-    <?='<script type="text/javascript">a = '.$platforms.'</script>'?>
+    <script type="text/javascript" src="js/main.js?<?=$sek?>"></script>
+    <?='<script type="text/javascript">window.session = '.$json.'</script>'?>
 </body>
 </html>

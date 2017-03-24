@@ -74,6 +74,12 @@ img{
     width: fit-content;
     /*border: 2px solid;*/
 }
+#platform_info{
+    width: fit-content;
+    margin: 0 auto;
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+}
 .lable{
     font-size: 22px;
     font-weight: bold;
@@ -92,4 +98,63 @@ img:active{
 #platforms{
     padding: 10px 0;
     background: #EDEFF9;
+}
+.repairs{
+
+}
+.item{
+    border-radius: 15px;
+    padding: 5px;
+    width: 80%;
+    height: 35px;
+    margin: 5px auto;
+    background: #DFE1F6;
+}
+.inwrapper{
+    width: fit-content;
+    margin: 0 auto;
+    /*padding: 10px 0 0;*/
+}
+.rep_name{
+    display: inline;
+}
+.rep_type{
+    display: inline;
+}
+.edit{
+    cursor: pointer;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-image: url('../img/edit_small.png');
+    background-size: 25px 25px;
+}
+.spacer{
+    display: inline-block;
+    width:20px;
+}
+.print{
+    cursor: pointer;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-image: url('../img/print_small.png');
+    background-size: 25px 25px;
+}
+#action_selector{
+    padding-bottom: 15px;
+}
+#new_rep{
+    font-weight: bold;
+    font-family: 'Merriweather', serif;
+    text-decoration:none;
+    color: white;
+    font-size: 22px;
+    background: green;
+    display: block;
+    min-width: 250px;
+    width: 30%;
+    height: 35px;
+    margin: 0 auto;
+    text-align: center;
 }
