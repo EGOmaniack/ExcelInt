@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.0-alpha1" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="new_database">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="staff" rect-visible="true" fill-color="#5aa578">
+	<role name="postgres"/>
+	<comment><![CDATA[Штат предприятия]]></comment>
+</schema>
+
+<table name="w_position">
+	<schema name="staff"/>
+	<role name="postgres"/>
+	<position x="609" y="688"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="worker_position" not-null="true">
+		<type name="text" length="0"/>
+		<comment><![CDATA[Должность]]></comment>
+	</column>
+	<constraint name="position_id" type="pk-constr" table="staff.w_position">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="w_pos_unq" type="uq-constr" table="staff.w_position">
+		<columns names="worker_position" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="employees">
+	<schema name="staff"/>
+	<role name="postgres"/>
+	<position x="214" y="449"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="personal_number" not-null="true">
+		<type name="int4" length="0"/>
+		<comment><![CDATA[табельный номер]]></comment>
+	</column>
+	<column name="surname" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="0"/>
+		<comment><![CDATA[Имя]]></comment>
+	</column>
+	<column name="middle_name">
+		<type name="varchar" length="0"/>
+		<comment><![CDATA[отчество]]></comment>
+	</column>
+	<column name="position">
+		<type name="int4" length="0"/>
+		<comment><![CDATA[Должность]]></comment>
+	</column>
+	<column name="bday" not-null="true">
+		<type name="date" length="0"/>
+		<comment><![CDATA[Дата рождения]]></comment>
+	</column>
+	<column name="manufactory" not-null="true" default-value="false">
+		<type name="bool" length="0"/>
+	</column>
+	<column name="w_phone_number">
+		<type name="text" length="0"/>
+	</column>
+	<column name="phone_number">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="employees_id" type="pk-constr" table="staff.employees">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="employees_unqs" type="uq-constr" table="staff.employees">
+		<columns names="personal_number" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<schema name="platforms" rect-visible="true" fill-color="#4b3e56">
+	<role name="postgres"/>
+</schema>
+
+<table name="platforma">
+	<schema name="platforms"/>
+	<role name="postgres"/>
+	<position x="1029" y="431"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name" not-null="true" default-value="'ППК-2В'">
+		<type name="text" length="0"/>
+	</column>
+	<column name="full_name" not-null="true" default-value="'Платформа механизированная'">
+		<type name="text" length="0"/>
+		<comment><![CDATA[Полное имя платформы без имени]]></comment>
+	</column>
+	<column name="number" not-null="true">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="owner" not-null="true" default-value="2">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="factory_number">
+		<type name="text" length="0"/>
+	</column>
+	<column name="factory_name" not-null="true" default-value="3">
+		<type name="int4" length="0"/>
+		<comment><![CDATA[Предприятие-изготовитель]]></comment>
+	</column>
+	<column name="release_date">
+		<type name="date" length="0"/>
+		<comment><![CDATA[Год выпуска]]></comment>
+	</column>
+	<column name="last_repair">
+		<type name="date" length="0"/>
+		<comment><![CDATA[Дата последнего ремонта]]></comment>
+	</column>
+	<column name="last_rep_type" not-null="true" default-value="4">
+		<type name="int4" length="0"/>
+	</column>
+	<constraint name="platforma_pk" type="pk-constr" table="platforms.platforma">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="platfoem_unq" type="uq-constr" table="platforms.platforma">
+		<columns names="number" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="repair">
+	<schema name="platforms"/>
+	<role name="postgres"/>
+	<position x="1453.29" y="329"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="repair_start" not-null="true" default-value="now()">
+		<type name="date" length="0"/>
+		<comment><![CDATA[Дата начала ремонта]]></comment>
+	</column>
+	<column name="repair_end">
+		<type name="date" length="0"/>
+	</column>
+	<column name="platform_id" not-null="true">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="repair_copmany" default-value="1">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="repair_type" not-null="true" default-value="2">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="operating_after_last_repair" default-value="null">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="other_info">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="repair_pk" type="pk-constr" table="platforms.repair">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<schema name="firms" rect-visible="true" fill-color="#942665">
+	<role name="postgres"/>
+</schema>
+
+<table name="companies">
+	<schema name="firms"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Путевые машинные станции]]></comment>
+	<position x="1289" y="755"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="number">
+		<type name="text" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="comment">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="pms" type="pk-constr" table="firms.companies">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•number•name•comment⸣
+•ХЦПМ ПКБИ•ХЦПМ ПКБИ•Мы⸣
+•ПМС-186•Корфовская•⸣
+•Энгельс•ОАО "Транспортное машиностроение" г. Энгельс•]]>
+	</initial-data>
+</table>
+
+<table name="repair_type">
+	<schema name="platforms"/>
+	<role name="postgres"/>
+	<position x="1580" y="553"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="type" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="reserv">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="rep_t_pk" type="pk-constr" table="platforms.repair_type">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•type⸣
+•текущий ремонт 1 объема⸣
+•текущий ремонт 2 объема⸣
+•капитальный ремонт 1 объема⸣
+•деповской ремонт]]>
+	</initial-data>
+</table>
+
+<schema name="files" rect-visible="true" fill-color="#abb258">
+	<role name="postgres"/>
+</schema>
+
+<table name="picture">
+	<schema name="files"/>
+	<role name="postgres"/>
+	<position x="1622" y="870"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="type">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="repository">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="picture_pk" type="pk-constr" table="files.picture">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="employees_link" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="staff.w_position" table="staff.employees">
+	<columns names="position" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="platform_owner" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="firms.companies" table="platforms.platforma">
+	<columns names="owner" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="platf_lastrt_link" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="platforms.repair_type" table="platforms.platforma">
+	<columns names="last_rep_type" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="platf_fac" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="firms.companies" table="platforms.platforma">
+	<columns names="factory_name" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="repair_platform_link" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="platforms.platforma" table="platforms.repair">
+	<columns names="platform_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="rep_comp_link" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="firms.companies" table="platforms.repair">
+	<columns names="repair_copmany" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="rep_type_link" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="platforms.repair_type" table="platforms.repair">
+	<columns names="repair_type" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_employees_position" type="relfk"
+	 src-table="staff.employees"
+	 dst-table="staff.w_position"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_repair_platforma" type="relfk"
+	 src-table="platforms.repair"
+	 dst-table="platforms.platforma"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_platforma_pms" type="relfk"
+	 src-table="platforms.platforma"
+	 dst-table="firms.companies"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_repair_pms" type="relfk"
+	 src-table="platforms.repair"
+	 dst-table="firms.companies"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_repair_repair_type" type="relfk"
+	 src-table="platforms.repair"
+	 dst-table="platforms.repair_type"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-73.3693" y="-22.9485"/>
+	</label>
+</relationship>
+
+<relationship name="rel_platforma_repair_type" type="relfk"
+	 src-table="platforms.platforma"
+	 dst-table="platforms.repair_type"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>

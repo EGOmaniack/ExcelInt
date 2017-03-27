@@ -23,7 +23,7 @@ $sek = strtotime("now");
             <div class="minwrapper">
                 <div class="inwrapper">
                     <h2 class="formname text_down">Наименование</h2>
-                    <input id='name' type="text" class="field" placeholder="ППК-2В">
+                    <input id='name' type="text" value="ППК-2В" class="field" placeholder="ППК-2В">
                 </div>
             </div>
             <div class="minwrapper">
@@ -35,13 +35,13 @@ $sek = strtotime("now");
             <div class="minwrapper">
                 <div class="inwrapper">
                     <h2 class="formname text_down">Предприятие владелец</h2>
-                    <input id='owner' type="text" class="field" placeholder='ПМС-186'>
+                    <input id='owner' type="text" value='ПМС-186' class="field" placeholder='ПМС-186' disabled>
                 </div>
             </div>
             <div class="minwrapper">
                 <div class="inwrapper">
                     <h2 class="formname text_down">Полное наименование</h2>
-                    <input id='full_name' type="text" class="field" placeholder="Платформа механизированная">
+                    <input id='full_name' type="text" class="field" value="Платформа механизированная" placeholder="Платформа механизированная">
                 </div>
             </div>
             <div class="minwrapper">
@@ -53,7 +53,13 @@ $sek = strtotime("now");
             <div class="minwrapper">
                 <div class="inwrapper">
                     <h2 class="formname text_down">Год выпуска</h2>
-                    <input id='release_date' type="month" class="field" placeholder="номер_платформы">
+                    <input id='release_date' type="date" class="field" placeholder="номер_платформы">
+                </div>
+            </div>
+            <div class="minwrapper">
+                <div class="inwrapper">
+                    <h2 class="formname text_down">Изготовитель</h2>
+                    <input id='factory_name' type="text" value='ОАО "транспортное машиностроение"' class="field" placeholder='ОАО "транспортное машиностроение"' disabled>
                 </div>
             </div>
             
@@ -62,6 +68,10 @@ $sek = strtotime("now");
         </div>
         <div class="devider"></div>
     </div>
-    <script src="js/new_platf.js" ></script>
+    <script src="js/new_platf.js?<?=$sek?>" ></script>
+
+    <pre class='xdebug-var-dump' dir='ltr'>
+</pre>
+
 </body>
 </html>

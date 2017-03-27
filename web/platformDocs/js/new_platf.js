@@ -12,10 +12,11 @@ $('#insert').click(function () {
         owner: $('#owner').val(),
         full_name: $('#full_name').val(),
         factory_number: $('#factory_number').val(),
-        release_date: $('#release_date').val()
+        release_date: $('#release_date').val(),
+        factory_name: $('#factory_name').val()
     }, function (data) {
         if(data != undefined){
-            alert(data);
+            console.log(data);
             
             $('#insert').html("Отправлено");
             //location.href = "/platformDocs/index.php";

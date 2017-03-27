@@ -3,7 +3,7 @@ function rep_items(repairs, platf_number){
     var repaires = [];
     var list;
     $.each(repairs[platf_number], function(index, value){
-        list = '<div class="item">';
+        list = '<div id="' + value.id + '" platform="' + value.platf_number + '" class="item">';
         list += '<div class="inwrapper">';
         list += '<h4 class="rep_name">Дата: '+value.repair_start+'</h4>';
         list += '<div class="spacer"></div>';
@@ -32,6 +32,28 @@ $(function(){
     $('.new_platf').click(function(){
         $('#action_selector').addClass('hide');
         location.href = "/platformDocs/new_platform.php";
+    });
+
+    
+    $('#action_selector').on('click','.print',function(e){
+        var id = $(this).parent().parent().attr('id');
+        var platform_id = $(this).parent().parent().attr('platform');
+        var platform = JSON.stringify(window.session.platforms);
+        var repairs = JSON.stringify(window.session.platf_repairs);
+        // console.log(id);
+        // location.href = '/platformDocs/ajax/getpassport.php/?file=passport&id=' + id + '';
+        $.post("./ajax/getpassport.php", {
+        repair_id: id,
+        platform_id: platform_id,
+        platform: platform,
+        platf_repairs: repairs
+        },function (data) {
+        if(data != undefined){
+            //alert('created');
+            $('body').html('');
+            $('body').append(data);
+        }
+    });
     });
 
     // console.log(window.session.platf_repairs);

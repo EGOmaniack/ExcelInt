@@ -140,7 +140,10 @@ img:active{
     height: 25px;
     background-image: url('../img/print_small.png');
     background-size: 25px 25px;
+    /*-webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;*/
 }
+
 #action_selector{
     padding-bottom: 15px;
 }
