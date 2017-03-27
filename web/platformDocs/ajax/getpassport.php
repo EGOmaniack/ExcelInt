@@ -1,5 +1,7 @@
 <?php
 
+require_once './vendor/autoload.php';
+
 //var_dump($_POST);
 $repair_id = $_POST['repair_id'];
 $platform_id = $_POST['platform_id'];
@@ -9,20 +11,20 @@ $repairs = json_decode($_POST['platf_repairs'], true);
 var_dump($platforms);
 //$ans = $platform_id;
 
-require_once '../../Classes/PHPWord.php';
+// require_once '../../Classes/PHPWord.php';
 
-$PHPWord = new PHPWord();
+// $PHPWord = new PHPWord();
 
-$document = $PHPWord->loadTemplate('../templates/passport.docx');
+// $document = $PHPWord->loadTemplate('../templates/passport.docx');
 
-$document->setValue( 'name', $platforms[$platform_id]['platf_name'] );
-//$document->setValue( 'number', $platform_id );
-//$document->setValue( 'factory_number', $platforms[$platform_id]['factory_number'] );
+// $document->setValue( 'name', $platforms[$platform_id]['platf_name'] );
+// //$document->setValue( 'number', $platform_id );
+// //$document->setValue( 'factory_number', $platforms[$platform_id]['factory_number'] );
 
 
-$file = '../docs/passport_pl_№_'.$platform_id.'.docx';
+// $file = '../docs/passport_pl_№_'.$platform_id.'.docx';
 
-$document->save($file);
+// $document->save($file);
 
 $phpWord = new \PhpOffice\PhpWord\PhpWord();
 
