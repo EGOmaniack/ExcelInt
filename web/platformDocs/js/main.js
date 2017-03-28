@@ -21,16 +21,20 @@ function rep_items(repairs, platf_number){
 }
 
 $(function(){
+    $('.change_pl').click(function(){
+        location.href = "/platformDocs/change_platform.php/?pl=" + $(this).attr('platform')
+    });
+
     $('.old_platf').click(function(){
         $('#action_selector').removeClass('hide');
         $('#platform_info').text("Платформа "
         + window.session.platforms[this.id].platf_name
         + " №" + window.session.platforms[this.id].platf_number);
         $('#repairs').html(rep_items(window.session.platf_repairs, this.id));
+        $('.change_pl').attr('platform', window.session.platforms[this.id].platf_number);
     });
     
     $('.new_platf').click(function(){
-        $('#action_selector').addClass('hide');
         location.href = "/platformDocs/new_platform.php";
     });
 
@@ -53,7 +57,7 @@ $(function(){
             //$('body').html('');
             $('body').append(data);
         }
-    });
+        });
     });
 
     // console.log(window.session.platf_repairs);

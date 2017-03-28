@@ -25,7 +25,6 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=thedata user=postgres pass
     $sqlstr .= 'and p.factory_name = comp2.id ';
     $sqlstr .= 'and p.id = r.platform_id ';
     $sqlstr .= 'order by p.id';
-    $sqlstr .= '';
 
 
     $result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());

@@ -38,6 +38,29 @@ body{
     display: inline-block;
     width: 50px;
 }
+.sbtn{
+    text-transform: uppercase;
+    font-family: 'Merriweather', serif;
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+    border-radius: 15px;
+    padding: 5px;
+    height: 35px;
+    margin: 5px auto;
+    color: #EFC7B6;
+    background: #C55827;
+    font-size: 20px;
+}
+.sbtn:hover{
+    box-shadow: 0 0 10px #655E5C;
+}
+.sbtn:active{
+    box-shadow: 1px 1px 2px #655E5C;
+}
+.change_pl{
+    
+}
 .btn{
     text-transform: uppercase;
     font-family: 'Merriweather', serif;

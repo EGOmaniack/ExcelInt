@@ -27,7 +27,7 @@ $json = json_encode($_SESSION);
             <?php
             if($platforms) {
                 foreach($platforms as $key => $pl){
-                    $platforma = "<div id='".$platforms[$key][platf_number]."' class='platform old_platf'>";
+                    $platforma = "<div id='".$platforms[$key]['platf_number']."' class='platform old_platf'>";
                     $platforma .="<img src='img/platforma.png' alt='platform_ico'>";
                     $platforma .="<p class='lable'>№ ".$pl['platf_number']."</p>";
                     $platforma .="</div>";
@@ -43,8 +43,9 @@ $json = json_encode($_SESSION);
         </div>
         <div class="devider"></div>
         <div id='action_selector' class="wrapper hide">
-            <h1 class="title">Записи о ремонтах</h1>
             <p id="platform_info"></p>
+            <div platform="" class='sbtn change_pl'>Изменить</div>
+            <h1 class="title">Записи о ремонтах</h1>
             <div id="repairs"></div>
             <a href="/platformDocs/new_repair.php" id="new_rep">Добавить запись</a>
             <!--<div class="btns">

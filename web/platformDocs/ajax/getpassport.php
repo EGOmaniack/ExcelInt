@@ -19,10 +19,11 @@ foreach ($repairs[$platform_id] as $value) {
         }
     }
 }
-var_dump($repair);
-var_dump($platforms[$platform_id]);
+// var_dump($repair);
+// var_dump($platforms[$platform_id]);
 
 $file = '../docs/passport_pl_№_'.$platform_id.'.docx';
+include_once './../phpScripts/months.php';
 $source = "../templates/passport.docx";
 
 $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor($source);
@@ -31,11 +32,11 @@ $templateProcessor->setValue('number', $platform_id);
 $templateProcessor->setValue('owner', $repair['owner']);
 $templateProcessor->setValue('factory_number', $platforms[$platform_id]['factory_number']);
 $templateProcessor->setValue( 'std', date('j', mktime(0, 0, 0, $repair['rep_start_arr'][1], $repair['rep_start_arr'][2], $repair['rep_start_arr'][0] )));
-$templateProcessor->setValue( 'stm', date('m', mktime(0, 0, 0, $repair['rep_start_arr'][1], $repair['rep_start_arr'][2], $repair['rep_start_arr'][0] )));
+$templateProcessor->setValue( 'stm', $month[date('F', mktime(0, 0, 0, $repair['rep_start_arr'][1], $repair['rep_start_arr'][2], $repair['rep_start_arr'][0] ))]);
 $templateProcessor->setValue( 'sty', date('Y', mktime(0, 0, 0, $repair['rep_start_arr'][1], $repair['rep_start_arr'][2], $repair['rep_start_arr'][0] )));
 if($repair['repair_end'] != null) {
     $templateProcessor->setValue('end', date('j', mktime(0, 0, 0, $repair['rep_end_arr'][1], $repair['rep_end_arr'][2], $repair['rep_end_arr'][0] )));
-    $templateProcessor->setValue('enm', date('m', mktime(0, 0, 0, $repair['rep_end_arr'][1], $repair['rep_end_arr'][2], $repair['rep_end_arr'][0] )));
+    $templateProcessor->setValue('enm', $month[date('F', mktime(0, 0, 0, $repair['rep_end_arr'][1], $repair['rep_end_arr'][2], $repair['rep_end_arr'][0] ))]);
     $templateProcessor->setValue('eny', date('Y', mktime(0, 0, 0, $repair['rep_end_arr'][1], $repair['rep_end_arr'][2], $repair['rep_end_arr'][0] )));
 } else {
     $templateProcessor->setValue('end', "__");
@@ -44,7 +45,7 @@ if($repair['repair_end'] != null) {
 }
 $templateProcessor->setValue('fac_name', $repair['fac_name']);
 $templateProcessor->setValue('full_name', $repair['full_name']);
-$templateProcessor->setValue('release_date', date('m', mktime(0, 0, 0, $repair['release_date_arr'][1], $repair['release_date_arr'][2], $repair['release_date_arr'][0] ))." ".date('Y', mktime(0, 0, 0, $repair['release_date_arr'][1], $repair['release_date_arr'][2], $repair['release_date_arr'][0] )));
+$templateProcessor->setValue('release_date', $month[date('F', mktime(0, 0, 0, $repair['release_date_arr'][1], $repair['release_date_arr'][2], $repair['release_date_arr'][0] ))]." ".date('Y', mktime(0, 0, 0, $repair['release_date_arr'][1], $repair['release_date_arr'][2], $repair['release_date_arr'][0] )));
 $templateProcessor->setValue('last_repair_date', $repair['last_repair_date']);
 $templateProcessor->setValue('last_rep_type', $repair['last_rep_type']);
 $templateProcessor->setValue('repair_company_name', $repair['repair_company_name']);
@@ -53,15 +54,3 @@ $templateProcessor->setValue('other_info', $repair['other_info']);
 $templateProcessor->saveAs($file);
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <!--<?=$body?>-->
-</body>
-</html>
