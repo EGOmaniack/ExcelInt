@@ -50,7 +50,7 @@ $(function(){
         },function (data) {
         if(data != undefined){
             //alert('created');
-            $('body').html('');
+            //$('body').html('');
             $('body').append(data);
         }
     });

@@ -2,86 +2,56 @@
 
 require_once './vendor/autoload.php';
 
-//var_dump($_POST);
 $repair_id = $_POST['repair_id'];
 $platform_id = $_POST['platform_id'];
 $platforms = json_decode($_POST['platform'], true);
 $repairs = json_decode($_POST['platf_repairs'], true);
 
-//var_dump($platforms);
+$repair = [];
+foreach ($repairs[$platform_id] as $value) {
+    if($value['id'] == $repair_id) {
+        $repair = $value;
+        $repair['release_date_arr'] = explode("-", $repair['release_date'] );
+        $repair['rep_start_arr'] = explode("-", $repair['repair_start'] );
+        //$repair['last_repair_arr'] = explode("-", $repair['last_repair_date'] );
+        if($repair['repair_end'] != null){
+            $repair['rep_end_arr'] = explode("-", $repair['repair_end'] );
+        }
+    }
+}
+var_dump($repair);
+var_dump($platforms[$platform_id]);
 
-//$ans = $platform_id;
-
-// require_once '../../Classes/PHPWord.php';
-
-// $PHPWord = new PHPWord();
-
-// $document = $PHPWord->loadTemplate('../templates/passport.docx');
-
-// $document->setValue( 'name', $platforms[$platform_id]['platf_name'] );
-// //$document->setValue( 'number', $platform_id );
-// //$document->setValue( 'factory_number', $platforms[$platform_id]['factory_number'] );
-
-
- $file = '../docs/passport_pl_№_'.$platform_id.'.docx';
-
-// $document->save($file);
-
-//$phpWord = new \PhpOffice\PhpWord\PhpWord();
+$file = '../docs/passport_pl_№_'.$platform_id.'.docx';
 $source = "../templates/passport.docx";
 
 $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor($source);
-$templateProcessor->setValue('name', 'ПМС-118');
-$templateProcessor->setValue('number', '222');//${number}
+$templateProcessor->setValue('name', $platforms[$platform_id]['platf_name']);
+$templateProcessor->setValue('number', $platform_id);
+$templateProcessor->setValue('owner', $repair['owner']);
+$templateProcessor->setValue('factory_number', $platforms[$platform_id]['factory_number']);
+$templateProcessor->setValue( 'std', date('j', mktime(0, 0, 0, $repair['rep_start_arr'][1], $repair['rep_start_arr'][2], $repair['rep_start_arr'][0] )));
+$templateProcessor->setValue( 'stm', date('m', mktime(0, 0, 0, $repair['rep_start_arr'][1], $repair['rep_start_arr'][2], $repair['rep_start_arr'][0] )));
+$templateProcessor->setValue( 'sty', date('Y', mktime(0, 0, 0, $repair['rep_start_arr'][1], $repair['rep_start_arr'][2], $repair['rep_start_arr'][0] )));
+if($repair['repair_end'] != null) {
+    $templateProcessor->setValue('end', date('j', mktime(0, 0, 0, $repair['rep_end_arr'][1], $repair['rep_end_arr'][2], $repair['rep_end_arr'][0] )));
+    $templateProcessor->setValue('enm', date('m', mktime(0, 0, 0, $repair['rep_end_arr'][1], $repair['rep_end_arr'][2], $repair['rep_end_arr'][0] )));
+    $templateProcessor->setValue('eny', date('Y', mktime(0, 0, 0, $repair['rep_end_arr'][1], $repair['rep_end_arr'][2], $repair['rep_end_arr'][0] )));
+} else {
+    $templateProcessor->setValue('end', "__");
+    $templateProcessor->setValue('enm', "_____");
+    $templateProcessor->setValue('eny', "____");
+}
+$templateProcessor->setValue('fac_name', $repair['fac_name']);
+$templateProcessor->setValue('full_name', $repair['full_name']);
+$templateProcessor->setValue('release_date', date('m', mktime(0, 0, 0, $repair['release_date_arr'][1], $repair['release_date_arr'][2], $repair['release_date_arr'][0] ))." ".date('Y', mktime(0, 0, 0, $repair['release_date_arr'][1], $repair['release_date_arr'][2], $repair['release_date_arr'][0] )));
+$templateProcessor->setValue('last_repair_date', $repair['last_repair_date']);
+$templateProcessor->setValue('last_rep_type', $repair['last_rep_type']);
+$templateProcessor->setValue('repair_company_name', $repair['repair_company_name']);
+$templateProcessor->setValue('repair_type', $repair['repair_type']);
+$templateProcessor->setValue('other_info', $repair['other_info']);
 $templateProcessor->saveAs($file);
-// $objReader = \PhpOffice\PhpWord\IOFactory::createReader('Word2007');
-// $objReader2 = \PhpOffice\PhpWord\IOFactory::createReader('Word2007');
-// $phpWord = $objReader->load($source);
 
-// $body="";
-
-// foreach($phpWord->getSections() as $section ) {
-//     $arrays = $section->getElements(); //Все элементы на странице
-
-//     foreach($arrays as $e) {
-//         //echo get_class($e).'<br>';
-//         if( get_class($e) === 'PhpOffice\PhpWord\Element\TextRun' ) {
-//             foreach( $e-> getElements() as $text ){
-
-//                 $font = $text->getFontStyle();
-
-//                 $size = $font->getSize()/10;
-//                 $bold = $font->isBold() ? 'font-weight:700' : '';
-//                 $color = $font->getColor();
-//                 $fontFamily = $font->getName();
-
-//                 $body .='<span style="font-size: " '. $size .' em; font-family:'. $fontFamily .' ; '. $bold .'; color :#'. $color .' >';
-//                 $body .= $text->getText().'</span>';
-
-//                 // $text->getText();
-//             } 
-//         }else if ( get_class($e) === 'PhpOffice\PhpWord\Element\TextBreak' ) {
-//             $body .='<br />';
-//         }
-//     }
-// }
-
-// $phpWordTemp = $objReader2->loadTemlate($source);
-
-//var_dump($body);
-
-// Файл сохраняется вопрос как отдать
-// header('Content-Description: File Transfer');
-// header('Content-Type: application/octet-stream');
-// header('Content-Disposition: attachment; filename="'.basename($file).'"');
-// header('Expires: 0');
-// header('Cache-Control: must-revalidate');
-// header('Pragma: public');
-// header('Content-Length: ' . filesize($file));
-//     readfile($file);
-
-//echo $ans;
-    
 ?>
 <!DOCTYPE html>
 <html lang="en">
