@@ -19,8 +19,9 @@ $('#insert').click(function () {
             console.log(data);
             
             $('#insert').html("Отправлено");
-            //location.href = "/platformDocs/index.php";
+            // location.href = "/platformDocs/index.php";
             //$(".form").children().val("");
         }
     });
+    location.href = "/platformDocs/index.php";
 });

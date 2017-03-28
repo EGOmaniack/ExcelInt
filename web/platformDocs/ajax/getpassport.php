@@ -19,6 +19,7 @@ foreach ($repairs[$platform_id] as $value) {
         }
     }
 }
+
 // var_dump($repair);
 // var_dump($platforms[$platform_id]);
 

@@ -30,7 +30,6 @@ $sek = strtotime("now");
         <link rel="icon" type="image/png" href="/pics/logo_min.png" />
         <!--<script src="js/office.js"></script>-->
         <!--<script src="https://appsforoffice.microsoft.com/lib/1/hosted/Office.js"/>-->
-
     </head>
 
     <body>

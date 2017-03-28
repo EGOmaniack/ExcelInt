@@ -113,6 +113,11 @@ img:active{
     background: #6B3015;
     box-shadow: 0 0 0 black;
 }
+.tst{
+    width: 50px;
+    height: 25px;
+    background: cyan;
+}
 #version{
     text-align: right;
     font-size: 12px;

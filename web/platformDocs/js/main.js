@@ -62,3 +62,7 @@ $(function(){
 
     // console.log(window.session.platf_repairs);
 });
+
+$('.tst').click(function(){
+    console.log($('#pmss').val());
+});
