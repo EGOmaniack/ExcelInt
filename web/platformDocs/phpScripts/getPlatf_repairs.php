@@ -1,5 +1,5 @@
 <?php
-$dbconn = pg_connect("host=localhost port=5432 dbname=thedata user=postgres password=Rgrur4frg56eq16")
+$dbconn = pg_connect("host=localhost port=5432 dbname=platforms user=postgres password=Rgrur4frg56eq16")
     or die('Could not connect: ' . pg_last_error());
 
     // $sqlstr = 'select r.id, r.repair_start, r.repair_end, p."number" "platf_number", c."name" "repair_company_name", t."type" "repair_type", r.operating_after_last_repair , r.other_info ';
@@ -21,10 +21,10 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=thedata user=postgres pass
     $sqlstr .= 'where p.owner=comp.id ';
     $sqlstr .= 'and r.repair_copmany = comp3.id ';
     $sqlstr .= 'and p.last_rep_type = rtype2.id ';
-    $sqlstr .= 'and p.last_rep_type = rtype.id ';
+    $sqlstr .= 'and r.repair_type = rtype.id ';
     $sqlstr .= 'and p.factory_name = comp2.id ';
     $sqlstr .= 'and p.id = r.platform_id ';
-    $sqlstr .= 'order by p.id';
+    $sqlstr .= 'order by p.id;';
 
 
     $result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());

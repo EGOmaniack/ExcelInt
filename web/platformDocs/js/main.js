@@ -46,7 +46,7 @@ $(function(){
         var repairs = JSON.stringify(window.session.platf_repairs);
         // console.log(id);
         // location.href = '/platformDocs/ajax/getpassport.php/?file=passport&id=' + id + '';
-        $.post("./ajax/getpassport.php", {
+        $.post("./ajax/create_passport.php", {
         repair_id: id,
         platform_id: platform_id,
         platform: platform,
@@ -55,11 +55,13 @@ $(function(){
         if(data != undefined){
             //alert('created');
             //$('body').html('');
-            $('body').append(data);
+            //$('body').append(data);
+            location.href = '/platformDocs/phpScripts/get_passport.php?file=' + data;
         }
         });
     });
-
+    
+    
     // console.log(window.session.platf_repairs);
 });
 

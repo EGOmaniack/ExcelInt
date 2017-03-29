@@ -53,7 +53,7 @@ $sek = strtotime("now");
             <div class="minwrapper">
                 <div class="inwrapper">
                     <h2 class="formname text_down">Год выпуска</h2>
-                    <input id='release_date' type="date" class="field" placeholder="номер_платформы">
+                    <input id='release_date' type="date" class="field">
                 </div>
             </div>
             <div class="minwrapper">

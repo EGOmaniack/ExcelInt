@@ -54,4 +54,5 @@ $templateProcessor->setValue('repair_type', $repair['repair_type']);
 $templateProcessor->setValue('other_info', $repair['other_info']);
 $templateProcessor->saveAs($file);
 
+echo $file;
 ?>

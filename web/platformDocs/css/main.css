@@ -175,7 +175,16 @@ img:active{
 #action_selector{
     padding-bottom: 15px;
 }
-#new_rep{
+#btn_modal:hover{
+    cursor: pointer;
+    box-shadow: 0 0 15px #655E5C;
+
+}
+#btn_modal:active{
+    box-shadow: 1px 1px 5px #655E5C;
+}
+
+#btn_modal{
     font-weight: bold;
     font-family: 'Merriweather', serif;
     text-decoration:none;
@@ -188,4 +197,6 @@ img:active{
     height: 35px;
     margin: 0 auto;
     text-align: center;
+    -webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
 }

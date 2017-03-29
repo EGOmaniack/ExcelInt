@@ -174,7 +174,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="firms"/>
 	<role name="postgres"/>
 	<comment><![CDATA[Путевые машинные станции]]></comment>
-	<position x="1289" y="755"/>
+	<position x="1264" y="858"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -211,15 +211,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="reserv">
 		<type name="text" length="0"/>
 	</column>
+	<column name="code">
+		<type name="varchar" length="0"/>
+	</column>
 	<constraint name="rep_t_pk" type="pk-constr" table="platforms.repair_type">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 	<initial-data>
-<![CDATA[id•type⸣
-•текущий ремонт 1 объема⸣
-•текущий ремонт 2 объема⸣
-•капитальный ремонт 1 объема⸣
-•деповской ремонт]]>
+<![CDATA[id•type•code⸣
+•текущий ремонт 1 объема•t1⸣
+•текущий ремонт 2 объема•t2⸣
+•капитальный ремонт 1 объема•k1⸣
+•деповской ремонт•dep]]>
 	</initial-data>
 </table>
 
