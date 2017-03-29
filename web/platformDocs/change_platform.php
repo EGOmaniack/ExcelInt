@@ -33,7 +33,7 @@ $platform = $_SESSION['platforms'][$platf_id];
             <div class="minwrapper">
                 <div class="inwrapper">
                     <h2 class="formname text_down">Номер платформы*</h2>
-                    <input id='number' type="number" max="2147483647" value="<?=$platf_id?>" class="field" placeholder="введите номер">
+                    <input id='number' type="number" max="9223372036854775807" value="<?=$platf_id?>" class="field" placeholder="введите номер">
                 </div>
             </div>
             <div class="minwrapper">

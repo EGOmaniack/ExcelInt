@@ -1,16 +1,16 @@
 <?php
- include_once './phpScripts/vers.php';
- include_once './phpScripts/getPlatforms.php';
- include_once './phpScripts/getPlatf_repairs.php';
- include_once './phpScripts/get_pms.php';
+ include_once './phpScripts/vers.php'; //Парсит лог версий
+ include_once './phpScripts/getPlatforms.php'; //Вытаскивает из БД информацию по платформам
+ include_once './phpScripts/getPlatf_repairs.php'; //Вытаскивает из БД информацию по всем ремонтам
+
 $sek = strtotime("now");
 
-$json = json_encode($_SESSION);
-$firms = $_SESSION['pms'];
+$json = json_encode($_SESSION); // include 2 и 3 передают данные в session. Тут вытаскиваем их от туда.
+
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>platforms</title>
@@ -51,33 +51,36 @@ $firms = $_SESSION['pms'];
             <h1 class="title">Записи о ремонтах</h1>
             <div id="repairs"></div>
             
-            <div id="btn_modal">Добавить запись</div>
+            <div id="btn_modal">Добавить запись</div> <!-- The Modal -->
 
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p>Заполните форму</p>
-                    <input value="<?=date('Y-m-d')?>" id='rep_start' type="date" class="field">
-                    <select id="rep_type" name="rep_type">
-                        <option disabled>Выберите вид ремонта</option>
-                        <option value="t1">текущий ремонт 1 объема</option>
-                        <option selected  value="t2">текущий ремонт 2 объема</option>
-                        <option value="k1">капитальный ремонт 1 объема</option>
-                        <option value="dep">деповской ремонт</option>
-                    </select>
-                    <button id="new_repair_btn" type="button">Создать</button>
-                </div>
-
-            </div>
-
-
-            
         </div>
         <div class="devider"></div>
     </div>
+
+     <!-- The Modal -->
+            <div type="new_repair" id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span id="modal_close" class="close">&times;</span>
+                    <div class="modal_wrapper">
+                        <h3 class="title">Заполните форму</h3>
+                        <span>Дата начала ремонта:     </span><input value="<?=date('Y-m-d')?>" id='rep_start' type="date" class="field"><br>
+                        <span>Дата окончания ремонта:  </span><input id='rep_end' type="date" class="field"><br>
+                        <span>Вид ремонта           :  </span>
+                        <select id="rep_type" name="rep_type">
+                            <option class="select-option" value="0" disabled>Выберите вид ремонта</option>
+                            <option class="select-option" value="t1">текущий ремонт 1 объема</option>
+                            <option class="select-option" selected  value="t2">текущий ремонт 2 объема</option>
+                            <option class="select-option" value="k1">капитальный ремонт 1 объема</option>
+                            <option class="select-option" value="dep">деповской ремонт</option>
+                        </select><br>
+                        <button class="sbtn create" id="new_repair_btn" type="button">Создать</button>
+                    </div>
+                </div>
+
+            </div>
+    <!-- End of The Modal -->
     <div class="hide">
         <div class="zhide new_rep">
                 <form action="select1.php" method="post">

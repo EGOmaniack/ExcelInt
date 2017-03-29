@@ -11,6 +11,7 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=platforms user=postgres pa
     $sqlstr .= 'p.release_date, p.last_repair, rtype2."type" "last_rep_type", ';
     $sqlstr .= 'p.full_name ,rtype."type" "repair_type", r.repair_start, r.repair_end, r.other_info ';
     $sqlstr .= ', to_char( p.last_repair ,\'DD.MM.YYYY г.\') "last_repair_date" ';
+    $sqlstr .= ', rtype.code "repaire_type_code" ';
     $sqlstr .= 'from platforms.platforma p, ';
     $sqlstr .= 'firms.companies comp3, ';
     $sqlstr .= 'firms.companies comp, ';
@@ -32,7 +33,7 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=platforms user=postgres pa
     $repairs=[];
 
     while($line = pg_fetch_assoc($result)){
-        $repairs[$line['platf_number']][]=$line;
+        $repairs[$line['platf_number']][$line['id']]=$line;
     }
     $_SESSION['platf_repairs'] = $repairs;
     //$_SESSION['platf_repairs']['count'] = count($repairs);

@@ -19,7 +19,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="w_position">
 	<schema name="staff"/>
 	<role name="postgres"/>
-	<position x="609" y="688"/>
+	<position x="560" y="606"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -38,7 +38,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="employees">
 	<schema name="staff"/>
 	<role name="postgres"/>
-	<position x="214" y="449"/>
+	<position x="165" y="367"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -89,7 +89,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="platforma">
 	<schema name="platforms"/>
 	<role name="postgres"/>
-	<position x="1029" y="431"/>
+	<position x="1026" y="492"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -101,7 +101,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<comment><![CDATA[Полное имя платформы без имени]]></comment>
 	</column>
 	<column name="number" not-null="true">
-		<type name="int4" length="0"/>
+		<type name="int8" length="0"/>
 	</column>
 	<column name="owner" not-null="true" default-value="2">
 		<type name="int4" length="0"/>
@@ -135,7 +135,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="repair">
 	<schema name="platforms"/>
 	<role name="postgres"/>
-	<position x="1453.29" y="329"/>
+	<position x="1461.29" y="361"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -201,7 +201,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="repair_type">
 	<schema name="platforms"/>
 	<role name="postgres"/>
-	<position x="1580" y="553"/>
+	<position x="1577" y="614"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -233,7 +233,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="picture">
 	<schema name="files"/>
 	<role name="postgres"/>
-	<position x="1622" y="870"/>
+	<position x="1587" y="858"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -247,6 +247,72 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
+
+<table name="workshop">
+	<schema name="staff"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Цех]]></comment>
+	<position x="608" y="366"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="emp_id">
+		<type name="int4" length="0"/>
+	</column>
+	<constraint name="workshop_pk" type="pk-constr" table="staff.workshop">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="repair_audit">
+	<schema name="audit"/>
+	<role name="postgres"/>
+	<position x="1243.29" y="26"/>
+	<column name="id">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="repair_start" not-null="true">
+		<type name="date" length="0"/>
+		<comment><![CDATA[Дата начала ремонта]]></comment>
+	</column>
+	<column name="repair_end">
+		<type name="date" length="0"/>
+	</column>
+	<column name="platform_id" not-null="true">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="repair_copmany" default-value="1">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="repair_type" not-null="true" default-value="2">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="operating_after_last_repair" default-value="null">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="other_info">
+		<type name="text" length="0"/>
+	</column>
+	<column name="aud_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="user">
+		<type name="text" length="0"/>
+	</column>
+	<column name="stamp">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="operation">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="repair_pk" type="pk-constr" table="audit.repair_audit">
+		<columns names="aud_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<schema name="audit" rect-visible="true" fill-color="#83af1f">
+	<role name="postgres"/>
+</schema>
 
 <constraint name="employees_link" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="staff.w_position" table="staff.employees">
@@ -290,6 +356,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="workshop_emp_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="staff.employees" table="staff.workshop">
+	<columns names="id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="repair_audit_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="platforms.repair" table="audit.repair_audit">
+	<columns names="id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
 <relationship name="rel_employees_position" type="relfk"
 	 src-table="staff.employees"
 	 dst-table="staff.w_position"
@@ -322,6 +400,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_platforma_repair_type" type="relfk"
 	 src-table="platforms.platforma"
 	 dst-table="platforms.repair_type"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_workshop_employees" type="relfk"
+	 src-table="staff.workshop"
+	 dst-table="staff.employees"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_repair_audit_repair" type="relfk"
+	 src-table="audit.repair_audit"
+	 dst-table="platforms.repair"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>

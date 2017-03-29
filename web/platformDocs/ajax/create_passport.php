@@ -32,9 +32,15 @@ $templateProcessor->setValue('name', $platforms[$platform_id]['platf_name']);
 $templateProcessor->setValue('number', $platform_id);
 $templateProcessor->setValue('owner', $repair['owner']);
 $templateProcessor->setValue('factory_number', $platforms[$platform_id]['factory_number']);
-$templateProcessor->setValue( 'std', date('j', mktime(0, 0, 0, $repair['rep_start_arr'][1], $repair['rep_start_arr'][2], $repair['rep_start_arr'][0] )));
-$templateProcessor->setValue( 'stm', $month[date('F', mktime(0, 0, 0, $repair['rep_start_arr'][1], $repair['rep_start_arr'][2], $repair['rep_start_arr'][0] ))]);
-$templateProcessor->setValue( 'sty', date('Y', mktime(0, 0, 0, $repair['rep_start_arr'][1], $repair['rep_start_arr'][2], $repair['rep_start_arr'][0] )));
+if($repair['rep_start_arr'] != null) {
+    $templateProcessor->setValue( 'std', date('j', mktime(0, 0, 0, $repair['rep_start_arr'][1], $repair['rep_start_arr'][2], $repair['rep_start_arr'][0] )));
+    $templateProcessor->setValue( 'stm', $month[date('F', mktime(0, 0, 0, $repair['rep_start_arr'][1], $repair['rep_start_arr'][2], $repair['rep_start_arr'][0] ))]);
+    $templateProcessor->setValue( 'sty', date('Y', mktime(0, 0, 0, $repair['rep_start_arr'][1], $repair['rep_start_arr'][2], $repair['rep_start_arr'][0] )));
+} else {
+    $templateProcessor->setValue('std', "__");
+    $templateProcessor->setValue('stm', "_____");
+    $templateProcessor->setValue('sty', "____");
+}
 if($repair['repair_end'] != null) {
     $templateProcessor->setValue('end', date('j', mktime(0, 0, 0, $repair['rep_end_arr'][1], $repair['rep_end_arr'][2], $repair['rep_end_arr'][0] )));
     $templateProcessor->setValue('enm', $month[date('F', mktime(0, 0, 0, $repair['rep_end_arr'][1], $repair['rep_end_arr'][2], $repair['rep_end_arr'][0] ))]);

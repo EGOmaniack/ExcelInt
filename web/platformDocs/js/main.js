@@ -4,15 +4,16 @@ function rep_items(repairs, platf_number){
     var list;
     $.each(repairs[platf_number], function(index, value){
         list = '<div id="' + value.id + '" platform="' + value.platf_number + '" class="item">';
-        list += '<div class="inwrapper">';
-        list += '<h4 class="rep_name">Дата: '+value.repair_start+'</h4>';
-        list += '<div class="spacer"></div>';
-        list += '<p class="rep_type">'+value.repair_type+'</p>';
-        list += '<div class="spacer"></div>';
-        list += '<div title="Редактировать" class="edit"></div>';
-        list += '<div class="spacer"></div>';
-        list += '<div title="Распечатать паспорт" class="print"></div>';
-        list += '</div>';
+        list += '   <span id="modal_close" class="close">&times;</span>'
+        list += '   <div class="inwrapper">';
+        list += '       <h4 class="rep_name">Дата: '+value.repair_start+'</h4>';
+        list += '       <div class="spacer"></div>';
+        list += '       <p class="rep_type">'+value.repair_type+'</p>';
+        list += '       <div class="spacer"></div>';
+        list += '       <div id="repair_edit" title="Редактировать" class="edit"></div>';
+        list += '       <div class="spacer"></div>';
+        list += '       <div title="Распечатать паспорт" class="print"></div>';
+        list += '   </div>';
         list += '</div>';
         repaires.push(list);
     });
@@ -20,7 +21,7 @@ function rep_items(repairs, platf_number){
         return repaires;
 }
 
-$(function(){
+
     $('.change_pl').click(function(){
         location.href = "/platformDocs/change_platform.php/?pl=" + $(this).attr('platform')
     });
@@ -38,7 +39,23 @@ $(function(){
         location.href = "/platformDocs/new_platform.php";
     });
 
-    
+    $('#action_selector').on('click','.close',function(e){
+        var id = $(this).parent().attr('id');
+        if(confirm("Вы уверены?\nВсе данные об этом ремонте будут утеряны!")){
+            console.log(id); // /ajax/delete_repair.php
+            $.post("./ajax/delete_repair.php", {
+            repair_id: id
+            },function (data) {
+            if(data != undefined){
+                //alert('created');
+                //$('body').html('');
+                //$('body').append(data);
+                location.href = '/platformDocs/index.php';
+            }
+            });
+        }
+    });
+
     $('#action_selector').on('click','.print',function(e){
         var id = $(this).parent().parent().attr('id');
         var platform_id = $(this).parent().parent().attr('platform');
@@ -61,7 +78,7 @@ $(function(){
         });
     });
     
-    
+$(function(){
     // console.log(window.session.platf_repairs);
 });
 

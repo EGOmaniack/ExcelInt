@@ -39,6 +39,7 @@ body{
     width: 50px;
 }
 .sbtn{
+    cursor: pointer;
     text-transform: uppercase;
     font-family: 'Merriweather', serif;
     display: block;
@@ -127,8 +128,9 @@ img:active{
     padding: 10px 0;
     background: #EDEFF9;
 }
-.repairs{
-
+.create{
+    margin: 12px auto 0;
+    
 }
 .item{
     border-radius: 15px;
