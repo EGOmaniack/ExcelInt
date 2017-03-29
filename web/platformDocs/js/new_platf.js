@@ -2,8 +2,10 @@ $(function(){
     
 });
 
+
 $('#insert').click(function () {
     $('#insert').html("Отправка...");
+    // debugger;
     console.log(this);
     self = this;
     $.post("./ajax/insert_platform.php", {

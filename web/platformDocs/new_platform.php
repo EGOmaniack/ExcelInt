@@ -29,7 +29,7 @@ $sek = strtotime("now");
             <div class="minwrapper">
                 <div class="inwrapper">
                     <h2 class="formname text_down">Номер платформы*</h2>
-                    <input id='number' type="text" class="field" placeholder="введите номер">
+                    <input id='number' type="number" max="2147483647" class="field" placeholder="введите номер">
                 </div>
             </div>
             <div class="minwrapper">
