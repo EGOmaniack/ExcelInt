@@ -5,7 +5,7 @@ $rep_type = $_POST['rep_type'];
 $rep_end = $_POST['rep_end'];
 $rep_id = $_POST['rep_id'];
 
-$dbconn = pg_connect("host=localhost port=5432 dbname=platforms user=postgres password=Rgrur4frg56eq16")
+$dbconn = pg_connect("host=localhost port=5432 dbname=platformDocs user=postgres password=Rgrur4frg56eq16")
     or die('Could not connect: ' . pg_last_error());
 
     $sqlstr = 'update platforms.repair ';

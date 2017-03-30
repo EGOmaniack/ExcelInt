@@ -1,5 +1,5 @@
 <?php
-$dbconn = pg_connect("host=localhost port=5432 dbname=platforms user=postgres password=Rgrur4frg56eq16")
+$dbconn = pg_connect("host=localhost port=5432 dbname=platformDocs user=postgres password=Rgrur4frg56eq16")
     or die('Could not connect: ' . pg_last_error());
 
     $sqlstr ="select p.id, p.name platf_name, p.number platf_number,comp.number pms, comp.name pms_name, ";

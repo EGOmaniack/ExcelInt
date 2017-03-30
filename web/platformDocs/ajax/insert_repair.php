@@ -5,7 +5,7 @@ $n_rep_type = $_POST['n_rep_type'];
 $repair_end = $_POST['n_rep_end'];
 $platf_number = $_POST['platf_number'];
 
-$dbconn = pg_connect("host=localhost port=5432 dbname=platforms user=postgres password=Rgrur4frg56eq16")
+$dbconn = pg_connect("host=localhost port=5432 dbname=platformDocs user=postgres password=Rgrur4frg56eq16")
     or die('Could not connect: ' . pg_last_error());
 
     $sqlstr = 'insert into platforms.repair ( platform_id, repair_type, repair_start';
