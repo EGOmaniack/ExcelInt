@@ -46,7 +46,7 @@ $sek = strtotime("now");
             </div>
             <div class="minwrapper">
                 <div class="inwrapper">
-                    <h2 class="formname text_down">Заводской номер машины</h2>
+                    <h2 class="formname text_down">Заводской № машины</h2>
                     <input id='factory_number' type="text" class="field" placeholder="введите номер">
                 </div>
             </div>

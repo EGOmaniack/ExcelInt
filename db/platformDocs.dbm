@@ -4,8 +4,8 @@ CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
 <dbmodel pgmodeler-ver="0.9.0-alpha1" last-position="0,0" last-zoom="1"
-	 default-schema="public" default-owner="postgres">
-<database name="new_database">
+	 default-owner="postgres">
+<database name="platformDocs">
 </database>
 
 <schema name="public" fill-color="#e1e1e1" sql-disabled="true">
@@ -264,53 +264,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<table name="repair_audit">
-	<schema name="audit"/>
-	<role name="postgres"/>
-	<position x="1243.29" y="26"/>
-	<column name="id">
-		<type name="int4" length="0"/>
-	</column>
-	<column name="repair_start" not-null="true">
-		<type name="date" length="0"/>
-		<comment><![CDATA[Дата начала ремонта]]></comment>
-	</column>
-	<column name="repair_end">
-		<type name="date" length="0"/>
-	</column>
-	<column name="platform_id" not-null="true">
-		<type name="int4" length="0"/>
-	</column>
-	<column name="repair_copmany" default-value="1">
-		<type name="int4" length="0"/>
-	</column>
-	<column name="repair_type" not-null="true" default-value="2">
-		<type name="int4" length="0"/>
-	</column>
-	<column name="operating_after_last_repair" default-value="null">
-		<type name="int4" length="0"/>
-	</column>
-	<column name="other_info">
-		<type name="text" length="0"/>
-	</column>
-	<column name="aud_id" not-null="true">
-		<type name="serial" length="0"/>
-	</column>
-	<column name="user">
-		<type name="text" length="0"/>
-	</column>
-	<column name="stamp">
-		<type name="timestamp" length="0"/>
-	</column>
-	<column name="operation">
-		<type name="smallint" length="0"/>
-	</column>
-	<constraint name="repair_pk" type="pk-constr" table="audit.repair_audit">
-		<columns names="aud_id" ref-type="src-columns"/>
-	</constraint>
-</table>
-
-<schema name="audit" rect-visible="true" fill-color="#83af1f">
+<schema name="repir_stuff" rect-visible="true" fill-color="#94e1e5">
 	<role name="postgres"/>
 </schema>
 
@@ -362,15 +316,19 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="repair_audit_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="platforms.repair" table="audit.repair_audit">
-	<columns names="id" ref-type="src-columns"/>
-	<columns names="id" ref-type="dst-columns"/>
-</constraint>
-
-<relationship name="rel_employees_position" type="relfk"
+<relationship name="rel_employees_w_position" type="relfk"
 	 src-table="staff.employees"
 	 dst-table="staff.w_position"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_platforma_companies" type="relfk"
+	 src-table="platforms.platforma"
+	 dst-table="firms.companies"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_platforma_repair_type" type="relfk"
+	 src-table="platforms.platforma"
+	 dst-table="platforms.repair_type"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_repair_platforma" type="relfk"
@@ -378,12 +336,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="platforms.platforma"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_platforma_pms" type="relfk"
-	 src-table="platforms.platforma"
-	 dst-table="firms.companies"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_repair_pms" type="relfk"
+<relationship name="rel_repair_companies" type="relfk"
 	 src-table="platforms.repair"
 	 dst-table="firms.companies"
 	 src-required="false" dst-required="false"/>
@@ -391,25 +344,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_repair_repair_type" type="relfk"
 	 src-table="platforms.repair"
 	 dst-table="platforms.repair_type"
-	 src-required="false" dst-required="false">
-	<label ref-type="name-label">
-		<position x="-73.3693" y="-22.9485"/>
-	</label>
-</relationship>
-
-<relationship name="rel_platforma_repair_type" type="relfk"
-	 src-table="platforms.platforma"
-	 dst-table="platforms.repair_type"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_workshop_employees" type="relfk"
 	 src-table="staff.workshop"
 	 dst-table="staff.employees"
-	 src-required="false" dst-required="false"/>
-
-<relationship name="rel_repair_audit_repair" type="relfk"
-	 src-table="audit.repair_audit"
-	 dst-table="platforms.repair"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>

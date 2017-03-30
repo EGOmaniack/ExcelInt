@@ -24,20 +24,20 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
     <p id="version"><?=getver('ver.txt')[0]['ver']?></p>
     <div class="mainwraper">
         <div class="devider"></div>
-        <div class="wrapper">
+        <div class="card"> <!-- Карточка с платформами -->
             <h1 class="title">Выберите платформу</h1>
             <div id="platforms">
-            <?php
-            if($platforms) {
-                foreach($platforms as $key => $pl){
-                    $platforma = "<div id='".$platforms[$key]['platf_number']."' class='platform old_platf'>";
-                    $platforma .="<img src='img/platforma.png' alt='platform_ico'>";
-                    $platforma .="<p class='lable'>№ ".$pl['platf_number']."</p>";
-                    $platforma .="</div>";
-                    echo $platforma;
+                <?php
+                if($platforms) {
+                    foreach($platforms as $key => $pl){
+                        $platforma = "<div id='".$platforms[$key]['platf_number']."' class='platform old_platf'>";
+                        $platforma .="<img src='img/platforma.png' alt='platform_ico'>";
+                        $platforma .="<p class='lable'>№ ".$pl['platf_number']."</p>";
+                        $platforma .="</div>";
+                        echo $platforma;
+                    }
                 }
-            }
-            ?>
+                ?>
                 <div class="platform new_platf">
                     <img src="img/platforma_new.png" alt="platform_ico" href = "/platformDocs/new_platform.php">
                     <p class="lable">Новая платформа</p>
@@ -45,7 +45,7 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
             </div>
         </div>
         <div class="devider"></div>
-        <div id='action_selector' class="wrapper hide">
+        <div id='action_selector' class="card hide">
             <p id="platform_info"></p>
             <div platform="" class='sbtn change_pl'>Изменить</div>
             <h1 class="title">Записи о ремонтах</h1>
@@ -55,6 +55,32 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
 
         </div>
         <div class="devider"></div>
+        <div class="card zhide">
+            <!--h1.title{ремонт такой-то такого-то объема}+p{Перечень работ}+(.inwrapper>.list>(.rep_detail_item{item $$}*5)+.plus_btn)+p{к смазке}+(.inwrapper>.list>(.rep_detail_item{item $$}*5)+.plus_btn)-->
+            <h1 class="title">Ремонт такой-то такого-то объема</h1>
+            <h4 class="min_head">Перечень работ</h4>
+            <div class="inwrapper">
+                <div class="list">
+                    <div class="rep_detail_item">item 01</div>
+                    <div class="rep_detail_item">item 02</div>
+                    <div class="rep_detail_item">item 03</div>
+                    <div class="rep_detail_item">item 04</div>
+                    <div class="rep_detail_item">item 05</div>
+                    <div class="plus_btn"></div>
+                </div>
+            </div>
+            <h4 class="min_head">к смазке</h4>
+            <div class="inwrapper">
+                <div class="list">
+                    <div class="rep_detail_item">item 01</div>
+                    <div class="rep_detail_item">item 02</div>
+                    <div class="rep_detail_item">item 03</div>
+                    <div class="rep_detail_item">item 04</div>
+                    <div class="rep_detail_item">item 05</div>
+                    <div class="plus_btn"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
      <!-- The Modal -->
@@ -82,7 +108,7 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
             </div>
     <!-- End of The Modal -->
     <div class="hide">
-        <div class="zhide new_rep">
+        <div class="new_rep">
                 <form action="select1.php" method="post">
                 <p><select name="hero[]">
                     <option disabled>Выберите героя</option>
@@ -108,7 +134,7 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
             </datalist></p>
             <div class="tst"></div>
     </div>
-    
+
     <script type="text/javascript" src="js/main.js?<?=$sek?>"></script>
     <script type="text/javascript" src="js/modal.js?<?=$sek?>"></script>
     <?='<script type="text/javascript">window.session = '.$json.'</script>'?>

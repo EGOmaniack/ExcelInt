@@ -13,12 +13,12 @@ body{
     background: #F0EDEC;
 }
 .devider{
-    height: 30px;
+    height: 10px;
 }
-.wrapper{
+.card{
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
     border-radius: 3px;
-    margin: 20px auto;
+    margin: 20px auto 0;
     width: 90%;
     background: white;
     min-height: 200px;
@@ -62,6 +62,10 @@ body{
 .change_pl{
     
 }
+.min_head{
+    width: fit-content;
+    margin: 0 auto;
+}
 .btn{
     text-transform: uppercase;
     font-family: 'Merriweather', serif;
@@ -99,6 +103,7 @@ img{
     /*border: 2px solid;*/
 }
 #platform_info{
+    padding-top: 10px;
     width: fit-content;
     margin: 0 auto;
     font-family: 'Merriweather', serif;
@@ -151,6 +156,14 @@ img:active{
 .rep_type{
     display: inline;
 }
+.details{
+    cursor: pointer;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-image: url('../img/details_small.png');
+    background-size: 25px 25px;
+}
 .edit{
     cursor: pointer;
     display: inline-block;
@@ -161,7 +174,7 @@ img:active{
 }
 .spacer{
     display: inline-block;
-    width:20px;
+    width: 5px;
 }
 .print{
     cursor: pointer;

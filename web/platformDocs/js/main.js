@@ -10,6 +10,8 @@ function rep_items(repairs, platf_number){
         list += '       <div class="spacer"></div>';
         list += '       <p class="rep_type">'+value.repair_type+'</p>';
         list += '       <div class="spacer"></div>';
+        list += '       <div id="repair_details" title="данные по ремонту" class="details"></div>';
+        list += '       <div class="spacer"></div>';
         list += '       <div id="repair_edit" title="Редактировать" class="edit"></div>';
         list += '       <div class="spacer"></div>';
         list += '       <div title="Распечатать паспорт" class="print"></div>';
@@ -20,6 +22,7 @@ function rep_items(repairs, platf_number){
         
         return repaires;
 }
+
 
 
     $('.change_pl').click(function(){

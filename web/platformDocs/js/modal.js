@@ -66,12 +66,13 @@ $('#new_repair_btn').click(function(){
                 var modal = document.getElementById('myModal');
                 modal.style.display = "none";
                 location.href = "/platformDocs/index.php";
+
                 //console.log(data);
                 //$('body').html('');
                 //$('body').append(data);
             }
         });
-    }else if ($('#myModal').attr("type") == "change_repair"){ /**еслт тип моджального окна стоит изменить запись о ремонте */
+    }else if ($('#myModal').attr("type") == "change_repair") { /**еслт тип модального окна стоит "изменить запись о ремонте" */
 
          var rep_id = $('#myModal').attr("rep_id"); /** считываем id(id из БД) ремонта записанное в модальное онко */
 

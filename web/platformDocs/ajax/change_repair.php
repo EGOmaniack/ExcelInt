@@ -9,10 +9,10 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=platforms user=postgres pa
     or die('Could not connect: ' . pg_last_error());
 
     $sqlstr = 'update platforms.repair ';
-    $sqlstr .="set repair_start = '".$rep_date."', repair_end = ".$rep_end."', repair_type  =";
+    $sqlstr .="set repair_start = '".$rep_date."', repair_end = '".$rep_end."', repair_type  = ";
     $sqlstr .="( select id from platforms.repair_type where code = '".$rep_type."' ) ";
-    $sqlstr .='where id = '.$rep_id;
-// var_dump($sqlstr);
+    $sqlstr .='where id = '.$rep_id.';';
+ echo $sqlstr;
 // exit;
     $result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());
 
