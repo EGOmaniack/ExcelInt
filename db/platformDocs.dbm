@@ -27,7 +27,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="text" length="0"/>
 		<comment><![CDATA[Должность]]></comment>
 	</column>
-	<constraint name="position_id" type="pk-constr" table="staff.w_position">
+	<constraint name="position_pk" type="pk-constr" table="staff.w_position">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="w_pos_unq" type="uq-constr" table="staff.w_position">
@@ -271,7 +271,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="gostost">
 	<schema name="repir_stuff"/>
 	<role name="postgres"/>
-	<position x="2765" y="1247"/>
+	<position x="2798" y="1280"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -386,7 +386,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</initial-data>
 </table>
 
-<table name="works">
+<table name="repair_jobs">
 	<schema name="repir_stuff"/>
 	<role name="postgres"/>
 	<position x="2141" y="1199"/>
@@ -411,7 +411,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="work_type">
 		<type name="int4" length="0"/>
 	</column>
-	<constraint name="works" type="pk-constr" table="repir_stuff.works">
+	<constraint name="works" type="pk-constr" table="repir_stuff.repair_jobs">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -471,31 +471,31 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </constraint>
 
 <constraint name="cons_to_work_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="repir_stuff.works" table="repir_stuff.&quot;Consumables&quot;">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="repir_stuff.repair_jobs" table="repir_stuff.&quot;Consumables&quot;">
 	<columns names="id_work" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="work_fk_rtype" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="platforms.repair_type" table="repir_stuff.works">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="platforms.repair_type" table="repir_stuff.repair_jobs">
 	<columns names="repair_type_id" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="work_fk_pl_type" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="repir_stuff.platf_type" table="repir_stuff.works">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="repir_stuff.platf_type" table="repir_stuff.repair_jobs">
 	<columns names="platform_type" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="work_razdel_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="repir_stuff.work_sections" table="repir_stuff.works">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="repir_stuff.work_sections" table="repir_stuff.repair_jobs">
 	<columns names="razdel" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
 <constraint name="work_to_type_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="repir_stuff.work_type" table="repir_stuff.works">
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="repir_stuff.work_type" table="repir_stuff.repair_jobs">
 	<columns names="work_type" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
@@ -541,28 +541,28 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_works_repair_type" type="relfk"
-	 src-table="repir_stuff.works"
+	 src-table="repir_stuff.repair_jobs"
 	 dst-table="platforms.repair_type"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_works_platf_type" type="relfk"
-	 src-table="repir_stuff.works"
+	 src-table="repir_stuff.repair_jobs"
 	 dst-table="repir_stuff.platf_type"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_works_work_sections" type="relfk"
-	 src-table="repir_stuff.works"
+	 src-table="repir_stuff.repair_jobs"
 	 dst-table="repir_stuff.work_sections"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="rel_works_work_type" type="relfk"
-	 src-table="repir_stuff.works"
+	 src-table="repir_stuff.repair_jobs"
 	 dst-table="repir_stuff.work_type"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="&quot;rel_Consumables_works&quot;" type="relfk"
 	 src-table="repir_stuff.&quot;Consumables&quot;"
-	 dst-table="repir_stuff.works"
+	 dst-table="repir_stuff.repair_jobs"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>
