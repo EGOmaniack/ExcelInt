@@ -87,7 +87,7 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
             <div type="new_repair" id="myModal" class="modal">
 
                 <!-- Modal content -->
-                <div class="modal-content">
+                <div class="modal-content repair_model">
                     <span id="modal_close" class="close">&times;</span>
                     <div class="modal_wrapper">
                         <h3 class="title">Заполните форму</h3>
@@ -104,7 +104,7 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
                         <button class="sbtn create" id="new_repair_btn" type="button">Создать</button>
                     </div>
                 </div>
-                <div class="modal-content hide">2 контент</div>
+                <div class="modal-content repair_job_modal hide"></div>
 
             </div>
     <!-- End of The Modal -->

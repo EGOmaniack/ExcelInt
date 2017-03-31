@@ -3,12 +3,13 @@ function rep_items(repairs, platf_number){
     var repaires = [];
     var list;
     $.each(repairs[platf_number], function(index, value){
-        list = '<div id="' + value.id + '" platform="' + value.platf_number + '" class="item">';
+        list  = '<div id="' + value.id + '" platform="' + value.platf_number + '" class="item">';
         list += '   <span id="modal_close" class="close">&times;</span>'
         list += '   <div class="inwrapper">';
-        list += '       <h4 class="rep_name">Дата: '+value.repair_start+'</h4>';
+        list += '   <div class="status ' + (value.repair_end == null ? "blue" : "green") + '"></div>';
+        list += '       <h4 class="rep_name">Дата: ' + value.repair_start+'</h4>';
         list += '       <div class="spacer"></div>';
-        list += '       <p class="rep_type">'+value.repair_type+'</p>';
+        list += '       <p class="rep_type">' + value.repair_type+'</p>';
         list += '       <div class="spacer"></div>';
         list += '       <div id="repair_details" title="данные по ремонту" class="details"></div>';
         list += '       <div class="spacer"></div>';
@@ -17,9 +18,9 @@ function rep_items(repairs, platf_number){
         list += '       <div title="Распечатать паспорт" class="print"></div>';
         list += '   </div>';
         list += '</div>';
+
         repaires.push(list);
     });
-        
         return repaires;
 }
 

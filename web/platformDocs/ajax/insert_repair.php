@@ -22,5 +22,6 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=platformDocs user=postgres
 
     pg_free_result($result);
     pg_close($dbconn);
-    //echo 'done';
+//echo 'done';
+
 ?>

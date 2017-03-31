@@ -146,15 +146,18 @@ img:active{
     background: #DFE1F6;
 }
 .inwrapper{
+    padding-top: 5px;
     width: fit-content;
     margin: 0 auto;
     /*padding: 10px 0 0;*/
 }
 .rep_name{
     display: inline;
+    padding-bottom: 10px;
 }
 .rep_type{
     display: inline;
+    padding-bottom: 10px;
 }
 .details{
     cursor: pointer;
@@ -214,4 +217,19 @@ img:active{
     text-align: center;
     -webkit-transition-duration: 0.1s;
     transition-duration: 0.1s;
+}
+.status{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-size: 15px 15px;
+}
+.green{
+    background-image: url('../img/circ_icons/green_min_15.png');
+}
+.blue{
+    background-image: url('../img/circ_icons/blue_min_15.png');
+}
+.red{
+    background-image: url('../img/circ_icons/red_min_15.png');
 }
