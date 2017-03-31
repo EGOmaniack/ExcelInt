@@ -73,8 +73,8 @@ and p.factory_name=comp2.id
 order by p.id
 ;
 
-insert into platforms.platforma ( name, number, factory_number, release_date )
-values ( 'ППК-3В' );
+--insert into platforms.platforma ( name, number, factory_number, release_date )
+--values ( 'ППК-3В' );
 
 insert into platforms.platforma (number) values (2);
 select * from platforms.platforma;

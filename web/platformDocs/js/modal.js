@@ -18,7 +18,9 @@ span.onclick = function() {
 
 // When the user clicks on <span> (x), close the modal
 $('#action_selector').on('click','#repair_edit',function(e){
-
+            /**
+             * меняем запись о ремонте
+             */
     var platform_id = $(this).parent().parent().attr('platform');
     var rep_id = $(this).parent().parent().attr('id');
 
@@ -73,24 +75,29 @@ $('#new_repair_btn').click(function(){
             }
         });
     }else if ($('#myModal').attr("type") == "change_repair") { /**еслт тип модального окна стоит "изменить запись о ремонте" */
+        //if(confirm("Вы уверены?\nВсе данные о работах по этому ремонту будут утеряны!")){
+            /**Если сменить вид ремонта, то список работ надо убивать
+             * так как у каждого вида ремонта свой список работ
+             * 2 вариант искать аналоги в списке работ и переносить их
+             */
+            var rep_id = $('#myModal').attr("rep_id"); /** считываем id(id из БД) ремонта записанное в модальное онко */
 
-         var rep_id = $('#myModal').attr("rep_id"); /** считываем id(id из БД) ремонта записанное в модальное онко */
-
-        $.post("./ajax/change_repair.php", {
-            rep_date: n_rep_date,
-            rep_type: n_rep_type,
-            rep_end: rep_end,
-            rep_id: rep_id
-            },function (data) {
-            if(data != undefined){
-                var modal = document.getElementById('myModal');
-                modal.style.display = "none";
-                location.href = "/platformDocs/index.php";
-                //console.log(data);
-                //$('body').html('');
-                //$('body').append(data);
-            }
-        });
+            $.post("./ajax/change_repair.php", {
+                rep_date: n_rep_date,
+                rep_type: n_rep_type,
+                rep_end: rep_end,
+                rep_id: rep_id
+                },function (data) {
+                if(data != undefined){
+                    var modal = document.getElementById('myModal');
+                    modal.style.display = "none";
+                    location.href = "/platformDocs/index.php";
+                    //console.log(data);
+                    //$('body').html('');
+                    //$('body').append(data);
+                }
+            });
+        //}
     }
     
 });

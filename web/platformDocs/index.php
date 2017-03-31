@@ -104,6 +104,7 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
                         <button class="sbtn create" id="new_repair_btn" type="button">Создать</button>
                     </div>
                 </div>
+                <div class="modal-content hide">2 контент</div>
 
             </div>
     <!-- End of The Modal -->
