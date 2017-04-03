@@ -19,7 +19,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="w_position">
 	<schema name="staff"/>
 	<role name="postgres"/>
-	<position x="2571" y="312"/>
+	<position x="2653" y="329"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -38,7 +38,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="employees">
 	<schema name="staff"/>
 	<role name="postgres"/>
-	<position x="2176" y="73"/>
+	<position x="2258" y="90"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -255,7 +255,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="staff"/>
 	<role name="postgres"/>
 	<comment><![CDATA[Цех]]></comment>
-	<position x="2619" y="72"/>
+	<position x="2701" y="89"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -274,7 +274,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="gostost">
 	<schema name="repair_stuff"/>
 	<role name="postgres"/>
-	<position x="2369" y="800"/>
+	<position x="2386" y="801"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -293,7 +293,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="repair_stuff"/>
 	<role name="postgres"/>
 	<comment><![CDATA[Расходники (детали, электроды и тд)]]></comment>
-	<position x="2087" y="635"/>
+	<position x="2104" y="636"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -320,7 +320,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="repair_stuff"/>
 	<role name="postgres"/>
 	<comment><![CDATA[Тип документа прилогаемого к пасспорту]]></comment>
-	<position x="1778" y="1009"/>
+	<position x="1818" y="1171"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -341,14 +341,15 @@ CAUTION: Do not modify this file unless you know what you are doing.
 •ar•Акт замены⸣
 •tr•Акт испытания⸣
 •ps•Пасспорт сборки⸣
-•other•ничего]]>
+•other•ничего⸣
+•sm•Смазка]]>
 	</initial-data>
 </table>
 
 <table name="work_sections">
 	<schema name="repair_stuff"/>
 	<role name="postgres"/>
-	<position x="1540" y="647"/>
+	<position x="1557" y="648"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -376,7 +377,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="repair_stuff"/>
 	<role name="postgres"/>
 	<comment><![CDATA[ППК-2В и тд]]></comment>
-	<position x="1539" y="954"/>
+	<position x="1556" y="955"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -402,7 +403,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="repair_jobs">
 	<schema name="repair_stuff"/>
 	<role name="postgres"/>
-	<position x="1781" y="805"/>
+	<position x="1801" y="809"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -415,9 +416,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="name">
 		<type name="text" length="0"/>
 	</column>
-	<column name="work_doc_type">
-		<type name="int4" length="0"/>
-	</column>
 	<column name="code">
 		<type name="text" length="0"/>
 		<comment><![CDATA[шифр для быстрого ввода]]></comment>
@@ -427,6 +425,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</column>
 	<constraint name="works" type="pk-constr" table="repair_stuff.repair_jobs">
 		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="repair_jobs_uq" type="uq-constr" table="repair_stuff.repair_jobs">
+		<columns names="razdel,name" ref-type="src-columns"/>
 	</constraint>
 </table>
 
@@ -468,6 +469,24 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="date" length="0"/>
 	</column>
 	<constraint name="rep_job_st_pk" type="pk-constr" table="platforms.&quot;repairs-jobs-staff&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="rep_jobs_docs">
+	<schema name="repair_stuff"/>
+	<role name="postgres"/>
+	<position x="1817" y="996"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="job_id">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="doc_type">
+		<type name="int4" length="0"/>
+	</column>
+	<constraint name="rjd_pk" type="pk-constr" table="repair_stuff.rep_jobs_docs">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -550,12 +569,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
-<constraint name="work_to_type_fk" type="fk-constr" comparison-type="MATCH FULL"
-	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="repair_stuff.doc_type" table="repair_stuff.repair_jobs">
-	<columns names="work_doc_type" ref-type="src-columns"/>
-	<columns names="id" ref-type="dst-columns"/>
-</constraint>
-
 <constraint name="rep_job_repair_link" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="platforms.repair" table="platforms.&quot;repairs-jobs&quot;">
 	<columns names="rep_id" ref-type="src-columns"/>
@@ -577,6 +590,18 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <constraint name="rep_job_st_emp_link" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="staff.employees" table="platforms.&quot;repairs-jobs-staff&quot;">
 	<columns names="emp_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="rjd_job_link" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="repair_stuff.repair_jobs" table="repair_stuff.rep_jobs_docs">
+	<columns names="job_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="rjd_doc_type_link" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="repair_stuff.doc_type" table="repair_stuff.rep_jobs_docs">
+	<columns names="doc_type" ref-type="src-columns"/>
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
@@ -625,11 +650,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="repair_stuff.work_sections"
 	 src-required="false" dst-required="false"/>
 
-<relationship name="rel_works_work_type" type="relfk"
-	 src-table="repair_stuff.repair_jobs"
-	 dst-table="repair_stuff.doc_type"
-	 src-required="false" dst-required="false"/>
-
 <relationship name="&quot;rel_Consumables_works&quot;" type="relfk"
 	 src-table="repair_stuff.&quot;Consumables&quot;"
 	 dst-table="repair_stuff.repair_jobs"
@@ -671,6 +691,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="&quot;rel_repairs-jobs-staff_employees&quot;" type="relfk"
 	 src-table="platforms.&quot;repairs-jobs-staff&quot;"
 	 dst-table="staff.employees"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_rep_jobs_docs_repair_jobs" type="relfk"
+	 src-table="repair_stuff.rep_jobs_docs"
+	 dst-table="repair_stuff.repair_jobs"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_rep_jobs_docs_doc_type" type="relfk"
+	 src-table="repair_stuff.rep_jobs_docs"
+	 dst-table="repair_stuff.doc_type"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>

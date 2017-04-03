@@ -3,6 +3,21 @@ select * from repair_stuff.work_sections;
 select * from repair_stuff.repair_jobs;
 select * from repair_stuff."Consumables";
 select * from repair_stuff.gostost;
+select * from repair_stuff.doc_type;
+select * from repair_stuff.rep_jobs_docs;
+
+delete from repair_stuff.repair_jobs;
+
+insert into repair_stuff.rep_jobs_docs ( job_id, doc_type )
+select rj.id, dt.id
+from repair_stuff.work_sections ws,
+	repair_stuff.repair_jobs rj,
+	repair_stuff.doc_type dt
+where rj."name" = 'Установка домкратов'
+and rj.razdel = 2
+and dt.code = 'ar'
+;
+
 
 delete from repair_stuff."Consumables" where id > 0 ;
 
