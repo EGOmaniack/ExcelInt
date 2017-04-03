@@ -89,7 +89,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="platforma">
 	<schema name="platforms"/>
 	<role name="postgres"/>
-	<position x="900" y="350"/>
+	<position x="901" y="349"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -135,7 +135,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="repair">
 	<schema name="platforms"/>
 	<role name="postgres"/>
-	<position x="1335.29" y="219"/>
+	<position x="1336.29" y="218"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -201,7 +201,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="repair_type">
 	<schema name="platforms"/>
 	<role name="postgres"/>
-	<position x="1373" y="420"/>
+	<position x="1374" y="421"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -349,7 +349,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="work_sections">
 	<schema name="repair_stuff"/>
 	<role name="postgres"/>
-	<position x="1557" y="648"/>
+	<position x="1558.67" y="645"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -365,12 +365,20 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="platform_type_id" default-value="1">
 		<type name="int4" length="0"/>
 	</column>
+	<column name="parens_sec">
+		<type name="int4" length="0"/>
+	</column>
 	<constraint name="work_sections_pk" type="pk-constr" table="repair_stuff.work_sections">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 	<constraint name="razdel_uq" type="uq-constr" table="repair_stuff.work_sections">
 		<columns names="name,r_type_id,platform_type_id" ref-type="src-columns"/>
 	</constraint>
+	<initial-data>
+<![CDATA[id•name•weight•r_type_id•platform_type_id•parens_sec⸣
+•main_t2•0•2•1•⸣
+•main_t3•0•1•1•]]>
+	</initial-data>
 </table>
 
 <table name="platf_type">
@@ -403,7 +411,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="repair_jobs">
 	<schema name="repair_stuff"/>
 	<role name="postgres"/>
-	<position x="1801" y="809"/>
+	<position x="1818" y="789"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -434,7 +442,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="repairs-jobs">
 	<schema name="platforms"/>
 	<role name="postgres"/>
-	<position x="1745" y="362"/>
+	<position x="1746" y="361"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -455,7 +463,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="repairs-jobs-staff">
 	<schema name="platforms"/>
 	<role name="postgres"/>
-	<position x="1973" y="300"/>
+	<position x="1974" y="299"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -563,6 +571,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<columns names="id" ref-type="dst-columns"/>
 </constraint>
 
+<constraint name="parent_sec_id" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="repair_stuff.work_sections" table="repair_stuff.work_sections">
+	<columns names="parens_sec" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
 <constraint name="work_razdel_fk" type="fk-constr" comparison-type="MATCH FULL"
 	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="repair_stuff.work_sections" table="repair_stuff.repair_jobs">
 	<columns names="razdel" ref-type="src-columns"/>
@@ -648,7 +662,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <relationship name="rel_works_work_sections" type="relfk"
 	 src-table="repair_stuff.repair_jobs"
 	 dst-table="repair_stuff.work_sections"
-	 src-required="false" dst-required="false"/>
+	 src-required="false" dst-required="false">
+	<label ref-type="dst-label">
+		<position x="11.74" y="-1.53333"/>
+	</label>
+</relationship>
 
 <relationship name="&quot;rel_Consumables_works&quot;" type="relfk"
 	 src-table="repair_stuff.&quot;Consumables&quot;"
@@ -702,5 +720,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-table="repair_stuff.rep_jobs_docs"
 	 dst-table="repair_stuff.doc_type"
 	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_work_sections_work_sections" type="relfk"
+	 src-table="repair_stuff.work_sections"
+	 dst-table="repair_stuff.work_sections"
+	 src-required="false" dst-required="false">
+	<line>
+		<position x="1776.67" y="687.96"/>
+	<position x="1776.67" y="636"/>
+	<position x="1698" y="636"/>
+	</line>
+</relationship>
 
 </dbmodel>

@@ -2,11 +2,10 @@ select * from repair_stuff.gostost;
 select * from repair_stuff.work_sections;
 select * from repair_stuff.repair_jobs;
 select * from repair_stuff."Consumables";
-select * from repair_stuff.gostost;
 select * from repair_stuff.doc_type;
 select * from repair_stuff.rep_jobs_docs;
 
-delete from repair_stuff.repair_jobs;
+delete from repair_stuff.work_sections where id > 2;
 
 insert into repair_stuff.rep_jobs_docs ( job_id, doc_type )
 select rj.id, dt.id
