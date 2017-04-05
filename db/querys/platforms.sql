@@ -14,6 +14,12 @@ where p.surname = 'Кудряшов'
 and substring(p.name from 1 for 1) = substring('И.В.' from 1 for 1)
 ;
 
+select * from repair_stuff.repair_jobs;
+select * from platforms.repair;
+select * from platforms."repairs-jobs";
+
+insert into platforms."repairs-jobs" ( rep_id, job_id )
+values ( 1, 33 );
 
 
 delete from platforms.repair

@@ -145,6 +145,18 @@ img:active{
     margin: 5px auto;
     background: #DFE1F6;
 }
+.item2{
+    text-align: center;
+    border-radius: 15px;
+    padding: 5px;
+    max-width: 80%;
+    /*height: 35px;*/
+    margin: 5px auto;
+    background: #DFE1F6;
+}
+.item2:hover{
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+}
 .inwrapper{
     padding-top: 5px;
     width: fit-content;
@@ -193,16 +205,16 @@ img:active{
 #action_selector{
     padding-bottom: 15px;
 }
-#btn_modal:hover{
+.btn_mdl:hover{
     cursor: pointer;
     box-shadow: 0 0 15px #655E5C;
 
 }
-#btn_modal:active{
+.btn_mdl:active{
     box-shadow: 1px 1px 5px #655E5C;
 }
 
-#btn_modal{
+.btn_mdl{
     font-weight: bold;
     font-family: 'Merriweather', serif;
     text-decoration:none;
