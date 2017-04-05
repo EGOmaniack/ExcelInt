@@ -13,12 +13,12 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=platformDocs user=postgres
 
 if($release_date != ""){
     $sqlstr = 'insert into platforms.platforma ( name, number, factory_number, release_date ) ';
-    $sqlstr .="values ( '".$name."', '".$number."', '".$factory_number."', '".$release_date."' );";
-    $sqlstr .='';
+    $sqlstr .="values ( '".$name."', '".$number."', '".$factory_number."', '".$release_date."' ) ";
+    $sqlstr .=' ;';
 }else {
     $sqlstr = 'insert into platforms.platforma ( name, number, factory_number ) ';
-    $sqlstr .="values ( '".$name."', '".$number."', '".$factory_number."' );";
-    $sqlstr .='';
+    $sqlstr .="values ( '".$name."', '".$number."', '".$factory_number."' ) ";
+    $sqlstr .=' ;';
 }
 // var_dump($sqlstr);
 // exit;

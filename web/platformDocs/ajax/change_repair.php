@@ -9,14 +9,18 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=platformDocs user=postgres
     or die('Could not connect: ' . pg_last_error());
 
     $sqlstr = 'update platforms.repair ';
-    $sqlstr .="set repair_start = '".$rep_date."', repair_end = '".$rep_end."', repair_type  = ";
-    $sqlstr .="( select id from platforms.repair_type where code = '".$rep_type."' ) ";
+    if( $rep_end != "" ) {
+        $sqlstr .="set repair_start = '".$rep_date."', repair_end = '".$rep_end."', repair_type  = getRepType('".$rep_type."') ";
+    }else {
+        $sqlstr .="set repair_start = '".$rep_date."', repair_type  = getRepType('".$rep_type."') ";
+    }
+    // $sqlstr .="( select id from platforms.repair_type where code = '".$rep_type."' ) ";
     $sqlstr .='where id = '.$rep_id.';';
- echo $sqlstr;
+ //echo $sqlstr;
 // exit;
     $result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());
-
+echo $rep_end;
     pg_free_result($result);
     pg_close($dbconn);
-    //echo 'done';
+    echo 'done';
 ?>

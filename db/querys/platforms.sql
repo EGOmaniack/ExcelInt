@@ -14,6 +14,8 @@ where p.surname = 'Кудряшов'
 and substring(p.name from 1 for 1) = substring('И.В.' from 1 for 1)
 ;
 
+
+
 delete from platforms.repair
 where id=1
 ;
@@ -25,9 +27,8 @@ select "number" from firms.companies;
 update platforms.repair set repair_start = '', repair_end = '2005-06-01', repair_type  = ( select id from platforms.repair_type where code = 't1' ) where id = 15;
 
 update platforms.repair
-set repair_start = '01.06.2000', repair_end = '01.06.2005' , repair_type  = 
-( select id from platforms.repair_type where code = 't1' )
-where id=15;
+set repair_start = '01.06.2000', repair_end = '01.06.2005' , repair_type  = getRepType('t2')
+where id=1;
 
 insert into staff.employees ( personal_number, surname, name, middle_name ,position, bday)
 select  1, 'Примаков', 'Александр', '', p.id  , '18.08.1987'

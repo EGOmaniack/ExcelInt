@@ -2,6 +2,7 @@
  include_once './phpScripts/vers.php'; //Парсит лог версий
  include_once './phpScripts/getPlatforms.php'; //Вытаскивает из БД информацию по платформам
  include_once './phpScripts/getPlatf_repairs.php'; //Вытаскивает из БД информацию по всем ремонтам
+ include_once './phpScripts/getJobs.php';
 
 $sek = strtotime("now");
 
