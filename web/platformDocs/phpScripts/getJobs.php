@@ -36,6 +36,7 @@ for($i = 0; $i < 10; $i++){
 }
 $jobs = [];
 $sqlstr  ="select * from repair_stuff.repair_jobs rj;";
+pg_free_result($result);
 $result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());
 
 while($line = pg_fetch_assoc($result)){
@@ -51,12 +52,12 @@ while($line = pg_fetch_assoc($result)){
 
 
 
-var_dump($jobs);
-exit;
-
-$_SESSION['jobs'] = $platforms;
+// var_dump($jobs);
+// exit;
+$_SESSION['sections'] = $all_works;
+$_SESSION['jobs'] = $jobs;
 // var_dump($platforms);
 pg_free_result($result);
 pg_close($dbconn);
-echo 'done';
+// echo 'done';
 ?>

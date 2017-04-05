@@ -2,7 +2,8 @@
  include_once './phpScripts/vers.php'; //Парсит лог версий
  include_once './phpScripts/getPlatforms.php'; //Вытаскивает из БД информацию по платформам
  include_once './phpScripts/getPlatf_repairs.php'; //Вытаскивает из БД информацию по всем ремонтам
- include_once './phpScripts/getJobs.php';
+ include_once './phpScripts/getJobs.php'; //Вытаскиваем из бд пересень работ и разделов
+ include_once './phpScripts/getRepsJobs.php';
 
 $sek = strtotime("now");
 
@@ -52,23 +53,18 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
             <h1 class="title">Записи о ремонтах</h1>
             <div id="repairs"></div>
             
-            <div id="btn_modal">Добавить запись</div> <!-- The Modal -->
+            <div id="btn_modal" class="btn_mdl">Добавить запись</div> <!-- The Modal -->
 
         </div>
         <div class="devider"></div>
-        <div class="card zhide">
+        <div class="card hide" id="jobs">
             <!--h1.title{ремонт такой-то такого-то объема}+p{Перечень работ}+(.inwrapper>.list>(.rep_detail_item{item $$}*5)+.plus_btn)+p{к смазке}+(.inwrapper>.list>(.rep_detail_item{item $$}*5)+.plus_btn)-->
-            <h1 class="title">Ремонт такой-то такого-то объема</h1>
+            <h1 class="title" id="repJobsTitle">Ремонт такой-то такого-то объема</h1>
+            <div class="btn_mdl">Добавить работу</div>
             <h4 class="min_head">Перечень работ</h4>
             <div class="inwrapper">
-                <div class="list">
-                    <div class="rep_detail_item">item 01</div>
-                    <div class="rep_detail_item">item 02</div>
-                    <div class="rep_detail_item">item 03</div>
-                    <div class="rep_detail_item">item 04</div>
-                    <div class="rep_detail_item">item 05</div>
-                    <div class="plus_btn"></div>
-                </div>
+                <div id="job_list_main" class="list"></div>
+                <div class="plus_btn"></div>
             </div>
             <h4 class="min_head">к смазке</h4>
             <div class="inwrapper">
@@ -82,6 +78,8 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
                 </div>
             </div>
         </div>
+        <div class="devider"></div>
+        <div class="devider"></div>
     </div>
 
      <!-- The Modal -->
