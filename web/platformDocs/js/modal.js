@@ -1,10 +1,18 @@
+function createJobsList(){
+    return '<div class="item"></div>';
+};
+
 // Get the modal
 var modal = document.getElementById('myModal');
+var modal2 = document.getElementById('my_modal_2');
 
 // Get the button that opens the modal
 var btn = document.getElementById("btn_modal");
+var btn2 = document.getElementById("btn_mdl2"); /**Кнопка добавить запись о работе */
+
 // Get the <span> element that closes the modal
 var span = document.getElementById("modal_close");
+var span2 = document.getElementById("modal2_close");
 
 // When the user clicks on the button, open the modal 
 btn.onclick = function() {
@@ -12,6 +20,18 @@ btn.onclick = function() {
     $('#new_repair_btn').text('создать');
     $('#myModal').attr("type","new_repair");
 }
+// Нажата кнопка вызова добавить запись о ремонте модального окна
+btn2.onclick = function() {
+    modal2.style.display = "block";
+    $('#new_repair_btn').text('создать');
+    $('#myModal').attr("type","new_repair");
+    $('#modal2list').html(createJobsList());
+
+    /**возвращать надо что-то такого формата <div class="item"></div> */
+}
+span2.onclick= function() {
+    modal2.style.display = "none";
+};
 span.onclick = function() {
     modal.style.display = "none";
 };
@@ -46,6 +66,8 @@ $('#action_selector').on('click','#repair_edit',function(e){
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
+    }else if(event.target == modal2){
+        modal2.style.display = "none";
     }
 }
 
@@ -68,10 +90,9 @@ $('#new_repair_btn').click(function(){
                 var modal = document.getElementById('myModal');
                 modal.style.display = "none";
                 location.href = "/platformDocs/index.php";
-
                 //console.log(data);
-                //$('body').html('');
-                //$('body').append(data);
+                // $('body').html(data);
+                
             }
         });
     }else if ($('#myModal').attr("type") == "change_repair") { /**еслт тип модального окна стоит "изменить запись о ремонте" */

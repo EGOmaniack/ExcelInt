@@ -164,6 +164,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<constraint name="repair_pk" type="pk-constr" table="platforms.repair">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
+	<constraint name="repair_unq" type="uq-constr" table="platforms.repair">
+		<columns names="repair_start,platform_id,repair_type" ref-type="src-columns"/>
+	</constraint>
 </table>
 
 <schema name="firms" rect-visible="true" fill-color="#942665">
@@ -275,7 +278,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="repair_stuff"/>
 	<role name="postgres"/>
 	<comment><![CDATA[Расходники (детали, электроды и тд)]]></comment>
-	<position x="2203" y="833"/>
+	<position x="2203" y="719"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -344,7 +347,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="work_sections">
 	<schema name="repair_stuff"/>
 	<role name="postgres"/>
-	<position x="1551.67" y="685"/>
+	<position x="1550.67" y="685"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -504,7 +507,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="smazka">
 	<schema name="repair_stuff"/>
 	<role name="postgres"/>
-	<position x="2174" y="1030"/>
+	<position x="2186" y="984"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -756,9 +759,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="repair_stuff.work_sections"
 	 src-required="false" dst-required="false">
 	<line>
-		<position x="1769.67" y="727.96"/>
-	<position x="1769.67" y="676"/>
-	<position x="1691" y="676"/>
+		<position x="1768.67" y="727.96"/>
+	<position x="1768.67" y="676"/>
+	<position x="1690" y="676"/>
 	</line>
 </relationship>
 
