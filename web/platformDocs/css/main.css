@@ -138,6 +138,7 @@ img:active{
     
 }
 .job{
+    text-align: center;
     border-radius: 15px;
     padding: 5px;
     width: 80%;
@@ -145,7 +146,15 @@ img:active{
     margin: 5px auto;
     background: #DEF9A6;
 }
+.jobhave::before{
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height: 22px;
+    background: url('../img/check_small.png') no-repeat ;
+}
 .item{
+    text-align: center;
     border-radius: 15px;
     padding: 5px;
     width: 80%;

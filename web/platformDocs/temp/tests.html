@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <div class="hide">
+        <div class="new_rep">
+                <form action="select1.php" method="post">
+                <p><select name="hero[]">
+                    <option disabled>Выберите героя</option>
+                    <option value="Чебурашка">Чебурашка</option>
+                    <option value="Крокодил Гена">Крокодил Гена</option>
+                    <option value="Шапокляк">Шапокляк</option>
+                    <option value="Крыса Лариса">Крыса Лариса</option>
+                </select></p>
+                <p><input type="submit" value="Отправить"></p>
+                </form>
+            </div>
+
+                <?php
+                $list = "";
+                foreach ($firms as $value) {
+                    $list .= "<option value=\"".$value."\"></option>";
+                }
+                ?>
+            <p>Выберите любимого персонажа:</p>
+            <p><input id="pmss" list="character">
+            <datalist id="character">
+                <?=$list?>
+            </datalist></p>
+            <div class="tst"></div>
+</body>
+</html>

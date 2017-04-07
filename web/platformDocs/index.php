@@ -102,47 +102,22 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
             </div>
     <!-- End of The Modal -->
     <!--modal2-->
-    <div id="my_modal_2" class="modal">
-        <div id="m2content">
-            <span id="modal2_close" class="close">&times;</span>
-            <div id="modal2_wrap">
-                <h2 class="title">Выберите_строку</h2>
-                <div id="modal2list" class="list">
+        <div id="my_modal_2" class="modal">
+            <div id="m2content">
+                <span id="modal2_close" class="close">&times;</span>
+                <div id="modal2_wrap">
+                    <h2 class="title">Выберите_строку</h2>
+                    <div id="modal2list" class="list">
+                    </div>
                 </div>
+                <div class="btn" id="addjob">Добавить</div>
             </div>
-            <div class="btn" id="addjob">Добавить</div>
         </div>
-    </div>
     <!--End of modal2-->
-    <div class="hide">
-        <div class="new_rep">
-                <form action="select1.php" method="post">
-                <p><select name="hero[]">
-                    <option disabled>Выберите героя</option>
-                    <option value="Чебурашка">Чебурашка</option>
-                    <option value="Крокодил Гена">Крокодил Гена</option>
-                    <option value="Шапокляк">Шапокляк</option>
-                    <option value="Крыса Лариса">Крыса Лариса</option>
-                </select></p>
-                <p><input type="submit" value="Отправить"></p>
-                </form>
-            </div>
-
-                <?php
-                $list = "";
-                foreach ($firms as $value) {
-                    $list .= "<option value=\"".$value."\"></option>";
-                }
-                ?>
-            <p>Выберите любимого персонажа:</p>
-            <p><input id="pmss" list="character">
-            <datalist id="character">
-                <?=$list?>
-            </datalist></p>
-            <div class="tst"></div>
     </div>
     <script type="text/javascript" src="js/main.js?<?=$sek?>"></script>
     <script type="text/javascript" src="js/modal.js?<?=$sek?>"></script>
+    <script type="text/javascript" src="js/store.js?<?=$sek?>"></script>
     <?='<script type="text/javascript">window.session = '.$json.'</script>'?>
 </body>
 </html>

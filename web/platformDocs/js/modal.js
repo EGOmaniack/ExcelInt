@@ -29,7 +29,7 @@ function getJobsList(root, lvl){
                 ' level=' + ( level + 1 ) +
                 ' item_id=' + value.id +
                 ' parent_id=' + value.razdel +
-                ' class="job" opened="false">' +
+                ' class="job jobhave" opened="false">' +
                 value.name +
                 '</div>\n'; 
         }
@@ -50,13 +50,13 @@ function getSecJobName(id){
     return result;
 }
 
-$('#modal2list').on('click','.item',function(){
+$('#modal2list').on('click','.item',function(){/**Клик по строке с разделом работ */
     var id = $(this).attr('item_id');
-    if($(this).attr('opened') == 'false'){
+    if($(this).attr('opened') == 'false'){/**раскрываем раздел */
         $(this).attr('opened', "true");
         //$(this).html(getSecJobName($(this).attr('item_id')));
         $(this).after(getJobsList($(this).attr('item_id'),$(this).attr('level') ));
-    } else {
+    } else { /**закрываем раздел */
         $(this).attr('opened', "false");
         $('.item').each(function(index, value){
 
@@ -78,6 +78,10 @@ $('#modal2list').on('click','.item',function(){
         });
     }
 });
+
+
+
+
 
 // Get the modal
 var modal = document.getElementById('myModal');
