@@ -54,13 +54,12 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
             <div id="repairs"></div>
             
             <div id="btn_modal" class="btn_mdl">Добавить запись</div> <!-- The Modal -->
-
         </div>
         <div class="devider"></div>
         <div class="card hide" id="jobs">
             <!--h1.title{ремонт такой-то такого-то объема}+p{Перечень работ}+(.inwrapper>.list>(.rep_detail_item{item $$}*5)+.plus_btn)+p{к смазке}+(.inwrapper>.list>(.rep_detail_item{item $$}*5)+.plus_btn)-->
             <h1 class="title" id="repJobsTitle">Ремонт такой-то такого-то объема</h1>
-            <div class="btn_mdl">Добавить работу</div>
+            <div id="btn_mdl2" class="btn_mdl">Добавить работу</div>
             <h4 class="min_head">Перечень работ</h4>
             <div class="inwrapper">
                 <div id="job_list_main" class="list"></div>
@@ -68,12 +67,8 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
             </div>
             <h4 class="min_head">к смазке</h4>
             <div class="inwrapper">
-                <div class="list">
+                <div id="job_list_smazka" class="list">
                     <div class="rep_detail_item">item 01</div>
-                    <div class="rep_detail_item">item 02</div>
-                    <div class="rep_detail_item">item 03</div>
-                    <div class="rep_detail_item">item 04</div>
-                    <div class="rep_detail_item">item 05</div>
                     <div class="plus_btn"></div>
                 </div>
             </div>
@@ -81,7 +76,6 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
         <div class="devider"></div>
         <div class="devider"></div>
     </div>
-
      <!-- The Modal -->
             <div type="new_repair" id="myModal" class="modal">
 
@@ -107,6 +101,19 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
 
             </div>
     <!-- End of The Modal -->
+    <!--modal2-->
+    <div id="my_modal_2" class="modal">
+        <div id="m2content">
+            <span id="modal2_close" class="close">&times;</span>
+            <div id="modal2_wrap">
+                <h2 class="title">Выберите_строку</h2>
+                <div id="modal2list" class="list">
+                </div>
+            </div>
+            <div class="btn" id="addjob">Добавить</div>
+        </div>
+    </div>
+    <!--End of modal2-->
     <div class="hide">
         <div class="new_rep">
                 <form action="select1.php" method="post">
@@ -134,7 +141,6 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
             </datalist></p>
             <div class="tst"></div>
     </div>
-
     <script type="text/javascript" src="js/main.js?<?=$sek?>"></script>
     <script type="text/javascript" src="js/modal.js?<?=$sek?>"></script>
     <?='<script type="text/javascript">window.session = '.$json.'</script>'?>

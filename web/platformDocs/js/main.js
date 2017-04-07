@@ -4,7 +4,7 @@ function rep_items(repairs, platf_number){
     var list;
     $.each(repairs[platf_number], function(index, value){
         list  = '<div id="' + value.id /* - id ремонта*/ + '" platform="' + value.platf_number + '" class="item">';
-        list += '   <span id="modal_close" class="close">&times;</span>'
+        list += '   <span class="close">&times;</span>'
         list += '   <div class="inwrapper">';
         list += '   <div class="status ' + (value.repair_end == null ? "blue" : "green") + '"></div>';
         list += '       <h4 class="rep_name">Дата: ' + value.repair_start+'</h4>';
@@ -23,7 +23,15 @@ function rep_items(repairs, platf_number){
     });
         return repaires;
 }
-
+function jobs_items(jobs){
+    var job_item ="";
+    $.each(jobs, function(index, value){
+        job_item += "<div class=\"item2\"><span class=\"job_del\">&times;</span><p style=\"marging: 0; adding: 0; display: inline;\">"
+            + value + "</p></div>";
+    });
+    
+    return job_item;
+}
 
 $('.change_pl').click(function(){
     location.href = "/platformDocs/change_platform.php/?pl=" + $(this).attr('platform')
@@ -66,6 +74,7 @@ $('#action_selector').on('click','#repair_details',function(e){
     var platform_num = $(this).parent().parent().attr('platform');
     var repText, repDateStart, repDateEnd;
     var jobs = [];
+    var jobs_lubs = [];
     var jobs_ids = [];
     var job_list="";
     $.each(window.session.platf_repairs[platform_num], function(index, value){
@@ -86,20 +95,24 @@ $('#action_selector').on('click','#repair_details',function(e){
     });
     $.each(jobs_ids, function (ind, job){
         $.each(window.session.jobs, function(index, value){
-            if(value.id == job){
+            if(value.id == job && value.razdel != 3 ){
                 jobs.push(value.name);
             }
         });
     });
+    $.each(jobs_ids, function (ind, job){
+        $.each(window.session.jobs, function(index, value){
+            if(value.id == job && value.razdel == 3 ){
+                jobs_lubs.push(value.name);
+            }
+        });
+    });
     $('#job_list_main').html(jobs_items(jobs));
+    $('#job_list_smazka').html(jobs_items(jobs_lubs));
+});
+
+$('#job_list_smazka').on('click','.job_del', function(){
+    alert('Пока удалять нельзя )');
 });
 
 
-function jobs_items(jobs){
-    var job_item ="";
-    $.each(jobs, function(index, value){
-        job_item += "<p class=\"item2\">" + value + "</p>";
-    });
-    
-    return job_item;
-}

@@ -137,6 +137,14 @@ img:active{
     margin: 12px auto 0;
     
 }
+.job{
+    border-radius: 15px;
+    padding: 5px;
+    width: 80%;
+    min-height: 35px;
+    margin: 5px auto;
+    background: #DEF9A6;
+}
 .item{
     border-radius: 15px;
     padding: 5px;

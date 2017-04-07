@@ -6,11 +6,13 @@ $sqlstr  ="select * from repair_stuff.work_sections order by weight desc;";
 $result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());
 
 $works = [];
+$justSections = [];
 
 $sections_id = [];
 
 while($line = pg_fetch_assoc($result)){
     $works[] = $line;
+    $justSections[] = $line;
 }
 $all_works = [];
 
@@ -54,7 +56,7 @@ while($line = pg_fetch_assoc($result)){
 
 // var_dump($jobs);
 // exit;
-$_SESSION['sections'] = $all_works;
+$_SESSION['sections'] = $justSections;
 $_SESSION['jobs'] = $jobs;
 // var_dump($platforms);
 pg_free_result($result);

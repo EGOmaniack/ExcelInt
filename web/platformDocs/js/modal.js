@@ -1,10 +1,95 @@
+function getJobsList(root, lvl){
+    var level = (lvl == undefined)? 1 : lvl;
+    var banList = [ "main_t2", "main_t1", "smazka" ];
+    var jobs = window.session.jobs;
+    var sections = window.session.sections;
+    var response = "";
+    var haveChilds = false;
+    
+    $.each(sections, function(index, value){/**вставляем подразделы */
+        if(value.parent_sec == root && ($.inArray(value.name, banList) == -1) ){
+            var haveChilds = false;
+            
+            response +=
+                '<div' + 
+                ' style="width: ' + (80 - level * 5) +'%"' +
+                ' level=' +  (parseInt(level) + 1)  +
+                ' item_id=' + value.id +
+                ' parent_id=' + value.parent_sec +
+                ' class="item razdel" opened="false">' +
+                value.name +
+                '</div>\n';
+        }
+    });
+    $.each(jobs, function(index, value){
+        if( value.razdel == root ){
+            response += 
+            '<div' + 
+                ' style="width: ' + (80 - level * 5) +'%"' +
+                ' level=' + ( level + 1 ) +
+                ' item_id=' + value.id +
+                ' parent_id=' + value.razdel +
+                ' class="job" opened="false">' +
+                value.name +
+                '</div>\n'; 
+        }
+    });
+
+    return response;
+};
+
+function getSecJobName(id){
+    var result = "null";
+    var jobs = window.session.jobs;
+    var sections = window.session.sections;
+    $.each(sections, function(index, value){
+        if(value.id == id ){
+            result = value.namee;
+        }
+    });
+    return result;
+}
+
+$('#modal2list').on('click','.item',function(){
+    var id = $(this).attr('item_id');
+    if($(this).attr('opened') == 'false'){
+        $(this).attr('opened', "true");
+        //$(this).html(getSecJobName($(this).attr('item_id')));
+        $(this).after(getJobsList($(this).attr('item_id'),$(this).attr('level') ));
+    } else {
+        $(this).attr('opened', "false");
+        $('.item').each(function(index, value){
+
+            var localId = value.getAttribute('item_id')
+
+            if(value.getAttribute('parent_id') == id ){
+                value.remove();
+                $('.job').each(function(index, val){
+                    if(val.getAttribute('parent_id') == localId ){
+                        val.remove();
+                    }
+                });
+            }
+        });
+        $('.job').each(function(index, value){
+            if(value.getAttribute('parent_id') == id ){
+                value.remove();
+            }
+        });
+    }
+});
+
 // Get the modal
 var modal = document.getElementById('myModal');
+var modal2 = document.getElementById('my_modal_2');
 
 // Get the button that opens the modal
 var btn = document.getElementById("btn_modal");
+var btn2 = document.getElementById("btn_mdl2"); /**Кнопка добавить запись о работе */
+
 // Get the <span> element that closes the modal
 var span = document.getElementById("modal_close");
+var span2 = document.getElementById("modal2_close");
 
 // When the user clicks on the button, open the modal 
 btn.onclick = function() {
@@ -12,6 +97,18 @@ btn.onclick = function() {
     $('#new_repair_btn').text('создать');
     $('#myModal').attr("type","new_repair");
 }
+// Нажата кнопка вызова добавить запись о ремонте модального окна
+btn2.onclick = function() {
+    modal2.style.display = "block";
+    $('#new_repair_btn').text('создать');
+    $('#myModal').attr("type","new_repair");
+    $('#modal2list').html(getJobsList(1, 0)); /* Запрашиваем разделы с работами, передаем туда id root элемента секции hardcode */
+
+    /**возвращать надо что-то такого формата <div class="item"></div> */
+}
+span2.onclick= function() {
+    modal2.style.display = "none";
+};
 span.onclick = function() {
     modal.style.display = "none";
 };
@@ -46,6 +143,8 @@ $('#action_selector').on('click','#repair_edit',function(e){
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
+    }else if(event.target == modal2){
+        modal2.style.display = "none";
     }
 }
 
@@ -68,10 +167,9 @@ $('#new_repair_btn').click(function(){
                 var modal = document.getElementById('myModal');
                 modal.style.display = "none";
                 location.href = "/platformDocs/index.php";
-
                 //console.log(data);
-                //$('body').html('');
-                //$('body').append(data);
+                // $('body').html(data);
+                
             }
         });
     }else if ($('#myModal').attr("type") == "change_repair") { /**еслт тип модального окна стоит "изменить запись о ремонте" */
