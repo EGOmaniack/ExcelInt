@@ -1,11 +1,12 @@
 
-var store = {
+function createStore (e, b) {
+    var store = {
     _data: {},
-    update: function(){},
+    dispatch: function(){},
     _callbacks:[],
     construct: function(val, update){
         this._data = val;
-        this.update = update;
+        this.dispatch = update;
     },
     sine: function(func){
         this._callbacks.push(func)
@@ -22,60 +23,64 @@ var store = {
     },
     cleanCallbacks: function(){
         this._callbacks = [];
-    }
+    }}
+    store.construct(e ,b);
+    return store;
+
 }
 
-var update = function(type, val){
+
+var update = function(action){
 /* Грязная функция изменения состояния */
-    switch (type) {
+    switch (action.type) {
         case "platformNumber":
-            this._data.platfNumber = val;
+            this._data.platfNumber = action.payload;
             break;
         case "platfID":
-            this._data.platformID = val;  /**Хотелось бы возвращать новый объект, но как на старом js тока в цикле перебирать все */
+            this._data.platformID = action.payload;  /**Хотелось бы возвращать новый объект, но как на старом js тока в цикле перебирать все */
             break;
         case "repairType":
-            this._data.repairType = val;
+            this._data.repairType = action.payload;
             break;
         case "repairText":
-            this._data.repairText = val;
+            this._data.repairText = action.payload;
             break;
         case "repairID":
-            this._data.repairID = val;
+            this._data.repairID = action.payload;
             break;
         case "repairStart":
-            this._data.repairStart = val;
+            this._data.repairStart = action.payload;
             break;
         case "repairEnd":
-            this._data.repairEnd = val;
+            this._data.repairEnd = action.payload;
             break;
         case "addTask":
-            this._data.jobs.push(val);
+            this._data.jobs.push(action.payload);
             break;
         case "addjob":
-            this._data.jobs.push(val);
+            this._data.jobs.push(action.payload);
             break;
         case "addjobs":
-            for(var i=0; i< val.length; i++ ){
-                this._data.jobs.push(val[i]);
+            for(var i=0; i< action.payload.length; i++ ){
+                this._data.jobs.push(action.payload[i]);
             }
             break;
         case "addlub":
             this._data.lubjobs.push(val);
             break;
         case "addlubs":
-            for(var i=0; i< val.length; i++ ){
-                this._data.lubjobs.push(val[i]);
+            for(var i=0; i< action.payload.length; i++ ){
+                this._data.lubjobs.push(action.payload[i]);
             }
             break;
         case "repIdPlatfNum":
-            this._data.repairID = val.repairID;
-            this._data.platfNumber = val.platfNumber;
+            this._data.repairID = action.payload.repairID;
+            this._data.platfNumber = action.payload.platfNumber;
             break;
         case "repTextStartEnd":
-            this._data.repairText = val.repairText;
-            this._data.repairStart = val.repairStart;
-            this._data.repairEnd = val.repairEnd;
+            this._data.repairText = action.payload.repairText;
+            this._data.repairStart = action.payload.repairStart;
+            this._data.repairEnd = action.payload.repairEnd;
             break;
         default:
             console.log("Неизвестная команда");
@@ -84,7 +89,7 @@ var update = function(type, val){
     this.callback();
 }
 
-store.construct({
+var repair = createStore({
     platfNumber: null,
     platformID: null,
     repairType: null,
@@ -103,9 +108,9 @@ function sine1(){
         " список к смазке " + store.get().lubjobs
     )}
 
-store.sine(
-    function(){ console.log(store.get()); }
+repair.sine(
+    function(){ console.log(repair.get()); }
 );
-// store.update( "platformNumber", 222 );
-// store.update("addlubs", [ "Смазать там", "Смазать сям"]);
-// store.update("addlub", "Смазать тута");
+// store.dispatch( "platformNumber", 222 );
+// store.dispatch("addlubs", [ "Смазать там", "Смазать сям"]);
+// store.dispatch("addlub", "Смазать тута");

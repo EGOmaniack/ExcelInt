@@ -70,10 +70,10 @@ $('#action_selector').on('click','.close',function(e){
 
 /* Показыть перечень работ для данного ремонта */
 $('#action_selector').on('click','#repair_details',function(e){
-    store.update('repIdPlatfNum', {
+    repair.dispatch({type: 'repIdPlatfNum', payload: {
       repairID: $(this).parent().parent().attr('id'),
       platfNumber: $(this).parent().parent().attr('platform')
-     } );
+     } });
     var repair_id = $(this).parent().parent().attr('id');
     var platform_num = $(this).parent().parent().attr('platform');
 
@@ -84,11 +84,12 @@ $('#action_selector').on('click','#repair_details',function(e){
     var job_list="";
     $.each(window.session.platf_repairs[platform_num], function(index, value){
         if(value.id == repair_id) { /**вытаскиваю данные о ремонте из сессии */
-            store.update('repTextStartEnd', {
+            repair.dispatch({type:'repTextStartEnd', payload: {
                 repairText: value.repair_type,
                 repairStart: value.repair_start,
                 repairEnd: value.repair_end
-            });
+            }
+        });
             repText = value.repair_type;
             repDateStart = value.repair_start;
             repDateEnd = value.repair_end;
@@ -117,10 +118,10 @@ $('#action_selector').on('click','#repair_details',function(e){
             }
         });
     });
-    store.update( "addjobs", jobs );
-    store.update( "addlubs", jobs_lubs);
+    repair.dispatch( {type: "addjobs", payload: jobs} );
+    repair.dispatch( {type:"addlubs", payload: jobs_lubs});
     $('#job_list_main').html(jobs_items(jobs));
-    $('#job_list_smazka').html(jobs_items(store.get().lubjobs));
+    $('#job_list_smazka').html(jobs_items(repair.get().lubjobs));
 });
 
 $('#job_list_smazka').on('click','.job_del', function(){
