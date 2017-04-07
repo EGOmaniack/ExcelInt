@@ -64,12 +64,12 @@ $('#modal2list').on('click','.item',function(){
 
             if(value.getAttribute('parent_id') == id ){
                 value.remove();
+                $('.job').each(function(index, val){
+                    if(val.getAttribute('parent_id') == localId ){
+                        val.remove();
+                    }
+                });
             }
-            // $('.job').each(function(index, val){
-            //     if(val.getAttribute('parent_id') == localId ){
-            //         val.remove();
-            //     }
-            // });
         });
         $('.job').each(function(index, value){
             if(value.getAttribute('parent_id') == id ){
