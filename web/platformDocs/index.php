@@ -108,13 +108,9 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
             <div id="modal2_wrap">
                 <h2 class="title">Выберите_строку</h2>
                 <div id="modal2list" class="list">
-                    <div class="item"></div>
-                    <div class="item"></div>
-                    <div class="item"></div>
-                    <div class="item"></div>
-                    <div class="item"></div>
                 </div>
             </div>
+            <div class="btn" id="addjob">Добавить</div>
         </div>
     </div>
     <!--End of modal2-->
