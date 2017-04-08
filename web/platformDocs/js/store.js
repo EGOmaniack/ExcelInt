@@ -1,11 +1,13 @@
 
 function createStore (state, updateFunc) {
-var store = {
-    _data: {},
+var store = { /**Нужна функция ресет на начальный state */
+    developMode: false,/**Режим разработки (запись в историю) */
+    _state: {}, /** */
     dispatch: function(){},
     _callbacks:[],
+    __history:[],
     construct: function(val, update){
-        this._data = val;
+        this._state = val;
         this.dispatch = update;
     },
     sine: function(func){
@@ -19,10 +21,14 @@ var store = {
         }
     },
     get: function(){
-        return this._data;
+        return this._state;
     },
     cleanCallbacks: function(){
         this._callbacks = [];
+    },
+    SetDev: function(){
+        console.log("Developer mode on");
+        this.developMode = true;
     }
 }
     store.construct(state , updateFunc);
@@ -32,56 +38,57 @@ var store = {
 
 
 var update = function(action){
+    if(this.developMode) this.__history.push(this.get())
 /* Грязная функция изменения состояния */
     switch (action.type) {
         case "platformNumber":
-            this._data.platfNumber = action.payload;
+            this._state.platfNumber = action.payload;
             break;
         case "platfID":
-            this._data.platformID = action.payload;  /**Хотелось бы возвращать новый объект, но как на старом js тока в цикле перебирать все */
+            this._state.platformID = action.payload;  /**Хотелось бы возвращать новый объект, но как на старом js тока в цикле перебирать все */
             break;
         case "repairType":
-            this._data.repairType = action.payload;
+            this._state.repairType = action.payload;
             break;
         case "repairText":
-            this._data.repairText = action.payload;
+            this._state.repairText = action.payload;
             break;
         case "repairID":
-            this._data.repairID = action.payload;
+            this._state.repairID = action.payload;
             break;
         case "repairStart":
-            this._data.repairStart = action.payload;
+            this._state.repairStart = action.payload;
             break;
         case "repairEnd":
-            this._data.repairEnd = action.payload;
+            this._state.repairEnd = action.payload;
             break;
         case "addTask":
-            this._data.jobs.push(action.payload);
+            this._state.jobs.push(action.payload);
             break;
         case "addjob":
-            this._data.jobs.push(action.payload);
+            this._state.jobs.push(action.payload);
             break;
         case "addjobs":
             for(var i=0; i< action.payload.length; i++ ){
-                this._data.jobs.push(action.payload[i]);
+                this._state.jobs.push(action.payload[i]);
             }
             break;
         case "addlub":
-            this._data.lubjobs.push(val);
+            this._state.lubjobs.push(action.payload);
             break;
         case "addlubs":
             for(var i=0; i< action.payload.length; i++ ){
-                this._data.lubjobs.push(action.payload[i]);
+                this._state.lubjobs.push(action.payload[i]);
             }
             break;
         case "repIdPlatfNum":
-            this._data.repairID = action.payload.repairID;
-            this._data.platfNumber = action.payload.platfNumber;
+            this._state.repairID = action.payload.repairID;
+            this._state.platfNumber = action.payload.platfNumber;
             break;
         case "repTextStartEnd":
-            this._data.repairText = action.payload.repairText;
-            this._data.repairStart = action.payload.repairStart;
-            this._data.repairEnd = action.payload.repairEnd;
+            this._state.repairText = action.payload.repairText;
+            this._state.repairStart = action.payload.repairStart;
+            this._state.repairEnd = action.payload.repairEnd;
             break;
         default:
             console.log("Неизвестная команда");
@@ -103,15 +110,13 @@ var repair = createStore({
 },
 update);
 
-function sine1(){
-    console.log(
-        "Номер платформы - " + store.get().platfNumber + "\n" +
-        " список к смазке " + store.get().lubjobs
-    )}
+repair.SetDev();/**Включаем режим разработки
+                * Все изменения state будут записываться в _history
+                */
 
-repair.sine(
-    function(){ console.log(repair.get()); }
-);
+// repair.sine(
+//     function(){ console.log(repair.get()); }
+// );
 // store.dispatch( "platformNumber", 222 );
 // store.dispatch("addlubs", [ "Смазать там", "Смазать сям"]);
 // store.dispatch("addlub", "Смазать тута");

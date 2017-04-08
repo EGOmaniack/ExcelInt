@@ -141,8 +141,13 @@ $('#action_selector').on('click','#repair_details',function(e){
     });
     repair.dispatch( {type: "addjobs", payload: jobs} );
     repair.dispatch( {type:"addlubs", payload: jobs_lubs});
-    $('#job_list_main').html(jobs_items(jobs));
+    $('#job_list_main').html(jobs_items(repair.get().jobs));
     $('#job_list_smazka').html(jobs_items(repair.get().lubjobs));
+    repair.sine(function(){
+        console.log("Список работ перерендерился");
+        $('#job_list_main').html(jobs_items(repair.get().jobs));
+        $('#job_list_smazka').html(jobs_items(repair.get().lubjobs));
+    });
 });
 
 $('#job_list_smazka').on('click','.job_del', function(){
