@@ -1,6 +1,6 @@
 
-function createStore (e, b) {
-    var store = {
+function createStore (state, updateFunc) {
+var store = {
     _data: {},
     dispatch: function(){},
     _callbacks:[],
@@ -23,8 +23,9 @@ function createStore (e, b) {
     },
     cleanCallbacks: function(){
         this._callbacks = [];
-    }}
-    store.construct(e ,b);
+    }
+}
+    store.construct(state , updateFunc);
     return store;
 
 }

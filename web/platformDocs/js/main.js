@@ -68,6 +68,27 @@ $('#action_selector').on('click','.close',function(e){
     }
 });
 
+$('#action_selector').on('click','.print',function(e){
+        var id = $(this).parent().parent().attr('id');
+        var platform_id = $(this).parent().parent().attr('platform');
+        var platform = JSON.stringify(window.session.platforms);
+        var repairs = JSON.stringify(window.session.platf_repairs);
+        // console.log(id);
+        // location.href = '/platformDocs/ajax/getpassport.php/?file=passport&id=' + id + '';
+        $.post("./ajax/create_passport.php", {
+        repair_id: id,
+        platform_id: platform_id,
+        platform: platform,
+        platf_repairs: repairs
+        },function (data) {
+        if(data != undefined){
+            //alert('created');
+            //$('body').html('');
+            //$('body').append(data);
+            location.href = '/platformDocs/phpScripts/get_passport.php?file=' + data;
+        }
+        });
+    });
 /* Показыть перечень работ для данного ремонта */
 $('#action_selector').on('click','#repair_details',function(e){
     repair.dispatch({type: 'repIdPlatfNum', payload: {
