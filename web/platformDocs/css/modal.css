@@ -14,6 +14,9 @@
 .razdel{
     cursor: pointer;
 }
+#addjob{
+    margin: 0 auto;
+}
 .razdel:hover{
     background: #E8E9F6;
     box-shadow: 0 0 35px rgba(0,0,25,0.25);
