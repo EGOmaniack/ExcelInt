@@ -30,6 +30,7 @@ function getJobsList(root, lvl){
                 ' item_id=' + value.id +
                 ' parent_id=' + value.razdel +
                 ' class="job ';
+                var injSelected = $.grep(jobsSelected, function(job){ return job.id == value.id });
                 if( injSelected[0] !== undefined ){
                     response += "jobhave";
                  }
@@ -89,9 +90,7 @@ $('#modal2list').on('click','.item',function(){/**Клик по строке с 
     } else { /**закрываем раздел */
         $(this).attr('opened', "false");
         $('.item').each(function(index, value){
-
             var localId = value.getAttribute('item_id')
-
             if(value.getAttribute('parent_id') == id ){
                 value.remove();
                 $('.job').each(function(index, val){
@@ -133,6 +132,7 @@ btn.onclick = function() {
 }
 // Нажата кнопка вызова добавить запись о ремонте модального окна
 btn2.onclick = function() {
+    jobsSelected = repair.get().jobs;
     modal2.style.display = "block";
     $('#new_repair_btn').text('создать');
     $('#myModal').attr("type","new_repair");
