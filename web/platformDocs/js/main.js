@@ -91,7 +91,6 @@ $('#action_selector').on('click','.print',function(e){
     });
 /* Показыть перечень работ для данного ремонта */
 $('#action_selector').on('click','#repair_details',function(e){
-    jobsSelected = [];
     repair.dispatch({type: 'reset'});
     repair.dispatch({type: 'repIdPlatfNum', payload: {
       repairID: $(this).parent().parent().attr('id'),

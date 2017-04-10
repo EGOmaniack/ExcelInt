@@ -22,7 +22,7 @@ var store = { /**Нужна функция ресет на начальный st
         }
     },
     get: function(){
-        return this._state;
+        return $().extend( true,{} ,this._state );
     },
     cleanCallbacks: function(){
         this._callbacks = [];
