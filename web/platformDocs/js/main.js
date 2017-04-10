@@ -140,8 +140,8 @@ $('#action_selector').on('click','#repair_details',function(e){
             }
         });
     });
-    repair.dispatch( {type: "addjobs", payload: jobs} );
-    repair.dispatch( {type:"addlubs", payload: jobs_lubs});
+    repair.dispatch( {type: "setjobs", payload: jobs} );
+    repair.dispatch( {type:"setlubs", payload: jobs_lubs});
     $('#job_list_main').html(jobs_items(repair.get().jobs));
     $('#job_list_smazka').html(jobs_items(repair.get().lubjobs));
     repair.sine(function(){ /**подписал список работ на изменения */

@@ -74,7 +74,7 @@ $('#modal2list').on('click', '.job', function(){
 
 $('#m2content').on('click','#addjob', function(){
     repair.dispatch({
-        type: "addjobs",
+        type: "setjobs",
         payload: jobsSelected
     });
     modal2.style.display = "none";
@@ -190,7 +190,7 @@ $('#new_repair_btn').click(function(){
     var rep_end = $('#rep_end').val();
     var platf_number = $('.change_pl').attr('platform');
     $('#rep_end').attr( 'value', undefined );
-   
+
     // alert(platf_number);
     if($('#myModal').attr("type") == "new_repair"){
         $.post("./ajax/insert_repair.php", {

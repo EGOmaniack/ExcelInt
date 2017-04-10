@@ -75,16 +75,19 @@ var update = function(action){
         case "addjob":
             this._state.jobs.push({ id: action.payload.id, name: action.payload.name});
             break;
-        case "addjobs":
-            for(var i=0; i< action.payload.length; i++ ){
-                this._state.jobs.push(
-                    { id: action.payload[i].id, name: action.payload[i].name});
+        case "setjobs":
+            var newjobs = action.payload;
+            if(newjobs.length > 0){
+                this._state.jobs = [];
+                newjobs.forEach(function(item){
+                    this._state.jobs.push(item);
+                }, this);
             }
             break;
         case "addlub":
             this._state.lubjobs.push({ id: action.payload.id, name: action.payload.name});
             break;
-        case "addlubs":
+        case "setlubs":
             for(var i=0; i< action.payload.length; i++ ){
                 this._state.lubjobs.push(
                     { id: action.payload[i].id, name: action.payload[i].name});
