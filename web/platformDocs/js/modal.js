@@ -10,7 +10,7 @@ function getJobsList(root, lvl){
         if(value.parent_sec == root && ($.inArray(value.name, banList) == -1) ){
             var haveChilds = false;
             
-            response +=
+            response += /* Тут выдаются категории */
                 '<div' + 
                 ' style="width: ' + (80 - level * 5) +'%"' +
                 ' level=' +  (parseInt(level) + 1)  +
@@ -23,13 +23,18 @@ function getJobsList(root, lvl){
     });
     $.each(jobs, function(index, value){
         if( value.razdel == root ){
-            response += 
+            response += /* Тут выдаются работы */
             '<div' + 
                 ' style="width: ' + (80 - level * 5) +'%"' +
                 ' level=' + ( level + 1 ) +
                 ' item_id=' + value.id +
                 ' parent_id=' + value.razdel +
-                ' class="job jobhave" opened="false">' +
+                ' class="job ';
+                var injSelected = $.grep(jobsSelected, function(job){ return job.id == value.id });
+                if( injSelected[0] !== undefined ){
+                    response += "jobhave";
+                 }
+            response += '" opened="false">' +
                 value.name +
                 '</div>\n'; 
         }
@@ -49,6 +54,32 @@ function getSecJobName(id){
     });
     return result;
 }
+var jobsSelected = []; /* массив из выбранных работ -> объектов типа { id:id, name:name } */
+$('#modal2list').on('click', '.job', function(){
+    var jobId = $(this).attr('item_id');
+    var name = $(this).text();
+    var injSelected = $.grep(jobsSelected, function(job){ return job.id == jobId });
+    //debugger;
+    if( injSelected[0] === undefined ){
+        jobsSelected.push({id: jobId, name: name});
+    } else{
+        jobsSelected = jobsSelected.filter(function(job){
+            return job.id != jobId;
+        });
+        //Удаляем работу из списка выбранных
+}
+    console.log(jobsSelected);
+    $(this).toggleClass('jobhave');
+});
+
+$('#m2content').on('click','#addjob', function(){
+    repair.dispatch({
+        type: "setjobs",
+        payload: jobsSelected
+    });
+    modal2.style.display = "none";
+    jobsSelected = [];
+});
 
 $('#modal2list').on('click','.item',function(){/**Клик по строке с разделом работ */
     var id = $(this).attr('item_id');
@@ -59,9 +90,7 @@ $('#modal2list').on('click','.item',function(){/**Клик по строке с 
     } else { /**закрываем раздел */
         $(this).attr('opened', "false");
         $('.item').each(function(index, value){
-
             var localId = value.getAttribute('item_id')
-
             if(value.getAttribute('parent_id') == id ){
                 value.remove();
                 $('.job').each(function(index, val){
@@ -103,6 +132,7 @@ btn.onclick = function() {
 }
 // Нажата кнопка вызова добавить запись о ремонте модального окна
 btn2.onclick = function() {
+    jobsSelected = repair.get().jobs;
     modal2.style.display = "block";
     $('#new_repair_btn').text('создать');
     $('#myModal').attr("type","new_repair");
@@ -112,6 +142,7 @@ btn2.onclick = function() {
 }
 span2.onclick= function() {
     modal2.style.display = "none";
+    jobsSelected = [];
 };
 span.onclick = function() {
     modal.style.display = "none";
@@ -149,6 +180,7 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }else if(event.target == modal2){
         modal2.style.display = "none";
+        jobsSelected = [];
     }
 }
 
@@ -158,7 +190,7 @@ $('#new_repair_btn').click(function(){
     var rep_end = $('#rep_end').val();
     var platf_number = $('.change_pl').attr('platform');
     $('#rep_end').attr( 'value', undefined );
-   
+
     // alert(platf_number);
     if($('#myModal').attr("type") == "new_repair"){
         $.post("./ajax/insert_repair.php", {

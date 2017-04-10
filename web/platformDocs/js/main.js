@@ -27,7 +27,7 @@ function jobs_items(jobs){
     var job_item ="";
     $.each(jobs, function(index, value){
         job_item += "<div class=\"item2\"><span class=\"job_del\">&times;</span><p style=\"marging: 0; adding: 0; display: inline;\">"
-            + value + "</p></div>";
+            + value.name + "</p></div>";
     });
     
     return job_item;
@@ -91,6 +91,7 @@ $('#action_selector').on('click','.print',function(e){
     });
 /* Показыть перечень работ для данного ремонта */
 $('#action_selector').on('click','#repair_details',function(e){
+    repair.dispatch({type: 'reset'});
     repair.dispatch({type: 'repIdPlatfNum', payload: {
       repairID: $(this).parent().parent().attr('id'),
       platfNumber: $(this).parent().parent().attr('platform')
@@ -128,21 +129,26 @@ $('#action_selector').on('click','#repair_details',function(e){
     $.each(jobs_ids, function (ind, job){
         $.each(window.session.jobs, function(index, value){
             if(value.id == job && value.razdel != 3 ){
-                jobs.push(value.name);
+                jobs.push({id:value.id, name: value.name});
             }
         });
     });
     $.each(jobs_ids, function (ind, job){
         $.each(window.session.jobs, function(index, value){
             if(value.id == job && value.razdel == 3 ){
-                jobs_lubs.push(value.name);
+                jobs_lubs.push({id:value.id, name: value.name});
             }
         });
     });
-    repair.dispatch( {type: "addjobs", payload: jobs} );
-    repair.dispatch( {type:"addlubs", payload: jobs_lubs});
-    $('#job_list_main').html(jobs_items(jobs));
+    repair.dispatch( {type: "setjobs", payload: jobs} );
+    repair.dispatch( {type:"setlubs", payload: jobs_lubs});
+    $('#job_list_main').html(jobs_items(repair.get().jobs));
     $('#job_list_smazka').html(jobs_items(repair.get().lubjobs));
+    repair.sine(function(){ /**подписал список работ на изменения */
+        console.log("Список работ перерендерился");
+        $('#job_list_main').html(jobs_items(repair.get().jobs));
+        $('#job_list_smazka').html(jobs_items(repair.get().lubjobs));
+    });
 });
 
 $('#job_list_smazka').on('click','.job_del', function(){
