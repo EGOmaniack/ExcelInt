@@ -76,7 +76,7 @@ var update = function(action){
             this._state.jobs.push({ id: action.payload.id, name: action.payload.name});
             break;
         case "setjobs":
-            var newjobs = action.payload;
+            var newjobs = action.payload;/* Надо выяснять разницу для БД */
             if(newjobs.length > 0){
                 this._state.jobs = [];
                 newjobs.forEach(function(item){

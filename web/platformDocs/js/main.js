@@ -23,10 +23,10 @@ function rep_items(repairs, platf_number){
     });
         return repaires;
 }
-function jobs_items(jobs){
+function jobs_items(jobs){/**отрисовка элементов списка перечня работ */
     var job_item ="";
     $.each(jobs, function(index, value){
-        job_item += "<div class=\"item2\"><span class=\"job_del\">&times;</span><p style=\"marging: 0; adding: 0; display: inline;\">"
+        job_item += "<div jobId=" + value.id + " class=\"item2\"><span class=\"job_del\">&times;</span><p style=\"marging: 0; adding: 0; display: inline;\">"
             + value.name + "</p></div>";
     });
     

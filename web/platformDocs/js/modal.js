@@ -32,7 +32,7 @@ function getJobsList(root, lvl){
                 ' class="job ';
                 var injSelected = $.grep(jobsSelected, function(job){ return job.id == value.id });
                 if( injSelected[0] !== undefined ){
-                    response += "jobhave";
+                    response += "hide";
                  }
             response += '" opened="false">' +
                 value.name +
