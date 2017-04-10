@@ -6,9 +6,10 @@ var store = { /**Нужна функция ресет на начальный st
     dispatch: function(){},
     _callbacks:[],
     __history:[],
-    construct: function(val, update){
-        this._state = val;
+    construct: function(state, update){
+        this._state = state;
         this.dispatch = update;
+        this._initialState = this._copyState(state);
     },
     sine: function(func){
         this._callbacks.push(func)
@@ -29,13 +30,19 @@ var store = { /**Нужна функция ресет на начальный st
     SetDev: function(){
         console.log("Developer mode on");
         this.developMode = true;
+    },
+    _copyState: function (state){   /**функция копирует состояние */
+                    return $().extend( true,{} ,state );
+    },
+    _initialState: {},
+    __resetState: function(){
+        this._state = this._copyState(this._initialState);
+        this.cleanCallbacks();
     }
 }
     store.construct(state , updateFunc);
     return store;
-
 }
-
 
 var update = function(action){
     if(this.developMode) this.__history.push(this.get())
@@ -66,19 +73,21 @@ var update = function(action){
             this._state.jobs.push(action.payload);
             break;
         case "addjob":
-            this._state.jobs.push(action.payload);
+            this._state.jobs.push({ id: action.payload.id, name: action.payload.name});
             break;
         case "addjobs":
             for(var i=0; i< action.payload.length; i++ ){
-                this._state.jobs.push(action.payload[i]);
+                this._state.jobs.push(
+                    { id: action.payload[i].id, name: action.payload[i].name});
             }
             break;
         case "addlub":
-            this._state.lubjobs.push(action.payload);
+            this._state.lubjobs.push({ id: action.payload.id, name: action.payload.name});
             break;
         case "addlubs":
             for(var i=0; i< action.payload.length; i++ ){
-                this._state.lubjobs.push(action.payload[i]);
+                this._state.lubjobs.push(
+                    { id: action.payload[i].id, name: action.payload[i].name});
             }
             break;
         case "repIdPlatfNum":
@@ -90,11 +99,22 @@ var update = function(action){
             this._state.repairStart = action.payload.repairStart;
             this._state.repairEnd = action.payload.repairEnd;
             break;
+        case "reset":
+            this.__resetState();
+            break;
         default:
             console.log("Неизвестная команда");
             break;
     }
     this.callback();
+}
+
+function newObj(obj){   /**функция копирует объект */
+    var newObj={};
+    for(var key in obj){
+        newObj[key] = obj[key];
+    }
+    return newObj;
 }
 
 var repair = createStore({

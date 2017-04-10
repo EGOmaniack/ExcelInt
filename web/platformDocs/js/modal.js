@@ -29,8 +29,8 @@ function getJobsList(root, lvl){
                 ' level=' + ( level + 1 ) +
                 ' item_id=' + value.id +
                 ' parent_id=' + value.razdel +
-                ' class="job '; 
-                if($.inArray(value.id, jobsSelected) >= 0 ){ 
+                ' class="job ';
+                if( injSelected[0] !== undefined ){
                     response += "jobhave";
                  }
             response += '" opened="false">' +
