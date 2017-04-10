@@ -146,6 +146,10 @@ img:active{
     margin: 5px auto;
     background: #DEF9A6;
 }
+.job:hover{
+    cursor: pointer;
+    background: #CBE498;
+}
 .jobhave::before{
     content: "";
     display: inline-block;

@@ -10,7 +10,7 @@ function getJobsList(root, lvl){
         if(value.parent_sec == root && ($.inArray(value.name, banList) == -1) ){
             var haveChilds = false;
             
-            response +=
+            response += /* Тут выдаются категории */
                 '<div' + 
                 ' style="width: ' + (80 - level * 5) +'%"' +
                 ' level=' +  (parseInt(level) + 1)  +
@@ -23,13 +23,17 @@ function getJobsList(root, lvl){
     });
     $.each(jobs, function(index, value){
         if( value.razdel == root ){
-            response += 
+            response += /* Тут выдаются работы */
             '<div' + 
                 ' style="width: ' + (80 - level * 5) +'%"' +
                 ' level=' + ( level + 1 ) +
                 ' item_id=' + value.id +
                 ' parent_id=' + value.razdel +
-                ' class="job jobhave" opened="false">' +
+                ' class="job '; 
+                if($.inArray(value.id, jobsSelected) >= 0 ){ 
+                    response += "jobhave";
+                 }
+            response += '" opened="false">' +
                 value.name +
                 '</div>\n'; 
         }
@@ -49,6 +53,32 @@ function getSecJobName(id){
     });
     return result;
 }
+var jobsSelected = []; /* массив из выбранных работ -> объектов типа { id:id, name:name } */
+$('#modal2list').on('click', '.job', function(){
+    var jobId = $(this).attr('item_id');
+    var name = $(this).text();
+    var injSelected = $.grep(jobsSelected, function(job){ return job.id == jobId });
+    //debugger;
+    if( injSelected[0] === undefined ){
+        jobsSelected.push({id: jobId, name: name});
+    } else{
+        jobsSelected = jobsSelected.filter(function(job){
+            return job.id != jobId;
+        });
+        //Удаляем работу из списка выбранных
+}
+    console.log(jobsSelected);
+    $(this).toggleClass('jobhave');
+});
+
+$('#m2content').on('click','#addjob', function(){
+    repair.dispatch({
+        type: "addjobs",
+        payload: jobsSelected
+    });
+    modal2.style.display = "none";
+    jobsSelected = [];
+});
 
 $('#modal2list').on('click','.item',function(){/**Клик по строке с разделом работ */
     var id = $(this).attr('item_id');
@@ -112,6 +142,7 @@ btn2.onclick = function() {
 }
 span2.onclick= function() {
     modal2.style.display = "none";
+    jobsSelected = [];
 };
 span.onclick = function() {
     modal.style.display = "none";
@@ -149,6 +180,7 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }else if(event.target == modal2){
         modal2.style.display = "none";
+        jobsSelected = [];
     }
 }
 
