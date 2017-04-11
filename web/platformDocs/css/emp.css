@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.vertical-text {
+	transform: rotate(-90deg);
+	transform-origin: left top 0;
+}
+/*.content>(.emp_fam.vertical-text{Фамилия$$}*10+(.platform>(.repTitle>.title{ремонт}+.workTitle{работа$$$}*10)
+    +(.lubTitle>.title{к_смазке}+.workTitle{смазка$$$}*10)+.wceil*20)*3)*/
+.emp_fam{
+    display: inline-block;
+    width: 50px; 
+    background: red;
+}
+.empty{
+    display: inline-block;
+    width:200px;
+}
+.content{
+    margin-top: 100px;
+    
+}
