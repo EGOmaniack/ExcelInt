@@ -1,0 +1,32 @@
+.head{
+    width: 100%;
+    height: 20px;
+    background: #F0EDEC;
+}
+.menu{
+    cursor: pointer;
+    display: inline-block;
+    width: fit-content;
+    height: 100%;
+    background: #EAF0D4;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+.menu:hover{
+    background: #D0D5BC;
+}
+.menu:active{
+    background: #B1B5A0;
+}
+.menu_text{
+    color:#0C0C0B;
+}
+a{
+    color: inherit;
+    text-decoration: inherit;
+}
