@@ -1,3 +1,19 @@
+var repair = createStore({
+    platfNumber: null,
+    platformID: null,
+    repairType: null,
+    repairText: null,
+    repairID: null,
+    repairStart: null,
+    repairEnd: null,
+    jobs : [],
+    lubjobs:[]
+},
+update);
+
+repair.SetDev();/**Включаем режим разработки
+                * Все изменения state будут записываться в _history
+                */
 function rep_items(repairs, platf_number){
 
     var repaires = [];
@@ -140,7 +156,7 @@ $('#action_selector').on('click','#repair_details',function(e){
             }
         });
     });
-    repair.dispatch( {type: "setjobs", payload: jobs} );
+    repair.dispatch( {type: "addjobs", payload: jobs} );
     repair.dispatch( {type:"setlubs", payload: jobs_lubs});
     $('#job_list_main').html(jobs_items(repair.get().jobs));
     $('#job_list_smazka').html(jobs_items(repair.get().lubjobs));
@@ -151,8 +167,22 @@ $('#action_selector').on('click','#repair_details',function(e){
     });
 });
 
-$('#job_list_smazka').on('click','.job_del', function(){
-    alert('Пока удалять нельзя )');
+$('#jobs').on('click','.job_del', function(){
+    var repId = repair.get().repairID;
+    var jId = $(this).parent().attr('jobid');
+    // console.log(repId, jId);
+
+    $.post("./ajax/deljob.php", {
+        repair_id: repId,
+        jobId: jId
+        },function (data) {
+        if(data != undefined){
+            // $('body').html('');
+            // $('body').append(data);
+            location.href = '/platformDocs/index.php';
+        }
+    });
 });
+
 
 

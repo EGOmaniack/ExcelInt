@@ -31,8 +31,11 @@ function getJobsList(root, lvl){
                 ' parent_id=' + value.razdel +
                 ' class="job ';
                 var injSelected = $.grep(jobsSelected, function(job){ return job.id == value.id });
-                if( injSelected[0] !== undefined ){
-                    response += "hide";
+                var inStore = $.grep(repair.get().jobs, function(job){ return job.id == value.id });
+                if( inStore[0] !== undefined ){
+                    response += "jobdisable";
+                 } else if ( injSelected[0] !== undefined ){
+                    response += "jobhave";
                  }
             response += '" opened="false">' +
                 value.name +
@@ -59,22 +62,23 @@ $('#modal2list').on('click', '.job', function(){
     var jobId = $(this).attr('item_id');
     var name = $(this).text();
     var injSelected = $.grep(jobsSelected, function(job){ return job.id == jobId });
-    //debugger;
-    if( injSelected[0] === undefined ){
-        jobsSelected.push({id: jobId, name: name});
-    } else{
-        jobsSelected = jobsSelected.filter(function(job){
-            return job.id != jobId;
-        });
-        //Удаляем работу из списка выбранных
-}
-    console.log(jobsSelected);
-    $(this).toggleClass('jobhave');
+    if(!$(this).hasClass("jobdisable")){
+        if( injSelected[0] === undefined ){
+            jobsSelected.push({id: jobId, name: name});
+        } else{
+            jobsSelected = jobsSelected.filter(function(job){
+                return job.id != jobId;
+            });
+            //Удаляем работу из списка выбранных
+    }
+        console.log(jobsSelected);
+        $(this).toggleClass('jobhave');
+    }
 });
 
 $('#m2content').on('click','#addjob', function(){
     repair.dispatch({
-        type: "setjobs",
+        type: "addNewJobs",
         payload: jobsSelected
     });
     modal2.style.display = "none";
@@ -131,8 +135,8 @@ btn.onclick = function() {
     $('#myModal').attr("type","new_repair");
 }
 // Нажата кнопка вызова добавить запись о ремонте модального окна
-btn2.onclick = function() {
-    jobsSelected = repair.get().jobs;
+btn2.onclick = function() { 
+    //jobsSelected = repair.get().jobs;
     modal2.style.display = "block";
     $('#new_repair_btn').text('создать');
     $('#myModal').attr("type","new_repair");

@@ -20,9 +20,11 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
     <link href="css/modal.css?<?=$sek?>" rel="stylesheet">
+    <link href="css/head.css?<?=$sek?>" rel="stylesheet">
     <script type="text/javascript" src="./../js/jquery-3.1.1.min.js"></script>
 </head>
 <body>
+    <?php include_once './components/head.php';?>
     <p id="version"><?=getver('ver.txt')[0]['ver']?></p>
     <div class="mainwraper">
         <div class="devider"></div>
@@ -115,9 +117,9 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
         </div>
     <!--End of modal2-->
     </div>
-    <script type="text/javascript" src="js/main.js?<?=$sek?>"></script>
     <script type="text/javascript" src="js/modal.js?<?=$sek?>"></script>
     <script type="text/javascript" src="js/store.js?<?=$sek?>"></script>
+    <script type="text/javascript" src="js/main.js?<?=$sek?>"></script>
     <?='<script type="text/javascript">window.session = '.$json.'</script>'?>
 </body>
 </html>

@@ -119,11 +119,6 @@ img:active{
     background: #6B3015;
     box-shadow: 0 0 0 black;
 }
-.tst{
-    width: 50px;
-    height: 25px;
-    background: cyan;
-}
 #version{
     text-align: right;
     font-size: 12px;
@@ -146,6 +141,13 @@ img:active{
     margin: 5px auto;
     background: #DEF9A6;
 }
+.jobdisable{
+    background: #A1B579;
+}
+.jobdisable:hover{
+    background: #A1B579!important;
+}
+
 .job:hover{
     cursor: pointer;
     background: #CBE498;

@@ -75,13 +75,26 @@ var update = function(action){
         case "addjob":
             this._state.jobs.push({ id: action.payload.id, name: action.payload.name});
             break;
-        case "setjobs":
+        case "addjobs":
             var newjobs = action.payload;/* Надо выяснять разницу для БД */
             if(newjobs.length > 0){
                 this._state.jobs = [];
                 newjobs.forEach(function(item){
                     this._state.jobs.push(item);
                 }, this);
+            }
+            break;
+        case "addNewJobs":
+            var newjobs = action.payload;
+            if(newjobs.length > 0){
+                $.post("./ajax/addjobs.php", {
+                    repair_id: this.get().repairID,
+                    jobs: newjobs
+                    },function (data) {
+                    if(data != undefined){
+                        location.href = '/platformDocs/index.php';
+                    }
+                });
             }
             break;
         case "addlub":
@@ -120,22 +133,7 @@ function newObj(obj){   /**функция копирует объект */
     return newObj;
 }
 
-var repair = createStore({
-    platfNumber: null,
-    platformID: null,
-    repairType: null,
-    repairText: null,
-    repairID: null,
-    repairStart: null,
-    repairEnd: null,
-    jobs : [],
-    lubjobs:[]
-},
-update);
 
-repair.SetDev();/**Включаем режим разработки
-                * Все изменения state будут записываться в _history
-                */
 
 // repair.sine(
 //     function(){ console.log(repair.get()); }
