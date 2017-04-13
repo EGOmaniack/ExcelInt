@@ -151,7 +151,7 @@ $('#action_selector').on('click','#repair_details',function(e){
     });
     $.each(jobs_ids, function (ind, job){
         $.each(window.session.jobs, function(index, value){
-            if(value.id == job && value.razdel == 3 ){
+            if(value.id == job && value.razdel == 4 ){ /* hardcode 3 - правильный раздел только для платформы ППК-2В и только для ТР2 объема */
                 jobs_lubs.push({id:value.id, name: value.name});
             }
         });
@@ -177,8 +177,8 @@ $('#jobs').on('click','.job_del', function(){
         jobId: jId
         },function (data) {
         if(data != undefined){
-            // $('body').html('');
-            // $('body').append(data);
+            /* $('body').html('');
+            $('body').append(data); */
             location.href = '/platformDocs/index.php';
         }
     });

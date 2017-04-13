@@ -1,24 +1,55 @@
-*{
-    margin: 0;
-    padding: 0;
+.body{
+    min-width: 1800px;
 }
-
+.mainTable{
+    margin-top: 140px;
+}
+.title{
+    font-weight: bold;
+    width: fit-content;
+    margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+}
 .vertical-text {
 	transform: rotate(-90deg);
 	transform-origin: left top 0;
 }
-/*.content>(.emp_fam.vertical-text{Фамилия$$}*10+(.platform>(.repTitle>.title{ремонт}+.workTitle{работа$$$}*10)
-    +(.lubTitle>.title{к_смазке}+.workTitle{смазка$$$}*10)+.wceil*20)*3)*/
+.tabString{
+    display: block;
+}
+.wceils{
+    margin-left: 200px;
+}
 .emp_fam{
     display: inline-block;
-    width: 50px; 
-    background: red;
+    text-align: left;
+    width: 35px;
 }
-.empty{
+.workTitle{
+    width: 200px;
+    position: absolute;
     display: inline-block;
-    width:200px;
+    height: 35px;
 }
-.content{
-    margin-top: 100px;
-    
+.fams{
+    top: 20px;
+    padding-top: 110px;
+    padding-left: 210px;
+    background-color: white;
+    height: 120px;
+    position: fixed;
+    z-index: 2;
+}
+.wceil{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background: #FFEDFF;
+}
+.wceil:hover{
+    background-color: palevioletred;
+}
+.wceil:active{
+    background: palevioletred;
 }

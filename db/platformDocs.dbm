@@ -135,7 +135,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="repair">
 	<schema name="platforms"/>
 	<role name="postgres"/>
-	<position x="1335.29" y="218"/>
+	<position x="1335.29" y="219"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -347,7 +347,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="work_sections">
 	<schema name="repair_stuff"/>
 	<role name="postgres"/>
-	<position x="1550.67" y="685"/>
+	<position x="1549.67" y="686"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -376,7 +376,8 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <![CDATA[id•name•weight•r_type_id•platform_type_id•parent_sec⸣
 •main_t2•0•2•1•⸣
 •main_t1•0•1•1•⸣
-•smazka•0•2•1•]]>
+•smazka•0•2•1•⸣
+•К смазке•0•2•1•3]]>
 	</initial-data>
 </table>
 
@@ -759,9 +760,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="repair_stuff.work_sections"
 	 src-required="false" dst-required="false">
 	<line>
-		<position x="1768.67" y="727.96"/>
-	<position x="1768.67" y="676"/>
-	<position x="1690" y="676"/>
+		<position x="1767.67" y="728.96"/>
+	<position x="1767.67" y="677"/>
+	<position x="1689" y="677"/>
 	</line>
 </relationship>
 
