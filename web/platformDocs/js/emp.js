@@ -16,15 +16,8 @@ function empUpdate(action){
 
 
 var repair = createStore({
-    platfNumber: null,
-    platformID: null,
-    repairType: null,
-    repairText: null,
-    repairID: null,
-    repairStart: null,
-    repairEnd: null,
-    jobs : [],
-    lubjobs:[]
+    platforms:[], /* перечень платформ вида { id: "Из БД", number:"номер платформы", fullName:"полное название из БД" } */
+    repairs:[]  /* перечень всех ремонтов id, type,  */
 },
 update);
 
