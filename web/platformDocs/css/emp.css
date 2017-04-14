@@ -17,6 +17,8 @@
 }
 .tabString{
     display: block;
+    height: 39.2px;
+    width: 1425px;
 }
 .wceils{
     margin-left: 200px;
@@ -25,6 +27,14 @@
     display: inline-block;
     text-align: left;
     width: 35px;
+    white-space: nowrap;
+}
+.hovered{
+    color: palevioletred;
+    box-shadow: 1px 1px 12px rgba(1, 1, 1, 0.25);
+}
+.txthvred{
+    color: palevioletred;
 }
 .workTitle{
     width: 200px;
@@ -38,6 +48,7 @@
     padding-left: 210px;
     background-color: white;
     height: 120px;
+    width: 1415px;
     position: fixed;
     z-index: 2;
 }
@@ -49,6 +60,7 @@
 }
 .wceil:hover{
     background-color: palevioletred;
+    box-shadow: 1px 1px 12px rgba(1, 1, 1, 0.35);
 }
 .wceil:active{
     background: palevioletred;

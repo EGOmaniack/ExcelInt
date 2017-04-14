@@ -46,7 +46,7 @@ var store = { /**Нужна функция ресет на начальный st
 
 var update = function(action){
     if(this.developMode) this.__history.push(this.get())
-/* Грязная функция изменения состояния */
+ /* Грязная функция изменения состояния */
     switch (action.type) {
         case "platformNumber":
             this._state.platfNumber = action.payload;
@@ -124,15 +124,6 @@ var update = function(action){
     }
     this.callback();
 }
-
-function newObj(obj){   /**функция копирует объект */
-    var newObj={};
-    for(var key in obj){
-        newObj[key] = obj[key];
-    }
-    return newObj;
-}
-
 
 
 // repair.sine(

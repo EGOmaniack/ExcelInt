@@ -75,14 +75,27 @@ while($line = pg_fetch_assoc($result)){
     }
     if( $line['repair_id'] != $lastID ) { $count++; $lastID = $line['repair_id']; }
     $jobsInfo[$line['number']][$count][$line['rsjsid']] = $line;
+    $jobsInfo[$line['number']][$count]['repairInfo']['type'] = $line['type'];
+    $jobsInfo[$line['number']][$count]['repairInfo']['repair_id'] = $line['repair_id'];
+    $jobsInfo[$line['number']][$count]['repairInfo']['repair_start'] = $line['repair_start'];
+    $jobsInfo[$line['number']][$count]['repairInfo']['repair_end'] = $line['repair_end'];
     $lines[] = $line;
 }
 // var_dump($jobsInfo);
 // exit;
-    
+$sqlstr = 'select pl."name", pl.full_name, pl."number" from platforms.platforma pl;';
+$result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());
+$platformsInfo = [];
+while($line = pg_fetch_assoc($result)){
+    $platformsInfo[$line['number']] = $line;
+    $platformsInfo['all'][] = $line['number'];
+}
+// var_dump($platformsInfo);
+// exit;
+
 
     $_SESSION['jobsInfo'] = $jobsInfo;
-    $_SESSION['platforms'] = $platforms;
+    $_SESSION['platforms'] = $platformsInfo;
     //  var_dump($repairs);
     //  exit();
     pg_free_result($result);

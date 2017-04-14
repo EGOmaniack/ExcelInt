@@ -144,7 +144,7 @@ $('#action_selector').on('click','#repair_details',function(e){
     });
     $.each(jobs_ids, function (ind, job){
         $.each(window.session.jobs, function(index, value){
-            if(value.id == job && value.razdel != 3 ){
+            if(value.id == job && value.razdel != 4 ){ /**Хардкод раздел №4 это 'К смазке' */
                 jobs.push({id:value.id, name: value.name});
             }
         });
