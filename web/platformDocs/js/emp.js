@@ -1,24 +1,4 @@
-// function empUpdate(action){
-//     switch (action.type) {
-//         case "":
-            
-//             break;
-    
-//         default:
-//             break;
-//     }
-// }
-
-// var repair = createStore({
-//     platforms:[], /* перечень платформ вида { id: "Из БД", number:"номер платформы", fullName:"полное название из БД" } */
-//     repairs:[]  /* перечень всех ремонтов id, type,  */
-// },
-// update);
-
-/* repair.SetDev();/**Включаем режим разработки
-                * Все изменения state будут записываться в _history
-                */
-/**функция фамилию и возвращает инициалы */
+/**функция  возвращает фамилию и инициалы */
 function getName(i){
     var fam = window.session.emps[i].surname;
     var name = window.session.emps[i].name;
@@ -41,7 +21,7 @@ fams += '</div>';
 
 $('.content').append(fams); /**Вставляем список фамилий на страницу */
 
-/**теперь таблица работ */
+/* теперь таблица работ */
 var platforms = window.session.platforms;
 var jobsInfo = window.session.jobsInfo;
 var mainTable = '<div class="mainTable">';
