@@ -1,5 +1,5 @@
 .body{
-    min-width: 1800px;
+    min-width: 1650px;
 }
 .mainTable{
     margin-top: 140px;
@@ -17,7 +17,7 @@
 }
 .tabString{
     display: block;
-    height: 39.2px;
+    height: 35px;
     width: 1425px;
 }
 .wceils{
@@ -30,17 +30,21 @@
     white-space: nowrap;
 }
 .hovered{
-    color: palevioletred;
+    color: white;
     box-shadow: 1px 1px 12px rgba(1, 1, 1, 0.25);
 }
 .txthvred{
     color: palevioletred;
 }
+
 .workTitle{
     width: 200px;
     position: absolute;
     display: inline-block;
     height: 35px;
+}
+i.fa{/* цвет спиннера */
+    color: blue;
 }
 .fams{
     top: 20px;
@@ -53,10 +57,14 @@
     z-index: 2;
 }
 .wceil{
+    vertical-align: middle;
     display: inline-block;
     width: 35px;
     height: 35px;
     background: #FFEDFF;
+}
+.wceil>i{
+    margin-bottom: 10px;
 }
 .wceil:hover{
     background-color: palevioletred;

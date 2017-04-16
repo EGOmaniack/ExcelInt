@@ -22,6 +22,7 @@ $json = json_encode($_SESSION);
     <link rel="stylesheet" href="css/emp.css?<?=$sek?>">
     <link rel="stylesheet" href="css/reset.css?<?=$sek?>">
     <script type="text/javascript" src="./../js/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
 </head>
 <body>
     <?php include_once './components/head.php';?>
@@ -30,7 +31,6 @@ $json = json_encode($_SESSION);
     <div class="content">
     </div>
     
-
        
     <script type="text/javascript" src="js/store.js?<?=$sek?>"></script>
     <script type="text/javascript" src="js/emp.js?<?=$sek?>"></script>

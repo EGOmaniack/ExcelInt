@@ -89,3 +89,6 @@ $('.content').on('mouseleave','.wceil', function(){
         }
     });
  });
+ $('.content').on('click','.wceil', function(){
+    $(this).append('<i class="fa fa-spinner fa-pulse fa-2x fa-fw" aria-hidden="true"></i>');
+ });
