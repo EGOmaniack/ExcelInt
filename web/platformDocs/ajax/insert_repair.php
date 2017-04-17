@@ -48,7 +48,7 @@ $sqlstr3 .= "	repair_stuff.repair_jobs rj ";
 $sqlstr3 .= "		on rj.razdel = ws.id ";
 $sqlstr3 .= "where ";
 $sqlstr3 .= "rt.code = '".$n_rep_type."' ";
-$sqlstr3 .= "and ws.\"name\" = 'smazka'";
+$sqlstr3 .= "and ws.id = 4";
 $sqlstr3 .= ";";
 
 $result3 = pg_query($dbconn, $sqlstr3) or die('Ошибка запроса: ' . pg_last_error());

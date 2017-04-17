@@ -16,11 +16,11 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
 <head>
     <meta charset="UTF-8">
     <title>platforms</title>
-    <link rel="stylesheet" href="css/main.css?<?=$sek?>">
+    <link rel="stylesheet" href="css/main.min.css?<?=$sek?>">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
-    <link href="css/modal.css?<?=$sek?>" rel="stylesheet">
-    <link href="css/head.css?<?=$sek?>" rel="stylesheet">
+    <link href="css/modal.min.css?<?=$sek?>" rel="stylesheet">
+    <link href="css/head.min.css?<?=$sek?>" rel="stylesheet">
     <script type="text/javascript" src="./../js/jquery-3.1.1.min.js"></script>
 </head>
 <body>

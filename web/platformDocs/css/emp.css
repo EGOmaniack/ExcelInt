@@ -1,0 +1,82 @@
+.body{
+    min-width: 1650px;
+}
+.mainTable{
+    margin-top: 140px;
+}
+.title{
+    font-weight: bold;
+    width: fit-content;
+    margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+}
+.vertical-text {
+	transform: rotate(-90deg);
+	transform-origin: left top 0;
+}
+.tabString{
+    display: block;
+    height: 38px;
+    width: 1425px;
+}
+.wceils{
+    margin-left: 200px;
+}
+.emp_fam{
+    display: inline-block;
+    text-align: left;
+    width: 35px;
+    white-space: nowrap;
+}
+.hovered{
+    color: palevioletred;
+    box-shadow: 1px 1px 12px rgba(1, 1, 1, 0.25);
+}
+.txthvred{
+    color: palevioletred;
+}
+
+.workTitle{
+    width: 200px;
+    position: absolute;
+    display: inline-block;
+    height: 35px;
+}
+i.fa{/* цвет спиннера */
+    color: #333;
+}
+.fams{
+    top: 20px;
+    padding-top: 110px;
+    padding-left: 210px;
+    background-color: white;
+    height: 120px;
+    width: 1415px;
+    position: fixed;
+    z-index: 2;
+}
+.wceil{
+    vertical-align: middle;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background: #FFEDFF;
+}
+.wceil>i{
+    margin-bottom: 10px;
+}
+.wceil:hover{
+    background-color: palevioletred;
+    box-shadow: 1px 1px 12px rgba(1, 1, 1, 0.35);
+}
+.wceil:active{
+    background: palevioletred;
+}
+.busy::before{
+    content: "";
+    display: inline-block;
+    width: 25px;
+    height: 22px;
+    background: url('../img/check_small.png') no-repeat ;
+}
