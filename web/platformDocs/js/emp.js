@@ -24,6 +24,8 @@ $('.content').append(fams); /**Вставляем список фамилий н
 /* теперь таблица работ */
 var platforms = window.session.platforms;
 var jobsInfo = window.session.jobsInfo;
+var emps = window.session.emps;
+var jobs_emps = window.session.jobs_emps;
 var mainTable = '<div class="mainTable">';
 for( i = 0; i < platforms.all.length ; i++ ){/**перебираем платформы */
     mainTable += '<div class="platform">';
@@ -41,11 +43,14 @@ for( i = 0; i < platforms.all.length ; i++ ){/**перебираем платф�
                 mainTable += '<div class="wceils">';
                 for(var g = 0; g < empNumber; g ++){
                     mainTable += '<div ' +
-                    'pl_num="' + platforms[platforms.all[i]].number + '"' +
-                    'rep_num = "' + j + '"' +
-                    'job_id="' + index + '"' +
-                    'fam_id="' + g + '"' +
-                    'class="wceil"></div>';
+                    'pl_num="' + platforms[platforms.all[i]].number + '" ' +
+                    'rep_num = "' + j + '" ' +
+                    'job_id="' + index + '" ' +
+                    'fam_id="' + g + '" ' +
+                    'busy="false" ' +
+                    'class="wceil ';
+                    if(jobs_emps[index] !== undefined && jobs_emps[index][emps[g].id] !== undefined) mainTable += "busy";
+                    mainTable += ' "></div>';
                 /**Каждая ячейка хранит в себе всю инфу */
                 }
                 mainTable += '</div>';
@@ -89,6 +94,59 @@ $('.content').on('mouseleave','.wceil', function(){
         }
     });
  });
- $('.content').on('click','.wceil', function(){
-    $(this).append('<i class="fa fa-spinner fa-pulse fa-2x fa-fw" aria-hidden="true"></i>');
+$('.content').on('click','.wceil', function(){
+    if(!$(this).hasClass('busy')){
+       var plutform_id = $(this).attr('pl_num');
+       var job_id = $(this).attr('job_id');
+       var fam_id = window.session.emps[$(this).attr('fam_id')].id;
+       var self = this;
+       $(this).append('<i class="fa fa-spinner fa-pulse fa-2x fa-fw" aria-hidden="true"></i>');
+       $.post("./ajax/addJobEmp.php", { /**Отправить запрос на внесение в изменений в бд */
+       insert: true,
+       job_id: job_id,
+       fam_id: fam_id
+       }, function (data) {
+       if(data != undefined){
+           if(data == 'done'){
+               $(self).addClass('busy');
+               $(self).html('');
+           }else if(data == 'error'){
+               alert('Ошибка.\nЧто-то пошло не так. Обратитесь к знающему человеку)')
+               $(self).html('');
+           }
+            // $('body').html('');
+            // $('body').append(data);
+            // console.log(data);
+            //location.href = '/platformDocs/index.php';
+       }
+       });
+    } else {
+        var plutform_id = $(this).attr('pl_num');
+        var job_id = $(this).attr('job_id');
+        var fam_id = window.session.emps[$(this).attr('fam_id')].id;
+        var self = this;
+        $(this).html('');
+        $(this).append('<i class="fa fa-spinner fa-pulse fa-2x fa-fw" aria-hidden="true"></i>');
+        $.post("./ajax/addJobEmp.php", { /**Отправить запрос на внесение в изменений в бд */
+        insert: false,
+        job_id: job_id,
+        fam_id: fam_id
+        }, function (data) {
+        if(data != undefined){
+            if(data == 'done'){
+                $(self).removeClass('busy');
+                $(self).html('');
+            }else if(data == 'error'){
+                alert('Ошибка.\nЧто-то пошло не так. Обратитесь к знающему человеку)');
+                $(self).html('');
+            }else{
+                console.log(data);
+            }
+                // $('body').html('');
+                // $('body').append(data);
+                // console.log(data);
+                //location.href = '/platformDocs/index.php';
+        }
+        });
+    }
  });

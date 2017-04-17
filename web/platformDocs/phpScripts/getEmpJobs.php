@@ -34,7 +34,7 @@ $sqlstr = <<<EOT
 select 
 	pl.full_name, rt.code, pl."name" plname, rsjs.id  rsjsid, pl."number",
 	rep.repair_start, rep.repair_end, rep.id repair_id, rt."type", rj."name",
-	rjs.emp_id, rjs.start_date, rjs.end_date, ws."name"  "section"
+	ws."name"  "section"
 from
 	platforms.platforma pl
 	full outer join
@@ -44,9 +44,6 @@ from
 	platforms."repairs-jobs" rsjs
 		on rsjs.rep_id = rep.id
 	full outer join
-	platforms."repairs-jobs-staff" rjs
-		on rjs."rep-job_id" = rsjs.id
-	inner join
 	repair_stuff.repair_jobs rj
 		on rsjs.job_id = rj.id
 	inner join
@@ -55,14 +52,15 @@ from
 	inner join
 	repair_stuff.work_sections ws
 		on rj.razdel = ws.id
-GROUP by ws.id, pl.id, rep.id, rsjs.id, rjs.id, rj.id, rt.id
-order by pl."number", rep.repair_start, ws.weight desc
+group by pl.id, rep.id, rsjs.id, rj.id, rt.id, ws.id
+order by rsjs.id
 ;
 EOT;
 
 $jobsInfo = [];
 
 $result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());
+
 $count = -1;
 $lastPlatform = "";
 $lastID = 0;
@@ -93,9 +91,17 @@ while($line = pg_fetch_assoc($result)){
 // var_dump($platformsInfo);
 // exit;
 
+$sqlstr = "select * from platforms.\"repairs-jobs-staff\";";
+$result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());
+
+$rjobsstaff=[];
+while($line = pg_fetch_assoc($result)){
+    $rjobsstaff[$line['rep-job_id']][$line['emp_id']] = $line;
+}
 
     $_SESSION['jobsInfo'] = $jobsInfo;
     $_SESSION['platforms'] = $platformsInfo;
+    $_SESSION['jobs_emps'] = $rjobsstaff;
     //  var_dump($repairs);
     //  exit();
     pg_free_result($result);
