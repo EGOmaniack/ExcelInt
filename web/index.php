@@ -101,7 +101,7 @@ $sek = strtotime("now");
                 <div class="thumb">
                     <div class="text">Ведение документации по платформам<br>
                     </div>
-                    <a class="btns submit" href="/platformDocs">Перейти</a>
+                    <a class="btns submit" href="./platformDocs/">Перейти</a>
                 </div>
             </div>
             <div id="bottom">
