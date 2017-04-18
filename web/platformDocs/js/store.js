@@ -92,7 +92,7 @@ var update = function(action){
                     jobs: newjobs
                     },function (data) {
                     if(data != undefined){
-                        location.href = '/platformDocs/index.php';
+                        location.href = './platformDocs/index.php';
                     }
                 });
             }

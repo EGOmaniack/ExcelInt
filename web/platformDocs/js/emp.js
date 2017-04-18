@@ -117,7 +117,7 @@ $('.content').on('click','.wceil', function(){
             // $('body').html('');
             // $('body').append(data);
             // console.log(data);
-            //location.href = '/platformDocs/index.php';
+            //location.href = './platformDocs/index.php';
        }
        });
     } else {
@@ -145,7 +145,7 @@ $('.content').on('click','.wceil', function(){
                 // $('body').html('');
                 // $('body').append(data);
                 // console.log(data);
-                //location.href = '/platformDocs/index.php';
+                //location.href = './platformDocs/index.php';
         }
         });
     }

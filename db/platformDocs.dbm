@@ -485,6 +485,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<constraint name="rep_job_st_pk" type="pk-constr" table="platforms.&quot;repairs-jobs-staff&quot;">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
+	<constraint name="rsjsstaff_unq" type="uq-constr" table="platforms.&quot;repairs-jobs-staff&quot;">
+		<columns names="rep-job_id,emp_id" ref-type="src-columns"/>
+	</constraint>
 </table>
 
 <table name="rep_jobs_docs">

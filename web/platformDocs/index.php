@@ -43,7 +43,7 @@ $json = json_encode($_SESSION); // include 2 и 3 передают данные 
                 }
                 ?>
                 <div class="platform new_platf">
-                    <img src="img/platforma_new.png" alt="platform_ico" href = "/platformDocs/new_platform.php">
+                    <img src="img/platforma_new.png" alt="platform_ico" href = "./platformDocs/new_platform.php">
                     <p class="lable">Новая платформа</p>
                 </div>
             </div>

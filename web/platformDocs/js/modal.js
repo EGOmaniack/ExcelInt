@@ -206,7 +206,7 @@ $('#new_repair_btn').click(function(){
             if(data != undefined){
                 var modal = document.getElementById('myModal');
                 modal.style.display = "none";
-                location.href = "/platformDocs/index.php";
+                location.href = "./platformDocs/index.php";
                 //console.log(data);
                 // $('body').html(data);
                 
@@ -230,7 +230,7 @@ $('#new_repair_btn').click(function(){
                     var modal = document.getElementById('myModal');
                     modal.style.display = "none";
                     // console.log(data);
-                    location.href = "/platformDocs/index.php";
+                    location.href = "./platformDocs/index.php";
                     //$('body').html('');
                     //$('body').append(data);
                 }
