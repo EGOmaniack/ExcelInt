@@ -15,9 +15,9 @@ $('#change').click(function(){
             // $('body').html('');
             // $('body').append(data);
             // $('#insert').html("Изменить");
-            location.href = "/platformDocs/index.php";
+            location.href = "./platformDocs/index.php";
             //$(".form").children().val("");
         }
     });
-    //location.href = "/platformDocs/index.php";
+    //location.href = "./platformDocs/index.php";
 });

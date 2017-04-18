@@ -9,11 +9,12 @@ ini_set('xdebug.var_display_max_data', 1024);
 function getver($logname){
   if(file_exists("./logs/".$logname)){
     $ver;
+    echo count($verslog);
     $handle = fopen("./logs/".$logname,"r");
     if($handle){
         while(($line = fgets($handle)) !== false){
-            if(strpos($line , "v") !== false/*substr($line, 0, 1) === 'v'*/){
-                if(count($verslog) != 0){
+            if(strpos($line , "v") !== false){
+                if(count($verslog) != 0){/* ругается на отсутствие $verlog */
                     $ver[] = $verslog;
                     unset($verslog);
                 }
