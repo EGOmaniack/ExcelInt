@@ -50,7 +50,7 @@ function jobs_items(jobs){/**отрисовка элементов списка 
 }
 
 $('.change_pl').click(function(){
-    location.href = "./platformDocs/change_platform.php/?pl=" + $(this).attr('platform')
+    location.href = "./change_platform.php/?pl=" + $(this).attr('platform')
 });
 
 $('.old_platf').click(function(){
@@ -64,7 +64,7 @@ $('.old_platf').click(function(){
 });
 
 $('.new_platf').click(function(){
-    location.href = "./platformDocs/new_platform.php";
+    location.href = "./new_platform.php";
 });
 
 $('#action_selector').on('click','.close',function(e){
@@ -78,7 +78,7 @@ $('#action_selector').on('click','.close',function(e){
             //alert('created');
             //$('body').html('');
             //$('body').append(data);
-            location.href = './platformDocs/index.php';
+            location.href = './index.php';
         }
         });
     }
@@ -90,7 +90,7 @@ $('#action_selector').on('click','.print',function(e){
         var platform = JSON.stringify(window.session.platforms);
         var repairs = JSON.stringify(window.session.platf_repairs);
         // console.log(id);
-        // location.href = './platformDocs/ajax/getpassport.php/?file=passport&id=' + id + '';
+        // location.href = './ajax/getpassport.php/?file=passport&id=' + id + '';
         $.post("./ajax/create_passport.php", {
         repair_id: id,
         platform_id: platform_id,
@@ -101,7 +101,7 @@ $('#action_selector').on('click','.print',function(e){
             //alert('created');
             //$('body').html('');
             //$('body').append(data);
-            location.href = './platformDocs/phpScripts/get_passport.php?file=' + data;
+            location.href = './phpScripts/get_passport.php?file=' + data;
         }
         });
     });
@@ -179,7 +179,7 @@ $('#jobs').on('click','.job_del', function(){
         if(data != undefined){
             /* $('body').html('');
             $('body').append(data); */
-            location.href = './platformDocs/index.php';
+            location.href = './index.php';
         }
     });
 });
