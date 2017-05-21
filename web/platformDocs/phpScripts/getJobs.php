@@ -2,7 +2,16 @@
 $dbconn = pg_connect("host=localhost port=5432 dbname=platformDocs user=postgres password=Rgrur4frg56eq16")
     or die('Could not connect: ' . pg_last_error());
 
-$sqlstr  ="select * from repair_stuff.work_sections order by weight desc;";
+// $sqlstr  ="select * from repair_stuff.work_sections order by weight desc;";
+$sqlstr = <<<EOT
+select ws.id, ws."name", ws.weight, ws.parent_sec, pltype."name" "pltype", rt."type", rt.code
+from repair_stuff.work_sections ws,
+platforms.repair_type rt,
+repair_stuff.platf_type pltype
+where rt.id = ws.r_type_id
+and pltype.id = ws.r_type_id
+;
+EOT;
 $result = pg_query($dbconn, $sqlstr) or die('Ошибка запроса: ' . pg_last_error());
 
 $works = [];
