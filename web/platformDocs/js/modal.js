@@ -7,7 +7,7 @@ function getJobsList(root, lvl){
     var haveChilds = false;
     
     $.each(sections, function(index, value){/**вставляем подразделы */
-        if(value.parent_sec == root && ($.inArray(value.name, banList) == -1) ){
+        if(value.parent_sec == root && ($.inArray(value.name, banList) == -1) && repair.get().repairText == "текущий ремонт 2 объема" ){/* hardcode завязался на t2 */
             var haveChilds = false;
             
             response += /* Тут выдаются категории */
