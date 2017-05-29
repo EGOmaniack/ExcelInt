@@ -22,6 +22,7 @@ foreach ($repairs[$platform_id] as $value) {
 
 // var_dump($repair);
 // var_dump($platforms[$platform_id]);
+// exit;
 
 $file = '../docs/passport_pl_№_'.$platform_id.'.docx';
 include_once './../phpScripts/months.php';
@@ -52,7 +53,8 @@ if($repair['repair_end'] != null) {
 }
 $templateProcessor->setValue('fac_name', $repair['fac_name']);
 $templateProcessor->setValue('full_name', $repair['full_name']);
-$templateProcessor->setValue('release_date', $month[date('F', mktime(0, 0, 0, $repair['release_date_arr'][1], $repair['release_date_arr'][2], $repair['release_date_arr'][0] ))]." ".date('Y', mktime(0, 0, 0, $repair['release_date_arr'][1], $repair['release_date_arr'][2], $repair['release_date_arr'][0] )));
+$templateProcessor->setValue('release_date', $repair['release_date']);
+//$month[date('F', mktime(0, 0, 0, $repair['release_date_arr'][1], $repair['release_date_arr'][2], $repair['release_date_arr'][0] ))]." ".date('Y', mktime(0, 0, 0, $repair['release_date_arr'][1], $repair['release_date_arr'][2], $repair['release_date_arr'][0] )));
 $templateProcessor->setValue('last_repair_date', $repair['last_repair_date']);
 $templateProcessor->setValue('last_rep_type', $repair['last_rep_type']);
 $templateProcessor->setValue('repair_company_name', $repair['repair_company_name']);
