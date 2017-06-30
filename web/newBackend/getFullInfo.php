@@ -8,7 +8,7 @@ if(isset($_GET['flowName'])){
         if($card['flowName'] == $flowName){
 
             header("Access-Control-Allow-Origin: *");
-            echo $card['Discription'];
+            echo json_encode( $card, JSON_UNESCAPED_UNICODE );
             exit;
         }
     }
