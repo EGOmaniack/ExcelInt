@@ -19,7 +19,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="projects">
 	<schema name="project"/>
 	<role name="postgres"/>
-	<position x="227.667" y="646.27"/>
+	<position x="220" y="640"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -44,7 +44,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="project_composition">
 	<schema name="project"/>
 	<role name="postgres"/>
-	<position x="464.537" y="791.07"/>
+	<position x="460" y="800"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -72,7 +72,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="project_object_type">
 	<schema name="dictionary"/>
 	<role name="postgres"/>
-	<position x="239.003" y="1148.67"/>
+	<position x="240" y="1140"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -99,7 +99,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="documents">
 	<schema name="project"/>
 	<role name="postgres"/>
-	<position x="745.067" y="856.47"/>
+	<position x="740" y="860"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -120,7 +120,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="doc_type">
 	<schema name="dictionary"/>
 	<role name="postgres"/>
-	<position x="747.755" y="1140.47"/>
+	<position x="740" y="1140"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -141,7 +141,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="sborka">
 	<schema name="project"/>
 	<role name="postgres"/>
-	<position x="745.667" y="727.07"/>
+	<position x="740" y="720"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -164,7 +164,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="project"/>
 	<role name="postgres"/>
 	<comment><![CDATA[Перечень всех составных частей всех сборочных чертежей]]></comment>
-	<position x="1260.67" y="721.87"/>
+	<position x="1260" y="720"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -189,7 +189,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="sborkaType">
 	<schema name="dictionary"/>
 	<role name="postgres"/>
-	<position x="991.4" y="1131.47"/>
+	<position x="1000" y="1140"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -221,7 +221,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="detail">
 	<schema name="project"/>
 	<role name="postgres"/>
-	<position x="1497.27" y="711.67"/>
+	<position x="1500" y="720"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -259,7 +259,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="form">
 	<schema name="project"/>
 	<role name="postgres"/>
-	<position x="1878.47" y="861.47"/>
+	<position x="1880" y="860"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -295,7 +295,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="formType">
 	<schema name="dictionary"/>
 	<role name="postgres"/>
-	<position x="1484.8" y="1133.94"/>
+	<position x="1480" y="1140"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -343,7 +343,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="formVariants">
 	<schema name="project"/>
 	<role name="postgres"/>
-	<position x="2420.54" y="813.137"/>
+	<position x="2420" y="820"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -378,7 +378,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="form_setting">
 	<schema name="dictionary"/>
 	<role name="postgres"/>
-	<position x="2407.4" y="1109.87"/>
+	<position x="2400" y="1100"/>
 	<column name="id">
 		<type name="serial" length="0"/>
 	</column>
@@ -421,7 +421,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="ei">
 	<schema name="dictionary"/>
 	<role name="postgres"/>
-	<position x="2469.33" y="1369.13"/>
+	<position x="2460" y="1360"/>
 	<column name="code" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
@@ -457,7 +457,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="materials">
 	<schema name="project"/>
 	<role name="postgres"/>
-	<position x="1883.67" y="677.746"/>
+	<position x="1880" y="680"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -488,7 +488,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="matMark">
 	<schema name="dictionary"/>
 	<role name="postgres"/>
-	<position x="2129" y="1242.54"/>
+	<position x="2120" y="1240"/>
 	<column name="id">
 		<type name="serial" length="0"/>
 	</column>
@@ -528,7 +528,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="gost">
 	<schema name="dictionary"/>
 	<role name="postgres"/>
-	<position x="1801.6" y="1184.67"/>
+	<position x="1800" y="1180"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -587,7 +587,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="pogMass">
 	<schema name="dictionary"/>
 	<role name="postgres"/>
-	<position x="1496.4" y="1348.67"/>
+	<position x="1500" y="1340"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -631,7 +631,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="unknown_detail">
 	<schema name="project"/>
 	<role name="postgres"/>
-	<position x="1497.07" y="594.07"/>
+	<position x="1500" y="600"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -662,7 +662,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="format">
 	<schema name="dictionary"/>
 	<role name="postgres"/>
-	<position x="1292.2" y="1068.2"/>
+	<position x="1300" y="1060"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -714,7 +714,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="sborka_formats">
 	<schema name="project"/>
 	<role name="postgres"/>
-	<position x="1008.88" y="836.156"/>
+	<position x="1000" y="840"/>
 	<column name="sborka" not-null="true">
 		<type name="int4" length="0"/>
 	</column>
@@ -729,7 +729,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="unknown_standart_stuff">
 	<schema name="project"/>
 	<role name="postgres"/>
-	<position x="1502.81" y="456.38"/>
+	<position x="1500" y="460"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -750,7 +750,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<schema name="directory"/>
 	<role name="postgres"/>
 	<comment><![CDATA[файловый репозиторий]]></comment>
-	<position x="669" y="1558.34"/>
+	<position x="660" y="1560"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -771,7 +771,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="file_types" oids="true">
 	<schema name="directory"/>
 	<role name="postgres"/>
-	<position x="669" y="1734.34"/>
+	<position x="660" y="1740"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -790,7 +790,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </table>
 
 <textbox name="note" font-size="9">
-	<position x="1133" y="1440"/>
+	<position x="1140" y="1440"/>
 	<comment><![CDATA[Код СКМТР присваивается вариации форма+материал]]></comment>
 </textbox>
 
@@ -803,14 +803,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </sequence>
 
 <textbox name="note2" font-size="9">
-	<position x="1887" y="219.333"/>
+	<position x="1880" y="220"/>
 	<comment><![CDATA[Производитель]]></comment>
 </textbox>
 
 <table name="unknown_other_stuff">
 	<schema name="project"/>
 	<role name="postgres"/>
-	<position x="1510.67" y="363.333"/>
+	<position x="1520" y="360"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -829,7 +829,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="st_stuffType">
 	<schema name="standart_stuff_dictionary"/>
 	<role name="postgres"/>
-	<position x="3158.97" y="478.134"/>
+	<position x="3160" y="480"/>
 	<column name="id">
 		<type name="serial" length="0"/>
 	</column>
@@ -855,7 +855,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="st_st_settings">
 	<schema name="standart_stuff_dictionary"/>
 	<role name="postgres"/>
-	<position x="3135.56" y="293.829"/>
+	<position x="3140" y="300"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -879,7 +879,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="standart_stuff_dic">
 	<schema name="standart_stuff_dictionary"/>
 	<role name="postgres"/>
-	<position x="2683" y="402.404"/>
+	<position x="2680" y="400"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -897,7 +897,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="standart_stuff">
 	<schema name="project"/>
 	<role name="postgres"/>
-	<position x="1499.87" y="518.933"/>
+	<position x="1500" y="520"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -910,14 +910,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </table>
 
 <textbox name="note3" bold="true" font-size="9">
-	<position x="971.2" y="905.8"/>
+	<position x="980" y="900"/>
 	<comment><![CDATA[Каждая сборка может включать несколько разных форматов]]></comment>
 </textbox>
 
 <table name="unknown_other_materials">
 	<schema name="project"/>
 	<role name="postgres"/>
-	<position x="1511.6" y="302.066"/>
+	<position x="1520" y="300"/>
 	<column name="id" not-null="true">
 		<type name="serial" length="0"/>
 	</column>
@@ -943,7 +943,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </relationship>
 
 <textbox name="Деталь не может состоять из нескольких форм" font-size="9">
-	<position x="1834.4" y="920.8"/>
+	<position x="1840" y="920"/>
 	<comment><![CDATA[Деталь не может состоять из нескольких форм
 Лишняя таблица
 Таблица создана для оптимизации.
