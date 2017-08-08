@@ -23,8 +23,6 @@ $higestRow = $objWorkSheet->getHighestRow(); // Слишком много пер
 $filename = $_FILES['fileToUpload']['name'];
 $Data; // Все агрегаты
 
-
-
 $dubstr = BDgetDictionary(2);/*Двустрочные материалы*/
 $onestr = BDgetDictionary(1);/*Однострочные материалы*/
 
