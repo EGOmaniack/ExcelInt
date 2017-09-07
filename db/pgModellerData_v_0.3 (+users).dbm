@@ -1,0 +1,1148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.0-alpha1" last-position="0,0" last-zoom="1"
+	 default-owner="postgres">
+<database name="thedata">
+	<role name="postgres"/>
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="project" rect-visible="true" fill-color="#9ecaf8">
+	<role name="postgres"/>
+</schema>
+
+<table name="projects">
+	<schema name="project"/>
+	<role name="postgres"/>
+	<position x="220" y="640"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="shifr">
+		<type name="varchar" length="0"/>
+	</column>
+	<constraint name="proj_pk" type="pk-constr" table="project.projects">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="project_uniqness" type="uq-constr" table="project.projects">
+		<columns names="name,shifr" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•name•shifr⸣
+•Тестовый бункер•БНКР 00.000.00]]>
+	</initial-data>
+</table>
+
+<table name="project_composition">
+	<schema name="project"/>
+	<role name="postgres"/>
+	<position x="460" y="800"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="project" not-null="true">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="projectObject_id" not-null="true">
+		<type name="numeric" length="0"/>
+	</column>
+	<column name="count" not-null="true" default-value="1">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="obj_type">
+		<type name="varchar" length="0"/>
+	</column>
+	<constraint name="pr_com_pk" type="pk-constr" table="project.project_composition">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<schema name="dictionary" rect-visible="true" fill-color="#f0a612">
+	<role name="postgres"/>
+</schema>
+
+<table name="project_object_type">
+	<schema name="dictionary"/>
+	<role name="postgres"/>
+	<position x="240" y="1140"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="code">
+		<type name="varchar" length="0"/>
+		<comment><![CDATA[Код типа объекта]]></comment>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<constraint name="pot_pk" type="pk-constr" table="dictionary.project_object_type">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="pr_obj_type_uq" type="uq-constr" table="dictionary.project_object_type">
+		<columns names="code" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•code•name⸣
+1•sb•Сборка⸣
+2•doc•Документ]]>
+	</initial-data>
+</table>
+
+<table name="documents">
+	<schema name="project"/>
+	<role name="postgres"/>
+	<position x="740" y="860"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="doc_type">
+		<type name="varchar" length="0"/>
+	</column>
+	<constraint name="docs_pk" type="pk-constr" table="project.documents">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="docs_uq" type="uq-constr" table="project.documents">
+		<columns names="doc_type" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="doc_type">
+	<schema name="dictionary"/>
+	<role name="postgres"/>
+	<position x="740" y="1140"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="code">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<constraint name="dt_pk" type="pk-constr" table="dictionary.doc_type">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="doc_uq" type="uq-constr" table="dictionary.doc_type">
+		<columns names="code" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sborka">
+	<schema name="project"/>
+	<role name="postgres"/>
+	<position x="740" y="720"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="shifr" not-null="true">
+		<type name="varchar" length="0"/>
+		<comment><![CDATA[Шифр сборки тпа ПЗЛ 00.0000.00]]></comment>
+	</column>
+	<constraint name="sb_pk" type="pk-constr" table="project.sborka">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="sborka_uq" type="uq-constr" table="project.sborka">
+		<columns names="shifr" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sborkaComposition">
+	<schema name="project"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Перечень всех составных частей всех сборочных чертежей]]></comment>
+	<position x="1260" y="720"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="id_sborka">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="sb_obj_id" not-null="true">
+		<type name="int4" length="0"/>
+		<comment><![CDATA[ссылка на конкретный объект сборки (другая сборка, делаль, метиз и т.д.)]]></comment>
+	</column>
+	<column name="count" not-null="true" default-value="1">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="type">
+		<type name="int4" length="0"/>
+	</column>
+	<constraint name="sc_pk" type="pk-constr" table="project.&quot;sborkaComposition&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="sborkaType">
+	<schema name="dictionary"/>
+	<role name="postgres"/>
+	<position x="1000" y="1140"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="code">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<constraint name="st_pk" type="pk-constr" table="dictionary.&quot;sborkaType&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="sbType_uq" type="uq-constr" table="dictionary.&quot;sborkaType&quot;">
+		<columns names="code" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•code•name⸣
+•det•Деталь⸣
+•unk_det•нераспознаная деталь⸣
+•st_stuff•Стандартные изделия⸣
+•unk_st_stuff•Не распознаные стандартные изделия⸣
+•other_stuff•Прочие изделия⸣
+•unk_other_stuff•Не распознаные прочие изделия⸣
+•unk_ot_mat•Не распознаные материалы как раздел спецификации⸣
+•sb•Подсборка]]>
+	</initial-data>
+</table>
+
+<table name="detail">
+	<schema name="project"/>
+	<role name="postgres"/>
+	<position x="1500" y="720"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="shifr" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="format" not-null="true">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="coment">
+		<type name="text" length="0"/>
+		<comment><![CDATA[Примечание из спецификации]]></comment>
+	</column>
+	<constraint name="det_pk" type="pk-constr" table="project.detail">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="det_uq" type="uq-constr" table="project.detail">
+		<columns names="shifr" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_form" index="6"/>
+		<object name="id_materials" index="3"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="form_fk" index="1"/>
+		<object name="materials_fk" index="4"/>
+	</customidxs>
+</table>
+
+<table name="form">
+	<schema name="project"/>
+	<role name="postgres"/>
+	<position x="1880" y="860"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<constraint name="f_pk" type="pk-constr" table="project.form">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_formType" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="formType_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="profile_has_many_detail" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#83af1f"
+	 src-table="project.form"
+	 dst-table="project.detail"
+	 src-required="false" dst-required="false">
+	<label ref-type="dst-label">
+		<position x="7.89" y="14.53"/>
+	</label>
+	<label ref-type="name-label">
+		<position x="57.5697" y="-44.1273"/>
+	</label>
+</relationship>
+
+<table name="formType">
+	<schema name="dictionary"/>
+	<role name="postgres"/>
+	<position x="1480" y="1140"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="code">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="entry_form" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="gost_id">
+		<type name="int4" length="0"/>
+	</column>
+	<constraint name="pt_pk" type="pk-constr" table="dictionary.&quot;formType&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="formType_uk" type="uq-constr" table="dictionary.&quot;formType&quot;">
+		<columns names="code" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•code•entry_form•name⸣
+•list•Лист Б-ПН-s •Лист⸣
+•chain_pr•Цепь ПР-n-n•Цепь типа ПР]]>
+	</initial-data>
+</table>
+
+<relationship name="profType_has_many_profile" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#83af1f"
+	 src-table="dictionary.&quot;formType&quot;"
+	 dst-table="project.form"
+	 src-required="false" dst-required="false">
+	<label ref-type="dst-label">
+		<position x="-5.63" y="21.13"/>
+	</label>
+	<label ref-type="name-label">
+		<position x="-66.5953" y="-49.5977"/>
+	</label>
+</relationship>
+
+<table name="formVariants">
+	<schema name="project"/>
+	<role name="postgres"/>
+	<position x="2420" y="820"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="value" not-null="true" default-value="0">
+		<type name="float" length="0"/>
+	</column>
+	<column name="value_t">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="pvar_pk" type="pk-constr" table="project.&quot;formVariants&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_form" index="3"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="form_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="profile_has_many_profileVariants" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#83af1f"
+	 src-table="project.form"
+	 dst-table="project.&quot;formVariants&quot;"
+	 src-required="false" dst-required="false"/>
+
+<table name="form_setting">
+	<schema name="dictionary"/>
+	<role name="postgres"/>
+	<position x="2400" y="1100"/>
+	<column name="id">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="code" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<constraint name="fv_pk" type="pk-constr" table="dictionary.form_setting">
+		<columns names="code" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•code•name⸣
+•length•Длина⸣
+•height•Высота⸣
+•diameter•Диаметр⸣
+•width•Ширина⸣
+•flange_thickness•толщина полки⸣
+•num_zv•Число звеньев]]>
+	</initial-data>
+</table>
+
+<relationship name="profileSetting_has_many_profileVariants" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#83af1f"
+	 src-table="dictionary.form_setting"
+	 dst-table="project.&quot;formVariants&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="dst-label">
+		<position x="4.04" y="11.4"/>
+	</label>
+	<label ref-type="name-label">
+		<position x="16.8013" y="3.37267"/>
+	</label>
+</relationship>
+
+<table name="ei">
+	<schema name="dictionary"/>
+	<role name="postgres"/>
+	<position x="2460" y="1360"/>
+	<column name="code" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="group" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="bazisnostj" not-null="true">
+		<type name="bool" length="0"/>
+	</column>
+	<column name="designation" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="upName" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<constraint name="ei_pk" type="pk-constr" table="dictionary.ei">
+		<columns names="code" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="ei_has_many_profileVariants" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#83af1f"
+	 src-table="dictionary.ei"
+	 dst-table="project.&quot;formVariants&quot;"
+	 src-required="false" dst-required="false"/>
+
+<table name="materials">
+	<schema name="project"/>
+	<role name="postgres"/>
+	<position x="1880" y="680"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="code" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<constraint name="mat_pk" type="pk-constr" table="project.materials">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="materials_has_many_detail" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#83af1f"
+	 src-table="project.materials"
+	 dst-table="project.detail"
+	 src-required="false" dst-required="false">
+	<label ref-type="dst-label">
+		<position x="3.89" y="-22.27"/>
+	</label>
+	<label ref-type="name-label">
+		<position x="78.584" y="-0.52147"/>
+	</label>
+</relationship>
+
+<table name="matMark">
+	<schema name="dictionary"/>
+	<role name="postgres"/>
+	<position x="2120" y="1240"/>
+	<column name="id">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="code" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="param1" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="param2">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="entry_form" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<constraint name="matMark_pk" type="pk-constr" table="dictionary.&quot;matMark&quot;">
+		<columns names="code" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="matMark_has_many_materials" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#83af1f"
+	 src-table="dictionary.&quot;matMark&quot;"
+	 dst-table="project.materials"
+	 src-required="false" dst-required="false">
+	<label ref-type="src-label">
+		<position x="-0.91" y="-12.267"/>
+	</label>
+</relationship>
+
+<table name="gost">
+	<schema name="dictionary"/>
+	<role name="postgres"/>
+	<position x="1800" y="1180"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="gostNumber">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="name">
+		<type name="text" length="0"/>
+	</column>
+	<column name="group">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="vzamen">
+		<type name="text" length="0"/>
+	</column>
+	<column name="work" not-null="true">
+		<type name="bool" length="0"/>
+	</column>
+	<column name="comment">
+		<type name="text" length="0"/>
+	</column>
+	<column name="next">
+		<type name="varchar" length="0"/>
+	</column>
+	<constraint name="gost_pk" type="pk-constr" table="dictionary.gost">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[gostNumber•name•group•vzamen•work•comment⸣
+ГОСТ 1.0-92•Правила проведения работ по межгосударственной стандартизации. Общие положения.•Т50••1•переиздание 2003 в сб. Межгосударственная система стандартизации⸣
+ГОСТ 1.1-2002•Межгосударственная система стандартизации. Термины и определения.•Т00••1•переиздание 2003 в сб. Межгосударственная система стандартизации⸣
+ГОСТ 1.2-97•Правила проведения работ по межгосударственной стандартизации. Порядок разработки, принятия, применения, обновления и отмены документов по межгосударственной стандартизации.•Т50••0•с 01.05.2010 заменен на ГОСТ 1.2-2009⸣
+ГОСТ 1.5-2001•Межгосударственная система стандартизации. Стандарты межгосударственные, правила и рекомендации по межгосударственной стандартизации. Общие требования к построению, изложению, оформлению, содержанию и обозначению.•Т50•ГОСТ 1.5-93•1•переиздание 2005 в сб. Межгосударственная система стандартизации⸣
+ГОСТ 10.16-70 Э•Плавники акул сушеные для экспорта. Технические условия.•Н28••1•переиздание 1998 в сб. Рыба и рыбные продукты. Прочие пищевые и технические продукты рыбной промышленнос ти. Технические условия. Методы анализа⸣
+ГОСТ 10.30-70•Лен трепаный. Технические требования на продукцию, поставляемую на экспорт.•М71••1•заменен ГОСТ 25133-82 в части метода определения фактической влажности.⸣
+ГОСТ 10.31-70 Э•Волокно льняное короткое, поставляемое для экспорта. Технические требования.•М71••1•заменен ГОСТ 25133-82 в части метода определения фактической влажности.⸣
+ГОСТ 10.69-72 Э•Клипфиск соленый для экспорта. Технические условия.•Н25••1•переиздание 1998 в сб. Рыба и рыбные продукты. Рыба солёная. Технические условия⸣
+ГОСТ 10.76-74•Мясо. Конина, поставляемая для экспорта. Технические требования.•Н11••1•переиздание 2005 в сб. Мясо. Технические условия и методы анализа⸣
+ГОСТ 10000-75•Прицепы и полуприцепы тракторные. Общие технические требования.•Д22•ГОСТ 10000-62•0•с 01.07.2008 прекращено применение на территории РФ. Действует ГОСТ Р 52746-2007⸣
+ГОСТ 10003-90•Стирол. Технические условия.•Л21•ГОСТ 10003-81•1•переиздание 1998⸣
+ГОСТ 10006-80•Трубы металлические. Метод испытания на растяжение.•В69•ГОСТ 10006-73•1•переиздание 2005 в сб. Трубы металлические и соединительные части к ним. Ч.4. Трубы из черных металлов и сплавов литые и соединительные части к ним. Основные размеры. Методы технологических и спы таний труб⸣
+ГОСТ 10007-80•Фторопласт-4. Технические условия.•Л27•ГОСТ 10007-72•1•переиздание 1993⸣
+ГОСТ 10008-62•Консервы мясные. Свинина отварная в собственном соку. Технические условия.•Н13••1•переиздание 1995 в сб. Консервы мясные. Технические условия]]>
+	</initial-data>
+</table>
+
+<relationship name="gost_has_many_matMark" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#83af1f"
+	 src-table="dictionary.gost"
+	 dst-table="dictionary.&quot;matMark&quot;"
+	 src-required="false" dst-required="false"/>
+
+<table name="pogMass">
+	<schema name="dictionary"/>
+	<role name="postgres"/>
+	<position x="1500" y="1340"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="param1" not-null="true">
+		<type name="float" length="0"/>
+	</column>
+	<column name="param2">
+		<type name="float" length="0"/>
+	</column>
+	<column name="param3">
+		<type name="float" length="0"/>
+	</column>
+	<column name="pogMass" not-null="true">
+		<type name="float" length="0"/>
+	</column>
+	<column name="ei">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="pog_pk" type="pk-constr" table="dictionary.&quot;pogMass&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_formType" index="6"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="formType_fk" index="0"/>
+	</customidxs>
+</table>
+
+<relationship name="profType_has_many_pogMass" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#83af1f"
+	 src-table="dictionary.&quot;formType&quot;"
+	 dst-table="dictionary.&quot;pogMass&quot;"
+	 src-required="false" dst-required="false"/>
+
+<table name="unknown_detail">
+	<schema name="project"/>
+	<role name="postgres"/>
+	<position x="1500" y="600"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="shifr" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="mass">
+		<type name="float" length="0"/>
+	</column>
+	<column name="name_2str">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="unk_d_pk" type="pk-constr" table="project.unknown_detail">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="unk_d_uq" type="uq-constr" table="project.unknown_detail">
+		<columns names="shifr" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•shifr•name•mass⸣
+2•••]]>
+	</initial-data>
+</table>
+
+<table name="format">
+	<schema name="dictionary"/>
+	<role name="postgres"/>
+	<position x="1300" y="1060"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="code">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="size_a" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="size_b" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="fold" default-value="1">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="format_pk" type="pk-constr" table="dictionary.format">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•code•size_a•size_b•fold⸣
+•a4•297•210•⸣
+•a4x3•297•630•3⸣
+•a4x4•297•841•4⸣
+•a4x5•297•1051•5⸣
+•a4x6•297•1264•6⸣
+•a4x7•297•1471•7⸣
+•a4x8•297•1682•8⸣
+•a4x9•297•1892•9⸣
+•a3•420•297•⸣
+•a3x3•420•891•3⸣
+•a3x4•420•1189•4⸣
+•a3x5•420•1486•5⸣
+•a3x6•420•1783•6⸣
+•a3x7•420•2080•7⸣
+•a2•594•420•⸣
+•a2x3•594•1261•3⸣
+•a2x4•594•1682•4⸣
+•a2x5•594•2102•5⸣
+•a1•841•594•⸣
+•a1x3•841•1783•3⸣
+•a1x4•841•2378•4⸣
+•a0•1189•841•⸣
+•a0x2•1189•1682•2⸣
+•a0x3•1189•2523•3⸣
+•bch•0•0•]]>
+	</initial-data>
+</table>
+
+<table name="sborka_formats">
+	<schema name="project"/>
+	<role name="postgres"/>
+	<position x="1000" y="840"/>
+	<column name="sborka" not-null="true">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="format" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<constraint name="sb_fs" type="pk-constr" table="project.sborka_formats">
+		<columns names="sborka,format" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="unknown_standart_stuff">
+	<schema name="project"/>
+	<role name="postgres"/>
+	<position x="1500" y="460"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="unk_st_st_pk" type="pk-constr" table="project.unknown_standart_stuff">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<schema name="directory" rect-visible="true" fill-color="#aaff00">
+	<role name="postgres"/>
+	<comment><![CDATA[схема справочников]]></comment>
+</schema>
+
+<table name="file_repository" oids="true">
+	<schema name="directory"/>
+	<role name="postgres"/>
+	<comment><![CDATA[файловый репозиторий]]></comment>
+	<position x="660" y="1560"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="file_name" not-null="true">
+		<type name="text" length="255"/>
+	</column>
+	<column name="path" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="file_type" not-null="true">
+		<type name="int4" length="0"/>
+	</column>
+	<constraint name="pk_file_repository" type="pk-constr" table="directory.file_repository">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="file_types" oids="true">
+	<schema name="directory"/>
+	<role name="postgres"/>
+	<position x="660" y="1740"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="code" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<column name="note" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="pk_file_types" type="pk-constr" table="directory.file_types">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="uq_file_types_code" type="uq-constr" table="directory.file_types">
+		<columns names="code" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<textbox name="note" font-size="9">
+	<position x="1140" y="1440"/>
+	<comment><![CDATA[Код СКМТР присваивается вариации форма+материал]]></comment>
+</textbox>
+
+<sequence name="other_stuff"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="project"/>
+	<role name="postgres"/>
+</sequence>
+
+<textbox name="note2" font-size="9">
+	<position x="1880" y="220"/>
+	<comment><![CDATA[Производитель]]></comment>
+</textbox>
+
+<table name="unknown_other_stuff">
+	<schema name="project"/>
+	<role name="postgres"/>
+	<position x="1520" y="360"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="unk_other_st_pk" type="pk-constr" table="project.unknown_other_stuff">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<schema name="standart_stuff_dictionary" rect-visible="true" fill-color="#ffaa00">
+	<role name="postgres"/>
+</schema>
+
+<table name="st_stuffType">
+	<schema name="standart_stuff_dictionary"/>
+	<role name="postgres"/>
+	<position x="3160" y="480"/>
+	<column name="id">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="code" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="name" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="st_stType_pk" type="pk-constr" table="standart_stuff_dictionary.&quot;st_stuffType&quot;">
+		<columns names="code" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="st_stType_uq" type="uq-constr" table="standart_stuff_dictionary.&quot;st_stuffType&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<initial-data>
+<![CDATA[id•code•name⸣
+•bolt•Болт с шестигранной головкой⸣
+•gajka•Гайка с шестигранной головкой]]>
+	</initial-data>
+</table>
+
+<table name="st_st_settings">
+	<schema name="standart_stuff_dictionary"/>
+	<role name="postgres"/>
+	<position x="3140" y="300"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="stuff" not-null="true">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="setting" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="value_t">
+		<type name="text" length="0"/>
+	</column>
+	<column name="value_n">
+		<type name="float" length="0"/>
+	</column>
+	<constraint name="st_st_setting_pk" type="pk-constr" table="standart_stuff_dictionary.st_st_settings">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="standart_stuff_dic">
+	<schema name="standart_stuff_dictionary"/>
+	<role name="postgres"/>
+	<position x="2680" y="400"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="type" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="gost_id" not-null="true">
+		<type name="int4" length="0"/>
+	</column>
+	<constraint name="st_stuff_dic_pk" type="pk-constr" table="standart_stuff_dictionary.standart_stuff_dic">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="standart_stuff">
+	<schema name="project"/>
+	<role name="postgres"/>
+	<position x="1500" y="520"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="st_dictionary_id">
+		<type name="int4" length="0"/>
+	</column>
+	<constraint name="st_st_pk" type="pk-constr" table="project.standart_stuff">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<textbox name="note3" bold="true" font-size="9">
+	<position x="980" y="900"/>
+	<comment><![CDATA[Каждая сборка может включать несколько разных форматов]]></comment>
+</textbox>
+
+<table name="unknown_other_materials">
+	<schema name="project"/>
+	<role name="postgres"/>
+	<position x="1520" y="300"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="name">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="unk_mat" type="pk-constr" table="project.unknown_other_materials">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="documents_has_one_docType" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#83af1f"
+	 src-table="dictionary.doc_type"
+	 dst-table="project.documents"
+	 src-required="false" dst-required="false">
+	<label ref-type="dst-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<textbox name="Деталь не может состоять из нескольких форм" font-size="9">
+	<position x="1840" y="920"/>
+	<comment><![CDATA[Деталь не может состоять из нескольких форм
+Лишняя таблица
+Таблица создана для оптимизации.
+В случае повторения форм в разных деталях
+не надо будет создавать новую форму.
+Отстойная идея на самом деле]]></comment>
+</textbox>
+
+<schema name="users" rect-visible="true" fill-color="#e1e1e1">
+	<role name="postgres"/>
+</schema>
+
+<table name="users">
+	<schema name="users"/>
+	<role name="postgres"/>
+	<position x="1117.33" y="1648"/>
+	<column name="id">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="login" not-null="true">
+		<type name="text" length="0"/>
+	</column>
+</table>
+
+<constraint name="project" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="project.projects" table="project.project_composition">
+	<columns names="project" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="pr_ob_type_link" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="dictionary.project_object_type" table="project.project_composition">
+	<columns names="obj_type" ref-type="src-columns"/>
+	<columns names="code" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="sb_link" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="project.sborka" table="project.&quot;sborkaComposition&quot;">
+	<columns names="id_sborka" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="sb_type_link" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="dictionary.&quot;sborkaType&quot;" table="project.&quot;sborkaComposition&quot;">
+	<columns names="type" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="format_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="dictionary.format" table="project.detail">
+	<columns names="format" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="formType_g_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="dictionary.gost" table="dictionary.&quot;formType&quot;">
+	<columns names="gost_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="ei_link" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="dictionary.ei" table="dictionary.&quot;pogMass&quot;">
+	<columns names="ei" ref-type="src-columns"/>
+	<columns names="code" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="sborka_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="project.sborka" table="project.sborka_formats">
+	<columns names="sborka" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="sborka_format" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="dictionary.format" table="project.sborka_formats">
+	<columns names="format" ref-type="src-columns"/>
+	<columns names="code" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_file_repository" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="directory.file_types" table="directory.file_repository">
+	<columns names="file_type" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="st_st_setting_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="standart_stuff_dictionary.standart_stuff_dic" table="standart_stuff_dictionary.st_st_settings">
+	<columns names="stuff" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="st_st_dic_fk" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="standart_stuff_dictionary.&quot;st_stuffType&quot;" table="standart_stuff_dictionary.standart_stuff_dic">
+	<columns names="type" ref-type="src-columns"/>
+	<columns names="code" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="st_stuff_dic_gost" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="dictionary.gost" table="standart_stuff_dictionary.standart_stuff_dic">
+	<columns names="gost_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="st_st_dic_link" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="standart_stuff_dictionary.standart_stuff_dic" table="project.standart_stuff">
+	<columns names="st_dictionary_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_projectComposition_projects" type="relfk"
+	 src-table="project.project_composition"
+	 dst-table="project.projects"
+	 src-required="false" dst-required="false">
+	<label ref-type="src-label">
+		<position x="-1.53" y="-7.47033"/>
+	</label>
+	<label ref-type="name-label">
+		<position x="0.240736" y="-48.5855"/>
+	</label>
+</relationship>
+
+<relationship name="rel_projectComposition_project_object_type" type="relfk"
+	 src-table="project.project_composition"
+	 dst-table="dictionary.project_object_type"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="41.9392" y="8.04797"/>
+	</label>
+</relationship>
+
+<relationship name="&quot;rel_sborkaComposition_sborka&quot;" type="relfk"
+	 src-table="project.&quot;sborkaComposition&quot;"
+	 dst-table="project.sborka"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_sborkaComposition_sborkaType" type="relfk"
+	 src-table="project.&quot;sborkaComposition&quot;"
+	 dst-table="dictionary.&quot;sborkaType&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-104.324" y="-5.25203"/>
+	</label>
+</relationship>
+
+<relationship name="rel_detail_format" type="relfk"
+	 src-table="project.detail"
+	 dst-table="dictionary.format"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_formType_gost&quot;" type="relfk"
+	 src-table="dictionary.&quot;formType&quot;"
+	 dst-table="dictionary.gost"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_pogMass_ei&quot;" type="relfk"
+	 src-table="dictionary.&quot;pogMass&quot;"
+	 dst-table="dictionary.ei"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_sborka_formats_sborka" type="relfk"
+	 src-table="project.sborka_formats"
+	 dst-table="project.sborka"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-47.6593" y="-1.48553"/>
+	</label>
+</relationship>
+
+<relationship name="rel_sborka_formats_format" type="relfk"
+	 src-table="project.sborka_formats"
+	 dst-table="dictionary.format"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="87.3407" y="-1.31703"/>
+	</label>
+</relationship>
+
+<relationship name="rel_file_repository_file_types" type="relfk"
+	 src-table="directory.file_repository"
+	 dst-table="directory.file_types"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_st_st_settings_standart_stuff_dic" type="relfk"
+	 src-table="standart_stuff_dictionary.st_st_settings"
+	 dst-table="standart_stuff_dictionary.standart_stuff_dic"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="&quot;rel_standart_stuff_dic_st_stuffType&quot;" type="relfk"
+	 src-table="standart_stuff_dictionary.standart_stuff_dic"
+	 dst-table="standart_stuff_dictionary.&quot;st_stuffType&quot;"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_standart_stuff_dic_gost" type="relfk"
+	 src-table="standart_stuff_dictionary.standart_stuff_dic"
+	 dst-table="dictionary.gost"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_standart_stuff_standart_stuff_dic" type="relfk"
+	 src-table="project.standart_stuff"
+	 dst-table="standart_stuff_dictionary.standart_stuff_dic"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
